@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Stardew Valley Inspired Color Palette */
+:root {
+  /* Primary Blue Palette */
+  --primary-blue: #394ABB;
+  --sky-blue: #65C7FF;
+  --navy-blue: #2E446F;
+  --medium-blue: #425E95;
+  --white: #ffffff;
+  
+  /* Valley Colors - Warm, cozy tones */
+  --valley-cream: #f7f3e9;
+  --valley-gold: #f4d03f;
+  --valley-brown: #8b4513;
+  --valley-green: #7fb069;
+  --valley-blue: #4a90e2;
+  --valley-purple: #8e44ad;
+  --valley-pink: #e91e63;
+  --valley-orange: #ff6b35;
+  
+  /* Tech Colors - Georgia Tech inspired */
+  --tech-navy: #2E446F;
+  --tech-gold: #b3a369;
+  --tech-white: #ffffff;
+  
+  /* Nature Colors - Farm/forest vibes */
+  --forest-green: #2d5016;
+  --earth-brown: #5d4037;
+  --sunset-orange: #ff8c00;
+  
+  /* Accent Colors */
+  --accent-red: #e74c3c;
+  --accent-yellow: #f1c40f;
+  --accent-cyan: #1abc9c;
+}
+
+/* Custom Tailwind Classes */
+.bg-primary-blue { background-color: var(--primary-blue); }
+.bg-sky-blue { background-color: var(--sky-blue); }
+.bg-navy-blue { background-color: var(--navy-blue); }
+.bg-medium-blue { background-color: var(--medium-blue); }
+.bg-white { background-color: var(--white); }
+
+.bg-valley-cream { background-color: var(--valley-cream); }
+.bg-valley-gold { background-color: var(--valley-gold); }
+.bg-valley-brown { background-color: var(--valley-brown); }
+.bg-valley-green { background-color: var(--valley-green); }
+.bg-valley-blue { background-color: var(--valley-blue); }
+.bg-valley-purple { background-color: var(--valley-purple); }
+.bg-valley-pink { background-color: var(--valley-pink); }
+.bg-valley-orange { background-color: var(--valley-orange); }
+.bg-tech-navy { background-color: var(--tech-navy); }
+.bg-tech-gold { background-color: var(--tech-gold); }
+.bg-forest-green { background-color: var(--forest-green); }
+.bg-earth-brown { background-color: var(--earth-brown); }
+.bg-sunset-orange { background-color: var(--sunset-orange); }
+
+.text-primary-blue { color: var(--primary-blue); }
+.text-sky-blue { color: var(--sky-blue); }
+.text-navy-blue { color: var(--navy-blue); }
+.text-medium-blue { color: var(--medium-blue); }
+.text-white { color: var(--white); }
+
+.text-valley-cream { color: var(--valley-cream); }
+.text-valley-gold { color: var(--valley-gold); }
+.text-valley-brown { color: var(--valley-brown); }
+.text-valley-green { color: var(--valley-green); }
+.text-valley-blue { color: var(--valley-blue); }
+.text-valley-purple { color: var(--valley-purple); }
+.text-valley-pink { color: var(--valley-pink); }
+.text-valley-orange { color: var(--valley-orange); }
+.text-tech-navy { color: var(--tech-navy); }
+.text-tech-gold { color: var(--tech-gold); }
+.text-forest-green { color: var(--forest-green); }
+.text-earth-brown { color: var(--earth-brown); }
+.text-sunset-orange { color: var(--sunset-orange); }
+
+.border-primary-blue { border-color: var(--primary-blue); }
+.border-sky-blue { border-color: var(--sky-blue); }
+.border-navy-blue { border-color: var(--navy-blue); }
+.border-medium-blue { border-color: var(--medium-blue); }
+.border-white { border-color: var(--white); }
+
+.border-valley-cream { border-color: var(--valley-cream); }
+.border-valley-gold { border-color: var(--valley-gold); }
+.border-valley-brown { border-color: var(--valley-brown); }
+.border-valley-green { border-color: var(--valley-green); }
+.border-valley-blue { border-color: var(--valley-blue); }
+.border-valley-purple { border-color: var(--valley-purple); }
+.border-valley-pink { border-color: var(--valley-pink); }
+.border-valley-orange { border-color: var(--valley-orange); }
+.border-tech-navy { border-color: var(--tech-navy); }
+.border-tech-gold { border-color: var(--tech-gold); }
+
+/* Pixel Art Font */
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+
+/* Pixel Border Effect */
+.pixel-border {
+  border: 3px solid;
+  border-image: url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%23000' stroke-width='2'/%3e%3c/svg%3e") 3;
+  image-rendering: pixelated;
+}
+
+/* Alternative pixel border using box-shadow */
+.pixel-border-alt {
+  position: relative;
+  border: 2px solid var(--valley-brown);
+}
+
+.pixel-border-alt::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid var(--valley-brown);
+  z-index: -1;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(244, 208, 63, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(244, 208, 63, 0.8); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Custom Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--medium-blue), var(--navy-blue));
+}
+
+.gradient-sky {
+  background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue), var(--medium-blue));
+}
+
+.gradient-navy {
+  background: linear-gradient(135deg, var(--navy-blue), var(--primary-blue), var(--sky-blue));
+}
+
+.gradient-valley-sunset {
+  background: linear-gradient(135deg, var(--valley-orange), var(--valley-pink), var(--valley-purple));
+}
+
+.gradient-valley-sky {
+  background: linear-gradient(135deg, var(--sky-blue), var(--valley-blue), var(--valley-purple));
+}
+
+.gradient-valley-earth {
+  background: linear-gradient(135deg, var(--valley-green), var(--forest-green), var(--earth-brown));
+}
+
+.gradient-valley-gold {
+  background: linear-gradient(135deg, var(--valley-gold), var(--sunset-orange), var(--valley-orange));
+}
+
+/* Pixel Art Button Styles */
+.btn-pixel {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7em;
+  padding: 12px 24px;
+  border: 3px solid var(--valley-brown);
+  background: var(--valley-gold);
+  color: var(--valley-brown);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-pixel:hover {
+  background: var(--valley-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 var(--valley-brown);
+}
+
+.btn-pixel:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0 var(--valley-brown);
+}
+
+.btn-pixel-secondary {
+  background: var(--valley-purple);
+  color: var(--valley-cream);
+  border-color: var(--valley-cream);
+}
+
+.btn-pixel-secondary:hover {
+  background: var(--valley-pink);
+}
+
+/* Pixel Art Card Styles */
+.card-pixel {
+  background: var(--valley-cream);
+  border: 3px solid var(--valley-brown);
+  border-radius: 0;
+  position: relative;
+  box-shadow: 4px 4px 0 var(--valley-brown);
+}
+
+.card-pixel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 2px solid var(--valley-brown);
+  z-index: -1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .font-pixel {
+    font-size: 0.6em;
+  }
+  
+  .btn-pixel {
+    font-size: 0.6em;
+    padding: 10px 20px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--valley-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--valley-brown);
+  border: 2px solid var(--valley-cream);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--forest-green);
+}
+
+/* Selection Colors */
+::selection {
+  background: var(--valley-gold);
+  color: var(--valley-brown);
+}
+
+::-moz-selection {
+  background: var(--valley-gold);
+  color: var(--valley-brown);
+}
+
