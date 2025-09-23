@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "HackTech Valley",
-  description: "Georgia Tech's coziest hackathon - where ideas grow like crops",
-  url: "https://hacktech-valley.com",
+  name: "TechHack Valley",
+  description: "Georgia Tech's coziest hackathon hosted by GT Esports - where ideas grow like crops",
+  url: "https://techhack-valley.com",
 
   event: {
-    name: "HackTech Valley 2024",
+    name: "TechHack Valley 2026",
     tagline: "Cultivate Innovation, Harvest Success",
-    date: "March 15-17, 2024",
+    date: "TBA",
     location: "Georgia Institute of Technology",
     registrationOpen: true,
   },
@@ -21,17 +21,17 @@ export const siteConfig = {
   ],
 
   links: {
-    discord: "https://discord.gg/hacktech",
-    instagram: "https://instagram.com/hacktech",
-    twitter: "https://twitter.com/hacktech",
-    linkedin: "https://linkedin.com/company/hacktech",
-    email: "hello@hacktech-valley.com",
+    discord: "https://discord.gg/",
+    instagram: "https://instagram.com/",
+    twitter: "https://twitter.com/",
+    linkedin: "https://linkedin.com/company/",
+    email: "hello@techhack-valley.com",
     codeOfConduct: "/code-of-conduct",
   },
 
   about: {
     intro:
-      "Welcome to HackTech Valley, where the spirit of Stardew Valley meets the innovation of Georgia Tech! Just like tending to your virtual farm, we believe in nurturing ideas from seed to harvest.",
+      "Welcome to TechHack Valley, where the spirit of Stardew Valley meets the innovation of Georgia Tech! Just like tending to your virtual farm, we believe in nurturing ideas from seed to harvest.",
     mission:
       "Our mission is to create a cozy, inclusive environment where hackers can plant the seeds of creativity, collaborate with fellow farmers of technology, and harvest amazing projects that make a difference.",
     community:
@@ -40,9 +40,9 @@ export const siteConfig = {
 
   faq: [
     {
-      question: "What is HackTech Valley?",
+      question: "What is TechHack Valley?",
       answer:
-        "HackTech Valley is Georgia Tech's 36-hour hackathon with a cozy Stardew Valley theme! It's where students come together to build amazing projects, learn new skills, and make lasting friendships.",
+        "TechHack Valley is Georgia Tech's 36-hour hackathon with a cozy Stardew Valley theme! It's where students come together to build amazing projects, learn new skills, and make lasting friendships.",
     },
     {
       question: "Who can participate?",
@@ -67,7 +67,7 @@ export const siteConfig = {
     {
       question: "What if I'm a beginner?",
       answer:
-        "Perfect! HackTech Valley is designed to be beginner-friendly. We have mentors, workshops, and starter resources to help you plant your first seeds in tech.",
+        "Perfect! TechHack Valley is designed to be beginner-friendly. We have mentors, workshops, and starter resources to help you plant your first seeds in tech.",
     },
   ],
 } as const

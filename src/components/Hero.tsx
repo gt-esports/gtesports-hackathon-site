@@ -21,7 +21,19 @@ export default function Hero() {
         <div className="absolute top-80 right-1/3 animate-bounce-gentle text-2xl" style={{ animationDelay: "2.5s" }}>🌻</div>
       </div>
 
-      <nav className="absolute top-6 right-6 z-20">
+      {/* Navigation with branding */}
+      <nav className="absolute top-6 left-6 right-6 z-20 flex justify-between items-center">
+        {/* Logo/Brand */}
+        <div className="text-white font-pixel text-lg md:text-xl drop-shadow-lg">
+          <div>
+            <span className="text-valley-gold">TechHack</span> <span className="text-sky-blue">Valley</span>
+          </div>
+          <div className="text-xs text-white/60 font-pixel">
+            by GT Esports
+          </div>
+        </div>
+        
+        {/* Menu Button */}
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -141,7 +153,7 @@ export default function Hero() {
           {/* Title with colorful gradient text */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-pixel tracking-wider drop-shadow-2xl">
             <span className="bg-gradient-to-r from-valley-gold via-valley-orange to-valley-pink bg-clip-text text-transparent">
-              HackTech
+              TechHack
             </span>
             <br />
             <span className="bg-gradient-to-r from-valley-green via-valley-blue to-valley-purple bg-clip-text text-transparent">
@@ -176,7 +188,7 @@ export default function Hero() {
         {/* Event details with pixel art card */}
         <div className="card-pixel max-w-md mx-auto p-4">
           <div className="text-valley-brown">
-            <p className="text-lg font-pixel font-semibold mb-2">{siteConfig.event.date}</p>
+            <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">GT Esports</span></p>
             <p className="text-sm font-pixel">{siteConfig.event.location}</p>
           </div>
         </div>

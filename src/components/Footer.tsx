@@ -9,10 +9,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand section */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4 font-pixel text-sky-blue">HackTech Valley</h3>
-            <p className="text-white/80 mb-6 leading-relaxed font-pixel text-sm">
+            <h3 className="text-2xl font-bold mb-4 font-pixel text-sky-blue">TechHack Valley</h3>
+            <p className="text-white/80 mb-4 leading-relaxed font-pixel text-sm">
               Georgia Tech's coziest hackathon where ideas grow like crops. Join us for 36 hours of innovation,
               collaboration, and cozy coding vibes.
+            </p>
+            <p className="text-sky-blue/80 mb-6 font-pixel text-xs">
+              Hosted by GT Esports
             </p>
             <div className="flex space-x-4">
               <a
@@ -102,7 +105,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-white/60 text-sm font-pixel">📍 {siteConfig.event.location}</li>
-              <li className="text-white/60 text-sm font-pixel">📅 {siteConfig.event.date}</li>
+              <li className="text-white/60 text-sm font-pixel">🏢 Hosted by GT Esports</li>
             </ul>
           </div>
         </div>
@@ -111,7 +114,7 @@ export default function Footer() {
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-white/60 text-sm mb-4 md:mb-0 font-pixel">
-              © {currentYear} HackTech Valley. All rights reserved.
+              © {currentYear} TechHack Valley. All rights reserved.
             </div>
             <div className="flex items-center space-x-4 text-white/60 text-sm font-pixel">
               <span>Made with 💚 by Georgia Tech students</span>
