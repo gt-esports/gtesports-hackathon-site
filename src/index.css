@@ -191,6 +191,14 @@
   background: linear-gradient(135deg, var(--valley-gold), var(--sunset-orange), var(--valley-orange));
 }
 
+/* Hero background image utility (served from Vite public dir) */
+.hero-pixel-mountains {
+  background-image: url('/pixel-mountains.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* Pixel Art Button Styles */
 .btn-pixel {
   font-family: 'Press Start 2P', monospace;
