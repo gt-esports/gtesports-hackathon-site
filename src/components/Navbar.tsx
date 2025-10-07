@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -16,46 +17,55 @@ export default function Navbar() {
           </div>
         </div>
         
-        {/* Menu Button and Dropdown */}
-        <div className="relative">
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="btn-pixel flex items-center gap-2"
-          >
-            Menu
-            <svg
-              className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        {/* Navigation Elements */}
+        <div className="flex items-center gap-3">
+          {/* Sign In Button */}
+          <Link to="/login" className="btn-pixel-secondary px-3 py-2 flex items-center gap-1">
+            <span className="text-sm">👤</span>
+            <span className="hidden sm:inline">Sign In</span>
+          </Link>
+          
+          {/* Menu Button and Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="btn-pixel flex items-center gap-2"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+              Menu
+              <svg
+                className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
 
-          {/* Dropdown Menu */}
-          {isDropdownOpen && (
-            <div className="absolute top-full right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl bg-white rounded-lg border border-gray-200">
-              <a
-                href="/schedule"
-                className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-              >
-                📅 Schedule
-              </a>
-              <a
-                href="/sponsors"
-                className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-              >
-                🏢 Sponsors
-              </a>
-              <a href="/teams" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
-                👥 Teams
-              </a>
-              <a href="/submit" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
-                🚀 Submit
-              </a>
-            </div>
-          )}
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="absolute top-full right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl bg-white rounded-lg border border-gray-200">
+                <a
+                  href="/schedule"
+                  className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
+                >
+                  📅 Schedule
+                </a>
+                <a
+                  href="/sponsors"
+                  className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
+                >
+                  🏢 Sponsors
+                </a>
+                <a href="/teams" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
+                  👥 Teams
+                </a>
+                <a href="/submit" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
+                  🚀 Submit
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
 

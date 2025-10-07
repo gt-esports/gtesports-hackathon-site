@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 function StubPage({ title, description }: { title: string; description: string }) {
   return (
@@ -28,6 +29,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/schedule"
           element={
