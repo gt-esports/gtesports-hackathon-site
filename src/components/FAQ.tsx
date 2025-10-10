@@ -77,13 +77,24 @@ function DialogueOverlay({ open, onClose, data }: DialogueOverlayProps) {
 
   if (!open || !data) return null;
 
+  // Handle clicking outside of dialogue to close
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 py-6 sm:px-0 sm:py-0">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 py-6 sm:px-0 sm:py-0"
+      onClick={handleOverlayClick}
+      style={{ cursor: 'pointer' }}>
+
       <div className="relative w-full max-w-4xl p-4 sm:p-2">
 
         {/* Close Button */}
-        <div className="absolute -top-4 -right-4">
-          <button onClick={onClose} className="bg-accent-red text-white rounded-full w-10 h-10 border-2 border-white text-2xl font-pixel shadow-lg hover:bg-red-700">&times;</button>
+        <div className="absolute -top-2 -right-2">
+          <button onClick={onClose} className="bg-red-700 text-white rounded-full w-10 h-10 border-2 border-white text-2xl font-pixel shadow-lg">X</button>
         </div>
 
         {/* Dialogue Box */}
