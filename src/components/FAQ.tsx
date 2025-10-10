@@ -10,38 +10,57 @@ type DialogueOverlayProps = {
   data: FAQData | null;
 };
 
+export default function FAQ() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogCategory, setDialogCategory] = useState<FAQCategory | null>(null);
 
-function FaqOptions({ questions: options, onSelect, onBack, goBackDialogue: backOptionEnabled }: {
-  questions: { q: string; a: string }[];
-  onSelect: (a: string) => void;
-  onBack: () => void;
-  goBackDialogue: boolean;
-}) {
-  
+  const handleFAQClick = (category: FAQCategory) => {
+    setDialogCategory(category);
+    setDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false);
+    setDialogCategory(null);
+  };
+
+  // Card component for grid
+  const FaqCard = ({ category, title, description }: { category: FAQCategory, title: string, description: string }) => (
+    <div className="bg-valley-cream p-4 text-valley-brown cursor-pointer text-center relative shadow-md hover:-translate-y-1 transition-transform duration-150 font-pixel border-4 border-valley-brown" onClick={() => handleFAQClick(category)}>
+      {/* Thumbtack */}
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-valley-brown border-2 border-white" style={{boxShadow: 'inset 1px 1px 2px rgba(0,0,0,0.2)'}}></div>
+      <h3 className="text-xl font-bold mt-4">{title}</h3>
+      <p className="mt-2 text-sm">{description}</p>
+    </div>
+  );
+
   return (
-  <div className="w-full bg-[#f5dcb0] border-4 border-valley-brown rounded-lg shadow-lg mt-4 font-pixel" style={{ boxShadow: '0 0 0 4px #c7966b' }}>
-    <ul className="p-2">
-      {backOptionEnabled ? (
-        <li>
-          <button
-            onClick={onBack}
-            className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
-            ...Ask another question?
-          </button>
-        </li>
-      ) : (
-        options.map((option, index) => (
-          <li key={index}>
-            <button
-              onClick={() => onSelect(option.a)}
-              className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
-              {option.q}
-            </button>
-          </li>
-        ))
-      )}
-    </ul>
-  </div>
+    <section className="py-20 gradient-primary">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-pixel drop-shadow-lg">FAQ</h2>
+        </div>
+        <div className="text-center text-white/80 font-pixel">
+          <div className="bg-[#f5dcb0] border-[12px] border-valley-brown shadow-lg w-full mx-auto p-6" style={{ boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)' }}>
+            <h1 className="text-4xl text-valley-brown text-center mb-8 font-bold" style={{ textShadow: '2px 2px 0px #e0c8a8' }}>Frequently Asked Questions</h1>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <FaqCard category="general" title="General FAQ" description="General Questions About The Event." />
+              <FaqCard category="food" title="Food" description="Catering, Dietary Restrictions, and Allergies." />
+              <FaqCard category="venue" title="Venue" description="Location Details, Entry, Parking." />
+              <FaqCard category="items" title="Adventurer's Pack" description="What to Bring, How to Prepare, etc." />
+              <FaqCard category="lost" title="Lost & Found" description="Reporting and Retrieving Lost Items." />
+              <FaqCard category="misc" title="Other Questions" description="Miscellaneous FAQ." />
+            </div>
+          </div>
+          <DialogueOverlay
+            open={dialogOpen}
+            onClose={handleClose}
+            data={dialogCategory && typeof dialogCategory === 'string' && dialogCategory in faqData ? faqData[dialogCategory as FAQCategory] : null}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -103,66 +122,36 @@ function DialogueOverlay({ open, onClose, data }: DialogueOverlayProps) {
   );
 }
 
-export default function FAQ() {
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [dialogCategory, setDialogCategory] = useState<FAQCategory | null>(null);
-
-  const handleFAQClick = (category: FAQCategory) => {
-    setDialogCategory(category);
-    setDialogOpen(true);
-  };
-
-  const handleClose = () => {
-    setDialogOpen(false);
-    setDialogCategory(null);
-  };
-
+function FaqOptions({ questions: options, onSelect, onBack, goBackDialogue: backOptionEnabled }: {
+  questions: { q: string; a: string }[];
+  onSelect: (a: string) => void;
+  onBack: () => void;
+  goBackDialogue: boolean;
+}) {
+  
   return (
-    <section className="py-20 gradient-primary">
-      <div className="max-w-4xl mx-auto px-4">
-        
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-pixel drop-shadow-lg">FAQ</h2>
-        </div>
-
-        <div className="text-center text-white/80 font-pixel">
-          <div className="card-pixel w-full mx-auto p-4">
-            <h1 className="text-valley-brown text-2xl">Frequently Asked Questions</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('general')}>
-                <h3 className="text-xl font-bold">General FAQ</h3>
-                <p className="mt-2 text-sm">General Questions About the Event.</p>
-              </div>
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('food')}>
-                <h3 className="text-xl font-bold">Food</h3>
-                <p className="mt-2 text-sm">Catering, Dietary Restrictions, and Allergies.</p>
-              </div>
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('venue')}>
-                <h3 className="text-xl font-bold">Venue</h3>
-                <p className="mt-2 text-sm">Location, Entry, Parking, etc.</p>
-              </div>
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('items')}>
-                <h3 className="text-xl font-bold">Adventurer's Pack</h3>
-                <p className="mt-2 text-sm">What to Bring, How to Prepare, etc.</p>
-              </div>
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('lost')}>
-                <h3 className="text-xl font-bold">Lost & Found</h3>
-                <p className="mt-2 text-sm">Reporting and Retrieving Lost Items</p>
-              </div>
-              <div className="parchment p-4 rounded-lg text-gray-800 cursor-pointer text-center" onClick={() => handleFAQClick('misc')}>
-                <h3 className="text-xl font-bold">Other Questions</h3>
-                <p className="mt-2 text-sm">Miscellaneous FAQ</p>
-              </div>
-            </div>
-          </div>
-
-          <DialogueOverlay
-            open={dialogOpen}
-            onClose={handleClose}
-            data={dialogCategory && typeof dialogCategory === 'string' && dialogCategory in faqData ? faqData[dialogCategory as FAQCategory] : null}
-          />
-        </div>
-      </div>
-    </section>
+  <div className="w-full bg-[#f5dcb0] border-4 border-valley-brown rounded-lg shadow-lg mt-4 font-pixel" style={{ boxShadow: '0 0 0 4px #c7966b' }}>
+    <ul className="p-2">
+      {backOptionEnabled ? (
+        <li>
+          <button
+            onClick={onBack}
+            className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
+            ...Ask another question?
+          </button>
+        </li>
+      ) : (
+        options.map((option, index) => (
+          <li key={index}>
+            <button
+              onClick={() => onSelect(option.a)}
+              className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
+              {option.q}
+            </button>
+          </li>
+        ))
+      )}
+    </ul>
+  </div>
   );
 }
