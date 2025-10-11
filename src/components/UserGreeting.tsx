@@ -6,7 +6,6 @@ export default function UserGreeting() {
     name: "Alex Developer",
     profilePic: "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
     email: "alex@example.com",
-    team: "Team Innovators",
     university: "Georgia Institute of Technology"
   });
 
@@ -14,7 +13,6 @@ export default function UserGreeting() {
   const [editForm, setEditForm] = useState({
     email: user.email,
     password: "",
-    team: user.team,
     profilePic: user.profilePic,
     university: user.university
   });
@@ -30,7 +28,6 @@ export default function UserGreeting() {
     setEditForm({
       email: user.email,
       password: "",
-      team: user.team,
       profilePic: user.profilePic,
       university: user.university
     });
@@ -42,7 +39,6 @@ export default function UserGreeting() {
     setUser({
       ...user,
       email: editForm.email,
-      team: editForm.team,
       profilePic: editForm.profilePic,
       university: editForm.university
     });
@@ -77,15 +73,15 @@ export default function UserGreeting() {
           ✏️
         </button>
       </div>
-      <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8" style={{ textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
+      <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8" style={{fontSize: '1.5rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
         {getGreeting()}, {user.name}! 👋
       </h1>
-      <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{ textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
+      <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
         Ready to build something amazing?
       </p>
       
       <div className="bg-black/30 backdrop-blur-md rounded-2xl p-10 border border-white/40 mb-10 shadow-2xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div className="text-center group">
             <span className="font-pixel text-white block mb-3 text-sm">Email:</span>
             <p className="text-valley-gold font-pixel text-sm group-hover:text-valley-gold transition-colors cursor-pointer">
@@ -96,12 +92,6 @@ export default function UserGreeting() {
             <span className="font-pixel text-white block mb-3 text-sm">University:</span>
             <p className="text-valley-gold font-pixel text-sm group-hover:text-valley-gold transition-colors cursor-pointer">
               {user.university}
-            </p>
-          </div>
-          <div className="text-center group">
-            <span className="font-pixel text-white block mb-3 text-sm">Team:</span>
-            <p className="text-valley-gold font-pixel text-sm group-hover:text-valley-gold transition-colors cursor-pointer">
-              {user.team}
             </p>
           </div>
         </div>
@@ -211,22 +201,6 @@ export default function UserGreeting() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
                     placeholder="Georgia Institute of Technology"
-                    required
-                  />
-                </div>
-
-                {/* Team */}
-                <div>
-                  <label className="block font-pixel text-valley-brown text-sm mb-2">
-                    Team Name:
-                  </label>
-                  <input
-                    type="text"
-                    name="team"
-                    value={editForm.team}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
-                    placeholder="Team Innovators"
                     required
                   />
                 </div>

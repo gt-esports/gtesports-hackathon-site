@@ -22,7 +22,7 @@ export default function Navbar() {
           {/* Sign In Button */}
           <Link to="/login" className="btn-pixel-secondary px-3 py-2 flex items-center gap-1">
             <span className="text-sm">👤</span>
-            <span className="hidden sm:inline">Sign In</span>
+            <span className="hidden sm:inline font-pixel">Sign In</span>
           </Link>
           
           {/* Menu Button and Dropdown */}
@@ -45,6 +45,18 @@ export default function Navbar() {
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl bg-white rounded-lg border border-gray-200">
+                <a
+                href="/home"
+                className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
+                >
+                  🏠 Home
+                </a>
+                <a
+                href="/dashboard"
+                className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
+                >
+                  🎯 Dashboard
+                </a>
                 <a
                   href="/schedule"
                   className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
