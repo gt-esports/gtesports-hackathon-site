@@ -185,13 +185,13 @@ export default function Login() {
                     Or continue with
                   </p>
                   <div className="flex justify-center space-x-4">
-                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm">
+                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm" aria-label="Sign in with Google">
                       G
                     </button>
-                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm">
+                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm" aria-label="Sign in with GitHub">
                       🔑
                     </button>
-                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm">
+                    <button className="btn-pixel btn-pixel-secondary p-3 text-sm" aria-label="Sign in with Twitter">
                       🐦
                     </button>
                   </div>
