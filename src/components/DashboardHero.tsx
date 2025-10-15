@@ -245,7 +245,7 @@ export default function DashboardHero() {
               href="https://discord.gg/temporary" 
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-pixel text-base inline-block hover:scale-105 transition-transform duration-200 btn-pixel btn-pixel-secondary text-lg"
+              className="btn-pixel btn-pixel-secondary text-lg inline-block hover:scale-105 transition-transform duration-200"
             >
               👥 Team Lookup on Discord
             </a>
