@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export default function DashboardHero() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -57,7 +57,7 @@ export default function DashboardHero() {
   // Hackathon Countdown Logic
   const hackathonStartDate = new Date("2025-12-25T10:00:00").getTime();
 
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = useCallback(() => {
     const now = new Date().getTime();
     const distance = hackathonStartDate - now;
 
@@ -71,7 +71,7 @@ export default function DashboardHero() {
     } else {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
-  };
+  }, [hackathonStartDate]);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
@@ -81,7 +81,7 @@ export default function DashboardHero() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [calculateTimeLeft]);
 
   const isHackathonStarted = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
 
@@ -396,4 +396,3 @@ export default function DashboardHero() {
     </>
   );
 }
-
