@@ -40,6 +40,12 @@ export default function Hero() {
 
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl">
+                <a
+                  href="/dashboard"
+                  className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
+                >
+                  🎯 Dashboard
+                </a>
               <a
                 href="/schedule"
                 className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
