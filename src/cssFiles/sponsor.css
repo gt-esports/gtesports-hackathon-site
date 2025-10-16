@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+.card-container {
+    @apply relative overflow-hidden m-6 rounded-lg border-[5px] border-gray-300/50 bg-white/20 backdrop-blur-md transition-transform duration-300 ease-in-out cursor-default;
+    width: 90%;
+    max-width: 300px;
+    min-height: 250px;
+}
+
+.card-image {
+    @apply rounded-lg mt-2;
+    width: 20%;
+    height: auto;
+    object-fit: contain;
+}
+
+.card-content {
+    @apply absolute top-0 w-[90%] h-full p-4 z-10;
+}
+
+.card-title {
+    @apply text-pink-200 text-xl transition-transform duration-300 cursor-pointer;
+}
+
+.card-desc {
+    @apply text-gray-900 text-sm bg-white/85 rounded-lg p-2 transition-transform duration-300;
+}
