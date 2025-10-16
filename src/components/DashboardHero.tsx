@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { siteConfig } from '../config/site';
 
 export default function DashboardHero() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -10,6 +11,8 @@ export default function DashboardHero() {
     email: "alex@example.com",
     university: "Georgia Institute of Technology"
   });
+
+  const hackathonStartDate = new Date(siteConfig.event.date).getTime();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editForm, setEditForm] = useState({
@@ -55,7 +58,6 @@ export default function DashboardHero() {
   };
   
   // Hackathon Countdown Logic
-  const hackathonStartDate = new Date("2025-12-25T10:00:00").getTime();
 
   const calculateTimeLeft = useCallback(() => {
     const now = new Date().getTime();
