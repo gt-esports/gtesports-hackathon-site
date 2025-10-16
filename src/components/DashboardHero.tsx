@@ -12,7 +12,7 @@ export default function DashboardHero() {
     university: "Georgia Institute of Technology"
   });
 
-  const hackathonStartDate = new Date(siteConfig.event.date).getTime();
+  const hackathonStartDate = new Date(siteConfig.event.date_time).getTime();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editForm, setEditForm] = useState({
@@ -94,7 +94,7 @@ export default function DashboardHero() {
         <span className="text-valley-gold text-xl">🎉 TECHHACK VALLEY IS LIVE! 🎉</span>
       ) : (
         <>
-          <span className="text-white/90">TECHHACK VALLEY 2025 STARTS IN:</span>
+          <span className="text-white/90">{siteConfig.event.name} STARTS IN:</span>
           <span className="text-3xl text-valley-gold font-bold">{timeLeft.days}</span>
           <span className="text-white/80">DAYS</span>
           <span className="text-3xl text-valley-gold font-bold">{timeLeft.hours}</span>
@@ -104,7 +104,7 @@ export default function DashboardHero() {
           <span className="text-3xl text-valley-gold font-bold">{timeLeft.seconds}</span>
           <span className="text-white/80">SECONDS</span>
           <span className="text-valley-gold">✦</span>
-          <span className="text-white/90">DECEMBER 25, 2025</span>
+          <span className="text-white/90">{siteConfig.event.date}</span>
           <span className="text-valley-gold">⏰</span>
         </>
       )}
