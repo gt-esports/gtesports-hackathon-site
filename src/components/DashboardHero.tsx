@@ -196,7 +196,7 @@ export default function DashboardHero() {
       </div>
 
       {/* Main Dashboard Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-32">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-32 pb-32">
         <div className="text-center max-w-4xl mx-auto">
           {/* User Greeting Section */}
           <div className="text-center max-w-4xl mx-auto px-4">
