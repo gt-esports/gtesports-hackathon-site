@@ -19,11 +19,6 @@ export default function Navbar() {
         
         {/* Navigation Elements */}
         <div className="flex items-center gap-3">
-          {/* Sign In Button */}
-          <Link to="/login" className="btn-pixel-secondary px-3 py-2 flex items-center gap-1">
-            <span className="text-sm">👤</span>
-            <span className="hidden sm:inline">Sign In</span>
-          </Link>
           
           {/* Menu Button and Dropdown */}
           <div className="relative">
@@ -62,6 +57,9 @@ export default function Navbar() {
                 </a>
                 <a href="/submit" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
                   🚀 Submit
+                </a>
+                <a href="/login" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
+                  👤 Log In
                 </a>
               </div>
             )}

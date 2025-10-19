@@ -1,5 +1,6 @@
 "use client"
 
+import { Link } from "react-router-dom"
 import { siteConfig } from "../config/site"
 
 export default function Hero() {
@@ -65,9 +66,11 @@ export default function Hero() {
 
         {/* Action buttons with pixel art styling */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+          <Link to="/signup">
           <button className="btn-pixel text-lg animate-pulse-glow">
             🌱 Register Now
           </button>
+          </Link>
           <button className="btn-pixel btn-pixel-secondary text-lg">
             💬 Join Discord
           </button>

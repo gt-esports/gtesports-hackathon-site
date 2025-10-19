@@ -1,8 +1,15 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 
 export default function Login() {
-  const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login')
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState<'login' | 'signup'>(
+      location.pathname === '/signup' ? 'signup' : 'login'
+  );
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -25,13 +32,19 @@ export default function Login() {
             <div className="flex border-b-3 border-valley-brown">
               <button 
                 className={`flex-1 font-pixel py-4 text-sm ${activeTab === 'login' ? 'bg-valley-gold text-valley-brown' : 'bg-white text-valley-brown/70 hover:bg-valley-cream/50'}`}
-                onClick={() => setActiveTab('login')}
+                onClick={() => {
+                  setActiveTab('login');
+                  navigate('/login');
+                }}
               >
                 🔑 Login
               </button>
               <button 
                 className={`flex-1 font-pixel py-4 text-sm ${activeTab === 'signup' ? 'bg-valley-gold text-valley-brown' : 'bg-white text-valley-brown/70 hover:bg-valley-cream/50'}`}
-                onClick={() => setActiveTab('signup')}
+                onClick={() => {
+                  setActiveTab('signup')
+                  navigate('/signup');
+                }}
               >
                 ✨ Sign Up
               </button>
@@ -41,106 +54,9 @@ export default function Login() {
             <div className="p-8">
               <form onSubmit={handleSubmit}>
                 {activeTab === 'login' ? (
-                  <>
-                    <h2 className="text-2xl font-bold text-valley-brown font-pixel mb-8 text-center">
-                      Welcome Back, Farmer!
-                    </h2>
-                    
-                    <div className="mb-6">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="email">
-                        Email Address
-                      </label>
-                      <input 
-                        type="email"
-                        id="email"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div className="mb-8">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="password">
-                        Password
-                      </label>
-                      <input 
-                        type="password"
-                        id="password"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      <div className="mt-2 text-right">
-                        <a href="#" className="text-xs font-pixel text-valley-blue hover:text-valley-purple">
-                          Forgot password?
-                        </a>
-                      </div>
-                    </div>
-                  </>
+                  <LoginForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
                 ) : (
-                  <>
-                    <h2 className="text-2xl font-bold text-valley-brown font-pixel mb-8 text-center">
-                      Join the Valley!
-                    </h2>
-                    
-                    <div className="mb-4">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="name">
-                        Full Name
-                      </label>
-                      <input 
-                        type="text"
-                        id="name"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div className="mb-4">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="signup-email">
-                        Email Address
-                      </label>
-                      <input 
-                        type="email"
-                        id="signup-email"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div className="mb-4">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="school">
-                        School / University
-                      </label>
-                      <input 
-                        type="text"
-                        id="school"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        placeholder="Georgia Tech"
-                        value={school}
-                        onChange={(e) => setSchool(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div className="mb-8">
-                      <label className="block text-valley-brown font-pixel text-sm mb-2" htmlFor="signup-password">
-                        Password
-                      </label>
-                      <input 
-                        type="password"
-                        id="signup-password"
-                        className="w-full p-3 border-3 border-valley-brown font-pixel text-sm bg-valley-cream text-valley-brown focus:outline-none focus:ring-2 focus:ring-valley-gold"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                  </>
+                  <SignupForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} name={name} setName={setName} school={school} setSchool={setSchool} />
                 )}
                 
                 <button 
