@@ -21,6 +21,11 @@ export default function Login() {
     
   }
 
+  // Sync activeTab when the location changes (handles back/forward)
+  useEffect(() => {
+    setActiveTab(location.pathname === '/signup' ? 'signup' : 'login');
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen bg-valley-cream">
       
@@ -73,7 +78,10 @@ export default function Login() {
                         New to TechHack Valley?{" "}
                         <button 
                           type="button"
-                          onClick={() => setActiveTab('signup')}
+                          onClick={() => {
+                            setActiveTab('signup')
+                            navigate('/signup');
+                          }}
                           className="text-valley-green hover:text-valley-blue"
                         >
                           Sign up here
@@ -84,7 +92,10 @@ export default function Login() {
                         Already registered?{" "}
                         <button 
                           type="button"
-                          onClick={() => setActiveTab('login')}
+                          onClick={() => {
+                            setActiveTab('login')
+                            navigate('/login');
+                          }}
                           className="text-valley-green hover:text-valley-blue"
                         >
                           Log in here
