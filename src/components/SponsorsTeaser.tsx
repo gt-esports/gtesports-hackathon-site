@@ -1,5 +1,5 @@
-import React, { type FC, useState } from "react";
-import "../cssFiles/sponsor.css"; // 👈 we'll define static styles here
+import React, { type FC, useMemo, useState } from "react";
+import "../cssFiles/sponsor.css";
 
 interface Card {
   img: string;
@@ -8,8 +8,20 @@ interface Card {
   link: string;
 }
 
+function generateRandomPositions(num: number): number[] {
+  const arr: number[] = [];
+  for (let i = 0; i < num; i++) {
+    arr.push(Math.random() * 100);
+  }
+  return arr;
+}
+
 
 const BackgroundStars: FC = () => {
+
+  const positions = useMemo(() => generateRandomPositions(160), []);
+
+
   return (
     <div className="absolute inset-0">
       {[...Array(80)].map((_, i) => (
@@ -17,16 +29,15 @@ const BackgroundStars: FC = () => {
           key={i}
           className="absolute w-1 h-1 bg-yellow-300 rounded-full animate-twinkle"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
+            left: `${positions[i]}%`,
+            top: `${positions[i + 80]}%`,
+
           }}
         />
       ))}
     </div>
   );
 };
-
 
 interface CardComponentProps {
   card: Card;
@@ -56,11 +67,7 @@ const CardComponent: FC<CardComponentProps> = ({ card, shellHovered }) => {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="flex justify-center">
-        <img
-          src={card.img}
-          alt={card.title}
-          className="card-image"
-        />
+        <img src={card.img} alt={card.title} className="card-image" />
       </div>
 
       <div className="card-content">
@@ -113,7 +120,7 @@ const SponsorsTeaser: FC = () => {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-[rgb(50,50,80)] overflow-hidden">
-      {/* Background stars */}
+
       <BackgroundStars />
 
       <h1 className="absolute top-8 w-full text-center text-yellow-200 text-4xl font-bold z-10">
@@ -131,7 +138,6 @@ const SponsorsTeaser: FC = () => {
       </div>
     </div>
   );
-
 };
 
 export default SponsorsTeaser;
