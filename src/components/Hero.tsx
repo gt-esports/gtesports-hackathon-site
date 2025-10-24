@@ -1,8 +1,6 @@
 "use client"
 
 import { siteConfig } from "../config/site"
-import { useState } from "react"
-import Navbar from "./Navbar"
 
 export default function Hero() {
 
