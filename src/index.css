@@ -1,5 +1,6 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
+
 
 /* Stardew Valley Inspired Color Palette */
 :root {
@@ -162,6 +163,20 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+@keyframes scroll-single {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-single {
+  animation: scroll-single 15s linear infinite;
+}
+
+
 /* Custom Gradients */
 .gradient-primary {
   background: linear-gradient(135deg, var(--primary-blue), var(--medium-blue), var(--navy-blue));
@@ -197,6 +212,18 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* Dashboard Hero background image utility (served from Vite public dir) */
+.hero-pixel-clouds {
+  background-image: url('/58cab525-a7f1-4940-866a-3c2db770e229.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
 }
 
 /* Pixel Art Button Styles */
