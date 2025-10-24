@@ -6,7 +6,8 @@ export const siteConfig = {
   event: {
     name: "TechHack Valley 2026",
     tagline: "Cultivate Innovation, Harvest Success",
-    date: "TBA",
+    date:"MARCH 06, 2026",
+    date_time: "2026-03-06T19:00:00",
     location: "Georgia Institute of Technology",
     registrationOpen: true,
   },
