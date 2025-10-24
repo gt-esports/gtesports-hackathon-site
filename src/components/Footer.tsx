@@ -76,11 +76,6 @@ export default function Footer() {
                   👥 Teams
                 </a>
               </li>
-              <li>
-                <a href="/submit" className="text-white/80 hover:text-white transition-colors duration-200 font-pixel text-sm">
-                  🚀 Submit Project
-                </a>
-              </li>
             </ul>
           </div>
 
