@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const [displayedText, setDisplayedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
@@ -26,6 +25,7 @@ export default function About() {
     let sequenceIndex = 0;
     let charIndex = 0;
     let currentText = '';
+    let contentTimer: ReturnType<typeof setTimeout> | null = null;
     
     const type = () => {
       const currentSequence = typewriterSequence[sequenceIndex];
@@ -37,27 +37,31 @@ export default function About() {
         charIndex++;
         
         const typingSpeed = Math.random() * 20 + 50;
-        setTimeout(type, typingSpeed);
+        const timer = setTimeout(type, typingSpeed);
+        timeoutsRef.current.push(timer);
       } else {
         if (sequenceIndex < typewriterSequence.length - 1) {
-          setTimeout(() => {
+          const timer = setTimeout(() => {
             const deleteText = () => {
               if (currentText.length > 0) {
                 currentText = currentText.slice(0, -1);
                 setDisplayedText(currentText);
-                setTimeout(deleteText, 30);
+                const deleteTimer = setTimeout(deleteText, 30);
+                timeoutsRef.current.push(deleteTimer);
               } else {
                 sequenceIndex++;
                 charIndex = 0;
-                setTimeout(type, 300);
+                const nextTimer = setTimeout(type, 300);
+                timeoutsRef.current.push(nextTimer);
               }
             };
             deleteText();
           }, 1000);
+          timeoutsRef.current.push(timer);
         } else {
           setIsTyping(false);
           setTypewriterComplete(true);
-          setTimeout(() => {
+          contentTimer = setTimeout(() => {
             setShowContent(true);
           }, 800);
         }
@@ -65,6 +69,11 @@ export default function About() {
     };
 
     type();
+
+    return () => {
+      timeoutsRef.current.forEach(timer => clearTimeout(timer));
+      timeoutsRef.current = [];
+    };
   }, [isTyping]);
 
   // Cursor blinking effect
@@ -74,37 +83,6 @@ export default function About() {
     }, 530);
 
     return () => clearInterval(cursorInterval);
-  }, []);
-
-  // Background slight movement effect
-  useEffect(() => {
-    let animationFrame: number;
-    let time = 0;
-    
-    const animateBackground = () => {
-      time += 0.009;
-      
-      const x = Math.sin(time * 0.5) * 10 + Math.cos(time * 0.3) * 5;
-      const y = Math.cos(time * 0.4) * 10 + Math.sin(time * 0.6) * 5;
-      
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
-      }
-      
-      if (gridRef.current) {
-        gridRef.current.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
-      }
-      
-      animationFrame = requestAnimationFrame(animateBackground);
-    };
-    
-    animateBackground();
-    
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -134,26 +112,24 @@ export default function About() {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const section = sectionRef.current;
+    if (section) {
+      observer.observe(section);
     }
-
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (section) {
+        observer.unobserve(section);
       }
     };
   }, []);
 
   return (
-    <section className="min-h-screen relative overflow-hidden flex items-start md:items-center pt-38 md:pt-0">
+    <section className="min-h-screen relative overflow-hidden flex items-start md:items-center pt-36 md:pt-0">
       {/* Background image */}
       <div 
-        ref={bgRef}
-        className="absolute inset-0 bg-cover bg-[position:75%_center] md:bg-center bg-no-repeat transition-transform duration-200 ease-out" 
+        className="absolute inset-0 bg-cover bg-[position:75%_center] md:bg-center bg-no-repeat" 
         style={{
-          backgroundImage: 'url("/pixel_art_large-2.png")',
-          willChange: 'transform'
+          backgroundImage: 'url("/pixel_art_large-2.png")'
         }}
       ></div>
       
@@ -164,12 +140,10 @@ export default function About() {
       
       {/* Pixel grid overlay */}
       <div 
-        ref={gridRef}
-        className="absolute inset-0 opacity-5 transition-transform duration-200 ease-out" 
+        className="absolute inset-0 opacity-5" 
         style={{ 
           backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
-          backgroundSize: '20px 20px',
-          willChange: 'transform'
+          backgroundSize: '20px 20px'
         }}
       >
       </div>
@@ -181,7 +155,7 @@ export default function About() {
       >
         {/* Large About text */}
         <div className="mb-8 md:mb-12 ml-0 md:ml-4 relative">
-          <h2 className={`text-[1.3rem] md:text-[3rem] font-bold text-navy-blue min-h-[4rem] md:min-h-[8rem] transition-all duration-1500 ease-out ${
+          <h2 className={`text-[1.3rem] md:text-[3rem] font-bold text-navy-blue min-h-[4rem] md:min-h-[8rem] transition-all duration-1000 ease-out ${
             typewriterComplete 
               ? 'transform translate-y-0 text-left' 
               : 'transform translate-y-[20vh] md:translate-y-[0vh]'
