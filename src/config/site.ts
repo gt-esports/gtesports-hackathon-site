@@ -22,10 +22,9 @@ export const siteConfig = {
   ],
 
   links: {
-    discord: "https://discord.gg/",
-    instagram: "https://instagram.com/",
-    twitter: "https://twitter.com/",
-    linkedin: "https://linkedin.com/company/",
+    discord: "https://discord.gg/BjP48Np3kB",
+    instagram: "https://www.instagram.com/gatechesports_/",
+    linkedin: "https://www.linkedin.com/company/georgia-tech-esports/",
     email: "hello@techhack-valley.com",
     codeOfConduct: "/code-of-conduct",
   },

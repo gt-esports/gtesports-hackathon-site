@@ -13,7 +13,7 @@ export default function Navbar() {
               <span className="text-valley-gold">TechHack</span> <span className="text-sky-blue">Valley</span>
             </div>
             <div className="text-xs text-white/60 font-pixel">
-              by GT Esports
+              by <span className="text-valley-gold font-semibold">GT Esports</span>
             </div>
           </div>
           

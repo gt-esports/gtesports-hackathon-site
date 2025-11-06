@@ -71,18 +71,28 @@ export default function Hero() {
             🌱 Register Now
           </button>
           </a>
+          <a href={siteConfig.links.discord} target="_blank" rel="noopener noreferrer">
           <button className="btn-pixel btn-pixel-secondary text-lg">
             💬 Join Discord
           </button>
+          </a>
         </div>
 
         {/* Event details with pixel art card */}
-        <div className="card-pixel max-w-md mx-auto p-4">
-          <div className="text-valley-brown">
-            <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">GT Esports</span></p>
-            <p className="text-sm font-pixel">{siteConfig.event.location}</p>
+        <a
+          href="http://gatechesports.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-valley-gold rounded-md"
+          aria-label="Visit GT Esports"
+        >
+          <div className="card-pixel max-w-md mx-auto p-4">
+            <div className="text-valley-brown">
+              <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">GT Esports</span></p>
+              <p className="text-sm font-pixel">{siteConfig.event.location}</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
 
