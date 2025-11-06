@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import NavbarDropdownMenu from './NavbarDropdownMenu';
 
 export default function Navbar() {
@@ -18,6 +19,16 @@ export default function Navbar() {
           
           {/* Navigation Elements */}
           <div className="flex items-center gap-3">
+            {/* Sign In Button (NEW) */}
+            <Link
+              to="/login"
+              className="btn-pixel-secondary px-3 py-2 flex items-center gap-2"
+              aria-label="Go to login"
+            >
+              <span className="text-sm">👤</span>
+              <span className="hidden sm:inline font-pixel text-sm">Sign In</span>
+            </Link>
+
             {/* Menu Button and Dropdown */}
             <div className="relative">
               <button
