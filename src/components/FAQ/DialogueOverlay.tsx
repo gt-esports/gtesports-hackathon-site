@@ -36,7 +36,7 @@ function DialogueOverlay({ open, onClose, data }: {
       onClick={handleOverlayClick}
       style={{ cursor: 'pointer' }}>
 
-      <div className="relative w-full max-w-4xl p-6 sm:p-8 max-h-[95vh] overflow-y-auto">
+      <div className="relative w-full max-w-4xl p-4 sm:p-6 md:p-8 max-h-[95vh] overflow-y-auto">
 
         {/* Close Button */}
         <div className="absolute top-0 right-0 z-10">
