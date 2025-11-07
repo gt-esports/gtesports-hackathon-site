@@ -70,7 +70,7 @@ function DialogueOverlay({ open, onClose, data }: {
               </div>
             </div>
             <div className="bg-[#f5dcb0] border-2 border-valley-brown rounded-md px-3 sm:px-5 py-1 text-center shadow-sm mt-2 w-full">
-              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl text-valley-brown font-bold leading-tight break-words">{data.townie}</h3>
+              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl text-valley-brown font-bold leading-tight break-words">{data.townie}</h3>
             </div>
           </div>
 
