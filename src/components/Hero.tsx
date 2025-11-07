@@ -66,15 +66,19 @@ export default function Hero() {
 
         {/* Action buttons with pixel art styling */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-          <a href="/signup">
-          <button className="btn-pixel text-lg animate-pulse-glow">
+          <a
+            href="/signup"
+            className="btn-pixel text-lg animate-pulse-glow flex items-center justify-center"
+          >
             🌱 Register Now
-          </button>
           </a>
-          <a href={siteConfig.links.discord} target="_blank" rel="noopener noreferrer">
-          <button className="btn-pixel btn-pixel-secondary text-lg">
+          <a
+            href={siteConfig.links.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pixel btn-pixel-secondary text-lg flex items-center justify-center"
+          >
             💬 Join Discord
-          </button>
           </a>
         </div>
 
