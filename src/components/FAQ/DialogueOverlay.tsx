@@ -32,7 +32,7 @@ function DialogueOverlay({ open, onClose, data }: {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 py-6 sm:px-4 sm:py-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 py-6 sm:px-4"
       onClick={handleOverlayClick}
       style={{ cursor: 'pointer' }}>
 
