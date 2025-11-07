@@ -17,7 +17,7 @@ const faqData = {
         questions: [
             { q: "What food will be provided?", a: "We will have a variety of snacks and drinks available throughout the event, as well as catered meals for lunch and dinner." },
             { q: "Are there vegetarian/vegan options?", a: "Yes, we will have vegetarian and vegan options available. Please let us know of any dietary restrictions during meal times." },
-            { q: "When will food be served?", a: "Meal times will be listed on the Hackathon schedule. Snacks and drinks will be available 24/7." }
+            { q: "When will food be served?", a: "Meal times will be listed on the hackathon schedule. Snacks and drinks will be available 24/7." }
         ]
 	},
 	venue: {
