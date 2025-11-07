@@ -39,7 +39,7 @@ function DialogueOverlay({ open, onClose, data }: {
       <div className="relative w-full max-w-4xl p-4 sm:p-6 md:p-8 max-h-[95vh] overflow-y-auto">
 
         {/* Close Button */}
-        <div className="absolute top-0 right-0 z-10">
+        <div className="absolute top-2 right-2 z-10">
           <button onClick={onClose} className="bg-red-700 text-white rounded-full w-10 h-10 border-2 border-white text-2xl font-pixel shadow-lg">X</button>
         </div>
 
