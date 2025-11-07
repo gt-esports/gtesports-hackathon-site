@@ -15,7 +15,7 @@ export default function Footer() {
               collaboration, and cozy coding vibes.
             </p>
             <p className="text-sky-blue/80 mb-6 font-pixel text-xs">
-              Hosted by GT Esports
+              Hosted by <span className="text-valley-gold font-semibold">GT Esports</span>
             </p>
             <div className="flex space-x-4">
               <a
@@ -35,15 +35,6 @@ export default function Footer() {
                 aria-label="Follow us on Instagram"
               >
                 📷
-              </a>
-              <a
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-pixel btn-pixel-secondary p-3 text-sm"
-                aria-label="Follow us on Twitter"
-              >
-                🐦
               </a>
               <a
                 href={siteConfig.links.linkedin}
@@ -100,7 +91,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-white/60 text-sm font-pixel">📍 {siteConfig.event.location}</li>
-              <li className="text-white/60 text-sm font-pixel">🏢 Hosted by GT Esports</li>
+              <li className="text-white/60 text-sm font-pixel">🏢 Hosted by <span className="text-valley-gold font-semibold">GT Esports</span></li>
             </ul>
           </div>
         </div>
