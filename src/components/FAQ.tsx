@@ -27,7 +27,7 @@ export default function FAQ() {
         </div>
         <div className="text-center text-white/80 font-pixel">
           <div className="bg-[#f5dcb0] border-[12px] border-valley-brown shadow-lg w-full mx-auto p-6" style={{ boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)' }}>
-            <h2 className="text-4xl text-valley-brown text-center mb-8 font-bold" style={{ textShadow: '2px 2px 0px #e0c8a8' }}>Frequently Asked Questions</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-valley-brown text-center mb-8 font-bold" style={{ textShadow: '2px 2px 0px #e0c8a8' }}>Frequently Asked Questions</h2>
 
             {/* FAQ Categories */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
