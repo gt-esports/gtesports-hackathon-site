@@ -1,6 +1,8 @@
+import CountdownCarousel from './CountdownCarousel';
+
 export default function ScheduleTeaser() {
   return (
-    <section className="py-20 bg-medium-blue">
+    <section className="min-h-screen bg-medium-blue relative flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-pixel">Schedule</h2>
@@ -9,6 +11,7 @@ export default function ScheduleTeaser() {
           <p>Coming Soon...</p>
         </div>
       </div>
+      <CountdownCarousel />
     </section>
   )
 }
