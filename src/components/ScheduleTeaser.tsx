@@ -15,11 +15,11 @@ interface EventCardProps {
 
 const EventTimeline: React.FC<{ events: Event[] }> = ({ events }) => {
   return (
-    <section className="flex items-center justify-center min-h-screen bg-medium-blue">
+    <section className="flex items-center justify-center min-h-[50vh] bg-medium-blue">
       <div className="max-w-6xl w-full px-4">
 
-        <div className="text-center mb-12 font-pixel">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-12 font-pixel mt-7">
+          <h2 className="text-xl md:text-3xl font-bold text-white mb-4">
             Event Timeline
           </h2>
         </div>
@@ -42,18 +42,20 @@ const EventTimeline: React.FC<{ events: Event[] }> = ({ events }) => {
                   </div>
                 </div>
 
-
                 <EventCard event={event} hidden={isTopCard} />
               </div>
             );
           })}
         </div>
+
+        <div className="text-center mb-12 font-pixel mt-5 text-white">Our workshop schedules and mini-events will be released closer to the day of competition</div>
       </div>
     </section>
   );
 };
 
 const Circle = () => (
+
   <div className="rounded-full w-5 h-5 bg-white shadow-lg flex-shrink-0"></div>
 );
 
@@ -85,31 +87,31 @@ const EventCard: React.FC<EventCardProps> = ({ event, hidden = false }) => {
   );
 };
 
-// Schedule Teaser
+
 const ScheduleTeaser: React.FC = () => {
   const events: Event[] = [
     {
       date: "Jan 20, 2025",
       title: "Opening Ceremony",
-      location: "Main Hall",
-      description: "Kickoff and welcome speech by the event organizers.",
+      location: "TBD",
+      description: "Opening ceremony for Hackathon! Be ready!",
     },
     {
       date: "Jan 21, 2025",
-      title: "Workshop: Game Dev 101",
-      location: "Lab Room 3",
-      description: "Hands-on intro to Unity and basic scripting.",
+      title: "Hacking Starts",
+      location: "TBD",
+      description: "Start hacking",
     },
     {
       date: "Jan 22, 2025",
-      title: "Tournament Day",
-      location: "Esports Arena",
-      description: "Compete with other teams and show your skills!",
+      title: "Judging phase",
+      location: "TBD",
+      description: "Judges will judge your work! Show your results!",
     },
     {
       date: "Jan 23, 2025",
       title: "Closing Ceremony",
-      location: "Main Hall",
+      location: "TBD",
       description: "Winners announced and event wrap-up.",
     },
   ];
