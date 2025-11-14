@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
+import { signup, signin } from '../utils/auth'
 
 export default function Login() {
   const location = useLocation();
@@ -14,9 +15,32 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [school, setSchool] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
+    setLoading(true)
+    try {
+      if (activeTab === 'login') {
+        const data = await signin({ email, password })
+        console.log('Signup successful:', data)
+        localStorage.setItem('token', data.user.token)
+        alert('Account logged in successfully!')
+        navigate('/dashboard')
+      } else {
+        const data = await signup({ full_name: name, email, school, password })
+        console.log('Signin successful:', data)
+        localStorage.setItem('token', data.user.token)
+        alert('Account created successfully!')
+        navigate('/dashboard')
+      }
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
     console.log('Form submitted:', { email, password, name, school })
     
   }
