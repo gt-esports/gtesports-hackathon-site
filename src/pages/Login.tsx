@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
-import { signup, signin } from '../utils/auth'
+import { supabase } from '../utils/supabaseClient'
 
 export default function Login() {
   const location = useLocation();
@@ -19,32 +19,43 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    setLoading(true)
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
     try {
+      let result;
       if (activeTab === 'login') {
-        const data = await signin({ email, password })
-        console.log('Signup successful:', data)
-        localStorage.setItem('token', data.user.token)
-        alert('Account logged in successfully!')
-        navigate('/dashboard')
+        // Login with Supabase
+        result = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
       } else {
-        const data = await signup({ full_name: name, email, school, password })
-        console.log('Signin successful:', data)
-        localStorage.setItem('token', data.user.token)
-        alert('Account created successfully!')
-        navigate('/dashboard')
+        // Signup with Supabase
+        result = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name,
+              school: school,
+            },
+          },
+        });
       }
+      if (result.error) throw result.error;
+      alert(
+        activeTab === 'login'
+          ? 'Logged in successfully!'
+          : 'Account created successfully!'
+      );
+      navigate('/dashboard');
     } catch (err: any) {
-      setError(err.message)
+      setError(err.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-    console.log('Form submitted:', { email, password, name, school })
-    
-  }
-
+  };
   // Sync activeTab when the location changes (handles back/forward)
   useEffect(() => {
     setActiveTab(location.pathname === '/signup' ? 'signup' : 'login');
