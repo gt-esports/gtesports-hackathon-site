@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Application from "./pages/Application";
 
 function StubPage({ title, description }: { title: string; description: string }) {
   return (
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/application" element={<Application />} />
         <Route
           path="/schedule"
           element={
