@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 import CountdownCarousel from './CountdownCarousel';
 
 export default function DashboardHero() {
-  
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const navigate = useNavigate();
   // User Greeting State
   const [user, setUser] = useState({
     name: "Alex Developer",
@@ -88,7 +90,15 @@ export default function DashboardHero() {
             <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
               Ready to build something amazing?
             </p>
-            
+            {/* Apply Now Button */}
+            <div className="mb-10">
+              <button
+                onClick={() => navigate('/application')}
+                className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-lg transition-transform duration-200 hover:scale-105"
+              >
+                Apply Now
+              </button>
+            </div>
             <div className="bg-black/30 backdrop-blur-md rounded-2xl p-10 border border-white/40 mb-10 shadow-2xl">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="text-center group">
