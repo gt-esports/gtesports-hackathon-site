@@ -50,6 +50,7 @@ const EventTimeline: React.FC<{ events: Event[] }> = ({ events }) => {
 
         <div className="text-center mb-12 font-pixel mt-5 text-white">Our workshop schedules and mini-events will be released closer to the day of competition</div>
       </div>
+      <CountdownCarousel />
     </section>
   );
 };

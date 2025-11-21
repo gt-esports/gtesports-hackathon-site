@@ -12,7 +12,7 @@ function FaqOptions({ questions, onSelect, onBack, backOptionEnabled }: {
           <li>
             <button
               onClick={onBack}
-              className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-valley-brown leading-tight py-2 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
               ...Ask another question?
             </button>
           </li>
@@ -22,7 +22,7 @@ function FaqOptions({ questions, onSelect, onBack, backOptionEnabled }: {
             <li key={index}>
               <button
                 onClick={() => onSelect(question.a)}
-                className="text-2xl text-valley-brown leading-tight py-1 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-valley-brown leading-tight py-2 px-3 flex items-center cursor-pointer rounded-md hover:bg-[#e0c8a8] w-full text-left">
                 {question.q}
               </button>
             </li>

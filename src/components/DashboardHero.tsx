@@ -1,9 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
-import { siteConfig } from '../config/site';
+import { useState } from 'react'
+import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
+import CountdownCarousel from './CountdownCarousel';
 
 export default function DashboardHero() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  
+  const navigate = useNavigate();
   // User Greeting State
   const [user, setUser] = useState({
     name: "Alex Developer",
@@ -11,8 +13,6 @@ export default function DashboardHero() {
     email: "alex@example.com",
     university: "Georgia Institute of Technology"
   });
-
-  const hackathonStartDate = new Date(siteConfig.event.date_time).getTime();
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editForm, setEditForm] = useState({
@@ -57,143 +57,9 @@ export default function DashboardHero() {
     });
   };
   
-  // Hackathon Countdown Logic
-
-  const calculateTimeLeft = useCallback(() => {
-    const now = new Date().getTime();
-    const distance = hackathonStartDate - now;
-
-    if (distance > 0) {
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      return { days, hours, minutes, seconds };
-    } else {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-  }, [hackathonStartDate]);
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [calculateTimeLeft]);
-
-  const isHackathonStarted = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
-
-  const countdownContent = (
-    <>
-      <span className="text-2xl">⏰</span>
-      {isHackathonStarted ? (
-        <span className="text-valley-gold text-xl">🎉 TECHHACK VALLEY IS LIVE! 🎉</span>
-      ) : (
-        <>
-          <span className="text-white/90">{siteConfig.event.name} STARTS IN:</span>
-          <span className="text-3xl text-valley-gold font-bold">{timeLeft.days}</span>
-          <span className="text-white/80">DAYS</span>
-          <span className="text-3xl text-valley-gold font-bold">{timeLeft.hours}</span>
-          <span className="text-white/80">HOURS</span>
-          <span className="text-3xl text-valley-gold font-bold">{timeLeft.minutes}</span>
-          <span className="text-white/80">MINUTES</span>
-          <span className="text-3xl text-valley-gold font-bold">{timeLeft.seconds}</span>
-          <span className="text-white/80">SECONDS</span>
-          <span className="text-valley-gold">✦</span>
-          <span className="text-white/90">{siteConfig.event.date}</span>
-          <span className="text-valley-gold">⏰</span>
-        </>
-      )}
-    </>
-  )
-  
   return (
     <>
-      {/* Navigation Bar */}
-      <div>
-        <nav className="fixed top-6 left-6 right-6 z-20 flex justify-between items-center px-4 py-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/20 shadow-lg">
-          {/* Logo/Brand */}
-          <div className="text-white font-pixel text-lg md:text-xl drop-shadow-lg">
-            <div>
-              <span className="text-valley-gold">TechHack</span> <span className="text-sky-blue">Valley</span>
-            </div>
-            <div className="text-xs text-white/60 font-pixel">
-              by GT Esports
-            </div>
-          </div>
-          
-          {/* Navigation Elements */}
-          <div className="flex items-center gap-3">
-            {/* Menu Button and Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="btn-pixel flex items-center gap-2"
-              >
-                Menu
-                <svg
-                  className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Dropdown Menu */}
-              {isDropdownOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl bg-white rounded-lg border border-gray-200">
-                  <a
-                    href="/"
-                    className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-                  >
-                    🏠 Home
-                  </a>
-                  <a
-                    href="/dashboard"
-                    className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-                  >
-                    🎯 Dashboard
-                  </a>
-                  <a
-                    href="/schedule"
-                    className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-                  >
-                    📅 Schedule
-                  </a>
-                  <a
-                    href="/sponsors"
-                    className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-                  >
-                    🏢 Sponsors
-                  </a>
-                  <a href="/teams" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
-                    👥 Teams
-                  </a>
-                  <a href="/submit" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
-                    🚀 Submit
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
-        </nav>
-
-        {/* Click outside to close */}
-        {isDropdownOpen && (
-          <button
-            aria-hidden="true"
-            onClick={() => setIsDropdownOpen(false)}
-            className="fixed inset-0 z-10 cursor-default"
-            tabIndex={-1}
-          />
-        )}
-      </div>
+      <Navbar />
 
       {/* Main Dashboard Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-32 pb-32">
@@ -224,7 +90,15 @@ export default function DashboardHero() {
             <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
               Ready to build something amazing?
             </p>
-            
+            {/* Apply Now Button */}
+            <div className="mb-10">
+              <button
+                onClick={() => navigate('/application')}
+                className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-lg transition-transform duration-200 hover:scale-105"
+              >
+                Apply Now
+              </button>
+            </div>
             <div className="bg-black/30 backdrop-blur-md rounded-2xl p-10 border border-white/40 mb-10 shadow-2xl">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="text-center group">
@@ -255,20 +129,7 @@ export default function DashboardHero() {
         </div>
         
         {/* Countdown at bottom of dashboard screen */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden">
-          <div className="bg-gradient-to-r from-black/10 via-black/45 to-black/20 backdrop-blur-md border-valley-gold/30 py-6 shadow-2xl">
-            <div className="flex animate-scroll-single">
-              {/* First countdown */}
-              <div className="flex items-center gap-12 whitespace-nowrap text-white font-pixel text-base md:text-lg px-8 flex-shrink-0 min-w-full justify-center">
-                {countdownContent}
-              </div>
-              {/* Second countdown - appears after first exits */}
-              <div className="flex items-center gap-12 whitespace-nowrap text-white font-pixel text-base md:text-lg px-8 flex-shrink-0 min-w-full justify-center">
-                {countdownContent}
-              </div>
-            </div>
-          </div>
-        </div>
+        <CountdownCarousel />
       </div>
 
       {/* Edit Profile Modal */}
