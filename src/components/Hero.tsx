@@ -34,7 +34,7 @@ export default function Hero() {
         ))}
       </div>
 
-      
+
 
       {/* Main content */}
       <div className="relative z-10 text-center px-4 w-full max-w-6xl mx-auto">
@@ -49,14 +49,14 @@ export default function Hero() {
               Valley
             </span>
           </h1>
-          
+
           {/* Tagline with pixel art styling */}
           <div className="card-pixel max-w-3xl mx-auto mb-8 p-6">
             <p className="text-xl md:text-2xl text-valley-brown font-pixel leading-relaxed">
               {siteConfig.event.tagline}
             </p>
           </div>
-          
+
           {/* Description */}
           <p className="text-lg md:text-xl text-valley-cream mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
             Georgia Tech's coziest hackathon where ideas grow like crops. Join us for 36 hours of innovation,
@@ -92,8 +92,7 @@ export default function Hero() {
         >
           <div className="card-pixel max-w-md mx-auto p-4">
             <div className="text-valley-brown">
-              <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">GT Esports</span></p>
-              <p className="text-sm font-pixel">{siteConfig.event.location}</p>
+              <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">Georgia Tech Esports</span></p>
             </div>
           </div>
         </a>
