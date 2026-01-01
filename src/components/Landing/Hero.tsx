@@ -5,7 +5,7 @@ import { siteConfig } from "../../data/site"
 export default function Hero() {
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden hero-pixel-mountains">
+    <section className="relative mt-0 pt-0 min-h-screen w-full flex items-center justify-center overflow-hidden hero-pixel-mountains">
 
       {/* Starry background */}
       <div className="absolute inset-0">
@@ -36,69 +36,78 @@ export default function Hero() {
 
 
 
-      {/* Main content */}
-      <div className="relative z-10 text-center px-4 w-full max-w-6xl mx-auto">
+      <div className="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
         <div className="animate-float">
-          {/* Title with colorful gradient text */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-pixel tracking-wider drop-shadow-2xl">
-            <span className="bg-gradient-to-r from-valley-gold via-valley-orange to-valley-pink bg-clip-text text-transparent">
-              TechHack
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-valley-green via-valley-blue to-valley-purple bg-clip-text text-transparent">
-              Valley
-            </span>
-          </h1>
 
-          {/* Tagline with pixel art styling */}
-          <div className="card-pixel max-w-3xl mx-auto mb-8 p-6">
-            <p className="text-xl md:text-2xl text-valley-brown font-pixel leading-relaxed">
-              {siteConfig.event.tagline}
+          {/* Main Title - Pixel Art Style */}
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold font-pixel text-valley-gold drop-shadow-[4px_4px_0_var(--valley-brown)]"
+              style={{ textShadow: "4px 4px 0 #8b4513, -2px -2px 0 #2E446F" }}>
+              TechHack Valley
+            </h1>
+            <div className="h-4"></div>
+            <p className="font-pixel text-xs md:text-sm text-valley-cream uppercase tracking-widest bg-valley-brown/60 inline-block px-4 py-2 rounded">
+              Spring 2026 Season
             </p>
           </div>
 
-          {/* Description */}
-          <p className="text-lg md:text-xl text-valley-cream mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-            Georgia Tech's coziest hackathon where ideas grow like crops. Join us for 36 hours of innovation,
-            collaboration, and cozy coding vibes.
-          </p>
+          {/* Dialogue Box for Tagline/Description */}
+          <div className="dialogue-box mb-12 mx-auto max-w-3xl text-left">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              {/* Optional: Add a character portrait here later if wanted */}
+              {/* <div className="w-20 h-20 bg-valley-brown shrink-0 border-2 border-valley-gold"></div> */}
+
+              <div className="w-full">
+                <p className="font-pixel text-valley-brown text-sm md:text-base mb-4 leading-loose">
+                  Welcome, farmer! 👩‍🌾 <br />
+                  <span className="text-valley-blue">Georgia Tech's</span> coziest hackathon is open for business.
+                  Ideas grow like crops here! Join us for 36 hours of coding, collaboration, and relaxation.
+                </p>
+
+                {/* Typing cursor effect placeholder or simple animated arrow could go here */}
+                <div className="flex justify-end animate-bounce-gentle">
+                  <span className="text-valley-orange font-bold text-xl">▼</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Action buttons with pixel art styling */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+        {/* Action buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <a
-            href="/signup"
-            className="btn-pixel text-lg animate-pulse-glow flex items-center justify-center"
+            href="/login"
+            className="btn-pixel text-sm md:text-base animate-pulse-glow flex items-center justify-center gap-2 group"
           >
-            🌱 Register Now
+            <span>📜</span>
+            <span>Apply Now</span>
           </a>
           <a
             href={siteConfig.links.discord}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-pixel btn-pixel-secondary text-lg flex items-center justify-center"
+            className="btn-pixel btn-pixel-secondary text-sm md:text-base flex items-center justify-center gap-2"
           >
-            💬 Join Discord
+            <span>💬</span>
+            <span>Join Discord</span>
           </a>
         </div>
 
-        {/* Event details with pixel art card */}
+        {/* Hosted By Pill */}
         <a
           href="http://gatechesports.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-valley-gold rounded-md"
-          aria-label="Visit GT Esports"
+          className="inline-block transform transition duration-200 hover:scale-105"
         >
-          <div className="card-pixel max-w-md mx-auto p-4">
-            <div className="text-valley-brown">
-              <p className="text-sm font-pixel mb-2">Hosted by <span className="text-valley-gold font-semibold">Georgia Tech Esports</span></p>
-            </div>
+          <div className="bg-valley-brown/80 border-2 border-valley-gold px-6 py-3 rounded-full backdrop-blur-sm">
+            <p className="text-white font-pixel text-xs">
+              Hosted by <span className="text-valley-gold">GT Esports</span>
+            </p>
           </div>
         </a>
+
       </div>
-
-
     </section>
   )
 }

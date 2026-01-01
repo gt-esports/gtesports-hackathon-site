@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar"
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-white w-full">
+    <div className="min-h-screen w-full overflow-x-hidden bg-valley-cream">
       <Navbar />
       <Hero />
       <About />

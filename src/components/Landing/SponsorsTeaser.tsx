@@ -119,7 +119,7 @@ const SponsorsTeaser: FC = () => {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-[rgb(50,50,80)] overflow-hidden">
+    <div id="sponsors" className="relative flex flex-col items-center justify-center min-h-screen bg-[rgb(50,50,80)] overflow-hidden">
 
       <BackgroundStars />
 

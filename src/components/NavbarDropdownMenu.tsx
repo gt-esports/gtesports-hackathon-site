@@ -8,19 +8,13 @@ export default function NavbarDropdownMenu() {
         🏠 Home
       </a>
       <a
-        href="/dashboard"
-        className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-      >
-        🎯 Dashboard
-      </a>
-      <a
-        href="/schedule"
+        href="/#schedule"
         className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
       >
         📅 Schedule
       </a>
       <a
-        href="/sponsors"
+        href="/#sponsors"
         className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
       >
         🏢 Sponsors
