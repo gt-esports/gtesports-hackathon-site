@@ -8,6 +8,8 @@ export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const [applications, setApplications] = useState<any[]>([]);
+
   useEffect(() => {
     const checkUser = async () => {
       try {
@@ -19,6 +21,19 @@ export default function Dashboard() {
         }
 
         setUser(session.user);
+
+        // Fetch applications
+        const { data: apps, error: appsError } = await supabase
+          .from('applications')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (appsError) {
+          console.error("Error fetching applications:", appsError);
+        } else {
+          setApplications(apps || []);
+        }
+
       } catch (error) {
         console.error("Error checking auth:", error);
         navigate("/login");
@@ -40,7 +55,7 @@ export default function Dashboard() {
 
   return (
     <div className="w-full hero-pixel-clouds relative">
-      <DashboardHero user={user} />
+      <DashboardHero user={user} applications={applications} />
     </div>
   );
 }

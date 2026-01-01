@@ -3,6 +3,8 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Application from "./pages/Application";
+import Onboarding from "./pages/Onboarding";
+import RequireProfile from "./components/RequireProfile";
 
 function StubPage({ title, description }: { title: string; description: string }) {
   return (
@@ -33,8 +35,23 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/application" element={<Application />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireProfile>
+              <Dashboard />
+            </RequireProfile>
+          }
+        />
+        <Route
+          path="/application"
+          element={
+            <RequireProfile>
+              <Application />
+            </RequireProfile>
+          }
+        />
         <Route
           path="/schedule"
           element={

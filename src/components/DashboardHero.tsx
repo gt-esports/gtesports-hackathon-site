@@ -5,15 +5,16 @@ import { supabase } from '../utils/supabaseClient';
 
 interface DashboardHeroProps {
   user: any;
+  applications: any[];
 }
 
-export default function DashboardHero({ user: initialUser }: DashboardHeroProps) {
+export default function DashboardHero({ user: initialUser, applications }: DashboardHeroProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const navigate = useNavigate();
   // User Greeting State
   const [user, setUser] = useState({
     name: initialUser?.user_metadata?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
-    profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+    profilePic: "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
     email: initialUser?.email || "email@example.com",
     university: "Georgia Institute of Technology"
   });
@@ -22,7 +23,6 @@ export default function DashboardHero({ user: initialUser }: DashboardHeroProps)
   const [editForm, setEditForm] = useState({
     email: user.email,
     password: "",
-    profilePic: user.profilePic,
     university: user.university
   });
 
@@ -47,7 +47,6 @@ export default function DashboardHero({ user: initialUser }: DashboardHeroProps)
     setEditForm({
       email: user.email,
       password: "",
-      profilePic: user.profilePic,
       university: user.university
     });
     setIsEditModalOpen(true);
@@ -58,7 +57,6 @@ export default function DashboardHero({ user: initialUser }: DashboardHeroProps)
     setUser({
       ...user,
       email: editForm.email,
-      profilePic: editForm.profilePic,
       university: editForm.university
     });
     setIsEditModalOpen(false);
@@ -133,21 +131,49 @@ export default function DashboardHero({ user: initialUser }: DashboardHeroProps)
                 👥 Team Lookup on Discord
               </a>
             </div>
-            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-10 border border-white/40 mb-10 shadow-2xl">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="text-center group">
-                  <span className="font-pixel text-white block mb-3 text-sm">Email:</span>
-                  <p className="text-valley-gold font-pixel text-sm group-hover:text-valley-gold transition-colors cursor-pointer">
-                    {user.email}
-                  </p>
+            {/* Applications List */}
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-white/40 mb-10 shadow-2xl">
+              <h3 className="text-xl font-pixel text-white mb-6">Your Applications</h3>
+
+              {applications.length === 0 ? (
+                <p className="text-valley-gold font-pixel text-sm">
+                  You haven't submitted any applications yet.
+                </p>
+              ) : (
+                <div className="space-y-4">
+                  {applications.map((app) => (
+                    <div
+                      key={app.id}
+                      className="bg-white/10 rounded-lg p-4 flex justify-between items-center border border-white/20 hover:bg-white/20 transition-colors"
+                    >
+                      <div className="text-left">
+                        <span className="block text-white font-pixel text-sm mb-1">
+                          Application #{app.id.slice(0, 8)}
+                        </span>
+                        <span className="text-white/60 text-xs">
+                          Submitted: {new Date(app.created_at).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <span className={`px-3 py-1 rounded-full text-xs font-pixel uppercase tracking-wide
+                          ${app.status === 'accepted' ? 'bg-green-500/20 text-green-300 border border-green-500/50' :
+                            app.status === 'rejected' ? 'bg-red-500/20 text-red-300 border border-red-500/50' :
+                              app.status === 'waitlisted' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/50' :
+                                'bg-blue-500/20 text-blue-300 border border-blue-500/50'
+                          }`}
+                        >
+                          {app.status}
+                        </span>
+                        {/* 
+                         * If you want to allow viewing the application details, 
+                         * you could add a button here or wrap the div in a Link equivalent.
+                         * For now, just listing status.
+                         */}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="text-center group">
-                  <span className="font-pixel text-white block mb-3 text-sm">University:</span>
-                  <p className="text-valley-gold font-pixel text-sm group-hover:text-valley-gold transition-colors cursor-pointer">
-                    {user.university}
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -174,32 +200,7 @@ export default function DashboardHero({ user: initialUser }: DashboardHeroProps)
 
               {/* Edit Form */}
               <form onSubmit={handleSaveChanges} className="space-y-6">
-                {/* Profile Picture URL */}
-                <div>
-                  <label className="block font-pixel text-valley-brown text-sm mb-2">
-                    Profile Picture URL:
-                  </label>
-                  <input
-                    type="url"
-                    name="profilePic"
-                    value={editForm.profilePic}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
-                    placeholder="https://example.com/image.jpg"
-                  />
-                  {editForm.profilePic && (
-                    <div className="mt-3 flex justify-center">
-                      <img
-                        src={editForm.profilePic}
-                        alt="Preview"
-                        className="w-24 h-24 rounded-full object-cover border-2 border-valley-brown"
-                        onError={(e) => {
-                          e.currentTarget.src = "https://via.placeholder.com/150";
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
+
 
                 {/* Email */}
                 <div>
