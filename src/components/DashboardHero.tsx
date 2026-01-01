@@ -1,30 +1,61 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import CountdownCarousel from './CountdownCarousel';
 import { supabase } from '../utils/supabaseClient';
+import EditProfileModal from './EditProfileModal';
+import type { Profile } from '../types/database.types';
 
 interface DashboardHeroProps {
-  user: any;
+  user: any; // We'll try to cast this or use a better type if possible, but keep it compatible for now
   applications: any[];
 }
 
 export default function DashboardHero({ user: initialUser, applications }: DashboardHeroProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const navigate = useNavigate();
-  // User Greeting State
+  // We need a local state for the user that can be updated when the profile changes
+  // Ideally, the parent should handle this, but for now we can fetch fresh data or update local state
   const [user, setUser] = useState({
-    name: initialUser?.user_metadata?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
-    profilePic: "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
-    email: initialUser?.email || "email@example.com",
-    university: "Georgia Institute of Technology"
+    ...initialUser,
+    name: initialUser?.user_metadata?.full_name || initialUser?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
+    profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+    university: initialUser?.college || "Georgia Institute of Technology"
   });
 
+  // Need a proper Profile object for the modal
+  const [profileData, setProfileData] = useState<Profile | null>(null);
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editForm, setEditForm] = useState({
-    email: user.email,
-    password: "",
-    university: user.university
-  });
+
+  useEffect(() => {
+    // If we have initialUser, try to set up the profileData for the modal
+    if (initialUser) {
+      // Map initialUser (which might be a session user or mixed object) to Profile shape as best as we can
+      // Or fetch the real profile if initialUser is just auth user
+      fetchProfile();
+    }
+  }, [initialUser]);
+
+  const fetchProfile = async () => {
+    if (!initialUser?.id) return;
+
+    const { data } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', initialUser.id)
+      .single();
+
+    if (data) {
+      setProfileData(data);
+      // Also update the display user state
+      setUser((prev: any) => ({
+        ...prev,
+        name: data.full_name || data.first_name ? `${data.first_name || ''} ${data.last_name || ''}`.trim() : prev.name,
+        university: data.college || prev.university,
+        // Keep profile pic from auth metadata if not in profile, or use default
+        profilePic: prev.profilePic
+      }));
+    }
+  };
 
   const handleSignOut = async () => {
     try {
@@ -43,34 +74,9 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
     return "Good evening";
   };
 
-  const handleEditClick = () => {
-    setEditForm({
-      email: user.email,
-      password: "",
-      university: user.university
-    });
-    setIsEditModalOpen(true);
-  };
-
-  const handleSaveChanges = (e: React.FormEvent) => {
-    e.preventDefault();
-    setUser({
-      ...user,
-      email: editForm.email,
-      university: editForm.university
-    });
-    setIsEditModalOpen(false);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditForm({
-      ...editForm,
-      [e.target.name]: e.target.value
-    });
-    setEditForm({
-      ...editForm,
-      [e.target.name]: e.target.value
-    });
+  const handleProfileUpdate = () => {
+    // Refresh profile data
+    fetchProfile();
   };
 
   return (
@@ -94,14 +100,14 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 src={user.profilePic}
                 alt={`${user.name}'s profile`}
                 className="w-48 h-48 rounded-full object-cover border-6 border-white/40 mx-auto mb-10 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-200"
-                onClick={handleEditClick}
+                onClick={() => setIsEditModalOpen(true)}
                 title="Click to edit profile"
               />
               <button
                 className="absolute bottom-12 right-0 bg-valley-gold hover:bg-valley-gold/90 text-valley-brown rounded-full p-2 border-2 border-white/50 shadow-lg transition-all duration-200 hover:scale-110"
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleEditClick();
+                  setIsEditModalOpen(true);
                 }}
               >
                 ✏️
@@ -164,11 +170,6 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                         >
                           {app.status}
                         </span>
-                        {/* 
-                         * If you want to allow viewing the application details, 
-                         * you could add a button here or wrap the div in a Link equivalent.
-                         * For now, just listing status.
-                         */}
                       </div>
                     </div>
                   ))}
@@ -182,104 +183,13 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
         <CountdownCarousel />
       </div>
 
-      {/* Edit Profile Modal */}
-      {isEditModalOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setIsEditModalOpen(false)}>
-          <div className="bg-valley-cream rounded-xl border-4 border-valley-brown max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="p-8">
-              {/* Modal Header */}
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-pixel text-valley-brown">Edit Profile</h2>
-                <button
-                  onClick={() => setIsEditModalOpen(false)}
-                  className="text-valley-brown hover:text-valley-gold text-3xl font-bold leading-none transition-colors"
-                >
-                  ✖️
-                </button>
-              </div>
-
-              {/* Edit Form */}
-              <form onSubmit={handleSaveChanges} className="space-y-6">
-
-
-                {/* Email */}
-                <div>
-                  <label className="block font-pixel text-valley-brown text-sm mb-2">
-                    Email:
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={editForm.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-
-                {/* Password */}
-                <div>
-                  <label className="block font-pixel text-valley-brown text-sm mb-2">
-                    New Password (leave blank to keep current):
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={editForm.password}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
-                    placeholder="••••••••"
-                    minLength={8}
-                  />
-                  {editForm.password && (
-                    <p className="mt-2 text-xs font-pixel text-valley-brown/70">
-                      Password must be at least 8 characters
-                    </p>
-                  )}
-                </div>
-
-                {/* University */}
-                <div>
-                  <label className="block font-pixel text-valley-brown text-sm mb-2">
-                    University:
-                  </label>
-                  <input
-                    type="text"
-                    name="university"
-                    value={editForm.university}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-valley-brown font-pixel text-sm focus:outline-none focus:border-valley-gold"
-                    placeholder="Georgia Institute of Technology"
-                    required
-                  />
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4 pt-4">
-                  <button
-                    type="submit"
-                    className="btn-pixel flex-1 text-sm"
-                  >
-                    💾 Save Changes
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsEditModalOpen(false)}
-                    className="btn-pixel flex-1 text-sm"
-                    style={{
-                      backgroundColor: '#e74c3c',
-                      borderColor: '#c0392b',
-                      color: 'white'
-                    }}
-                  >
-                    ❌ Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      {profileData && (
+        <EditProfileModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          currentUser={profileData}
+          onUpdate={handleProfileUpdate}
+        />
       )}
     </>
   );
