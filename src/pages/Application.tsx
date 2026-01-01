@@ -8,7 +8,7 @@ import "../index.css"
 import { surveyJson } from "../data/appQuestions"
 
 export default function SurveyComponent() {
-  const [model, setModel] = useState(() => new Model(surveyJson))
+  const [model] = useState(() => new Model(surveyJson))
 
   // --- Hot reload fix ---
   const [modelKey, setModelKey] = useState("prod")

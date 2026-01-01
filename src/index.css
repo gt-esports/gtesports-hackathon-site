@@ -9,7 +9,7 @@
   --navy-blue: #2E446F;
   --medium-blue: #425E95;
   --white: #ffffff;
-  
+
   /* Valley Colors - Warm, cozy tones */
   --valley-cream: #f7f3e9;
   --valley-gold: #f4d03f;
@@ -19,17 +19,17 @@
   --valley-purple: #8e44ad;
   --valley-pink: #e91e63;
   --valley-orange: #ff6b35;
-  
+
   /* Tech Colors - Georgia Tech inspired */
   --tech-navy: #2E446F;
   --tech-gold: #b3a369;
   --tech-white: #ffffff;
-  
+
   /* Nature Colors - Farm/forest vibes */
   --forest-green: #2d5016;
   --earth-brown: #5d4037;
   --sunset-orange: #ff8c00;
-  
+
   /* Accent Colors */
   --accent-red: #e74c3c;
   --accent-yellow: #f1c40f;
@@ -37,62 +37,209 @@
 }
 
 /* Custom Tailwind Classes */
-.bg-primary-blue { background-color: var(--primary-blue); }
-.bg-sky-blue { background-color: var(--sky-blue); }
-.bg-navy-blue { background-color: var(--navy-blue); }
-.bg-medium-blue { background-color: var(--medium-blue); }
-.bg-white { background-color: var(--white); }
+.bg-primary-blue {
+  background-color: var(--primary-blue);
+}
 
-.bg-valley-cream { background-color: var(--valley-cream); }
-.bg-valley-gold { background-color: var(--valley-gold); }
-.bg-valley-brown { background-color: var(--valley-brown); }
-.bg-valley-green { background-color: var(--valley-green); }
-.bg-valley-blue { background-color: var(--valley-blue); }
-.bg-valley-purple { background-color: var(--valley-purple); }
-.bg-valley-pink { background-color: var(--valley-pink); }
-.bg-valley-orange { background-color: var(--valley-orange); }
-.bg-tech-navy { background-color: var(--tech-navy); }
-.bg-tech-gold { background-color: var(--tech-gold); }
-.bg-forest-green { background-color: var(--forest-green); }
-.bg-earth-brown { background-color: var(--earth-brown); }
-.bg-sunset-orange { background-color: var(--sunset-orange); }
+.bg-sky-blue {
+  background-color: var(--sky-blue);
+}
 
-.text-primary-blue { color: var(--primary-blue); }
-.text-sky-blue { color: var(--sky-blue); }
-.text-navy-blue { color: var(--navy-blue); }
-.text-medium-blue { color: var(--medium-blue); }
-.text-white { color: var(--white); }
+.bg-navy-blue {
+  background-color: var(--navy-blue);
+}
 
-.text-valley-cream { color: var(--valley-cream); }
-.text-valley-gold { color: var(--valley-gold); }
-.text-valley-brown { color: var(--valley-brown); }
-.text-valley-green { color: var(--valley-green); }
-.text-valley-blue { color: var(--valley-blue); }
-.text-valley-purple { color: var(--valley-purple); }
-.text-valley-pink { color: var(--valley-pink); }
-.text-valley-orange { color: var(--valley-orange); }
-.text-tech-navy { color: var(--tech-navy); }
-.text-tech-gold { color: var(--tech-gold); }
-.text-forest-green { color: var(--forest-green); }
-.text-earth-brown { color: var(--earth-brown); }
-.text-sunset-orange { color: var(--sunset-orange); }
+.bg-medium-blue {
+  background-color: var(--medium-blue);
+}
 
-.border-primary-blue { border-color: var(--primary-blue); }
-.border-sky-blue { border-color: var(--sky-blue); }
-.border-navy-blue { border-color: var(--navy-blue); }
-.border-medium-blue { border-color: var(--medium-blue); }
-.border-white { border-color: var(--white); }
+.bg-white {
+  background-color: var(--white);
+}
 
-.border-valley-cream { border-color: var(--valley-cream); }
-.border-valley-gold { border-color: var(--valley-gold); }
-.border-valley-brown { border-color: var(--valley-brown); }
-.border-valley-green { border-color: var(--valley-green); }
-.border-valley-blue { border-color: var(--valley-blue); }
-.border-valley-purple { border-color: var(--valley-purple); }
-.border-valley-pink { border-color: var(--valley-pink); }
-.border-valley-orange { border-color: var(--valley-orange); }
-.border-tech-navy { border-color: var(--tech-navy); }
-.border-tech-gold { border-color: var(--tech-gold); }
+.bg-valley-cream {
+  background-color: var(--valley-cream);
+}
+
+.bg-valley-gold {
+  background-color: var(--valley-gold);
+}
+
+.bg-valley-brown {
+  background-color: var(--valley-brown);
+}
+
+.bg-valley-green {
+  background-color: var(--valley-green);
+}
+
+.bg-valley-blue {
+  background-color: var(--valley-blue);
+}
+
+.bg-valley-purple {
+  background-color: var(--valley-purple);
+}
+
+.bg-valley-pink {
+  background-color: var(--valley-pink);
+}
+
+.bg-valley-orange {
+  background-color: var(--valley-orange);
+}
+
+.bg-tech-navy {
+  background-color: var(--tech-navy);
+}
+
+.bg-tech-gold {
+  background-color: var(--tech-gold);
+}
+
+.bg-forest-green {
+  background-color: var(--forest-green);
+}
+
+.bg-earth-brown {
+  background-color: var(--earth-brown);
+}
+
+.bg-sunset-orange {
+  background-color: var(--sunset-orange);
+}
+
+.text-primary-blue {
+  color: var(--primary-blue);
+}
+
+.text-sky-blue {
+  color: var(--sky-blue);
+}
+
+.text-navy-blue {
+  color: var(--navy-blue);
+}
+
+.text-medium-blue {
+  color: var(--medium-blue);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.text-valley-cream {
+  color: var(--valley-cream);
+}
+
+.text-valley-gold {
+  color: var(--valley-gold);
+}
+
+.text-valley-brown {
+  color: var(--valley-brown);
+}
+
+.text-valley-green {
+  color: var(--valley-green);
+}
+
+.text-valley-blue {
+  color: var(--valley-blue);
+}
+
+.text-valley-purple {
+  color: var(--valley-purple);
+}
+
+.text-valley-pink {
+  color: var(--valley-pink);
+}
+
+.text-valley-orange {
+  color: var(--valley-orange);
+}
+
+.text-tech-navy {
+  color: var(--tech-navy);
+}
+
+.text-tech-gold {
+  color: var(--tech-gold);
+}
+
+.text-forest-green {
+  color: var(--forest-green);
+}
+
+.text-earth-brown {
+  color: var(--earth-brown);
+}
+
+.text-sunset-orange {
+  color: var(--sunset-orange);
+}
+
+.border-primary-blue {
+  border-color: var(--primary-blue);
+}
+
+.border-sky-blue {
+  border-color: var(--sky-blue);
+}
+
+.border-navy-blue {
+  border-color: var(--navy-blue);
+}
+
+.border-medium-blue {
+  border-color: var(--medium-blue);
+}
+
+.border-white {
+  border-color: var(--white);
+}
+
+.border-valley-cream {
+  border-color: var(--valley-cream);
+}
+
+.border-valley-gold {
+  border-color: var(--valley-gold);
+}
+
+.border-valley-brown {
+  border-color: var(--valley-brown);
+}
+
+.border-valley-green {
+  border-color: var(--valley-green);
+}
+
+.border-valley-blue {
+  border-color: var(--valley-blue);
+}
+
+.border-valley-purple {
+  border-color: var(--valley-purple);
+}
+
+.border-valley-pink {
+  border-color: var(--valley-pink);
+}
+
+.border-valley-orange {
+  border-color: var(--valley-orange);
+}
+
+.border-tech-navy {
+  border-color: var(--tech-navy);
+}
+
+.border-tech-gold {
+  border-color: var(--tech-gold);
+}
 
 /* Pixel Art Font */
 .font-pixel {
@@ -127,23 +274,51 @@
 
 /* Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes bounce-gentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(244, 208, 63, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(244, 208, 63, 0.8); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(244, 208, 63, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(244, 208, 63, 0.8);
+  }
 }
 
 @keyframes fadeInUp {
@@ -151,6 +326,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -181,6 +357,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -235,6 +412,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;
@@ -301,7 +479,7 @@
   .font-pixel {
     font-size: 0.6em;
   }
-  
+
   .btn-pixel {
     font-size: 0.6em;
     padding: 10px 20px;
@@ -336,4 +514,3 @@
   background: var(--valley-gold);
   color: var(--valley-brown);
 }
-

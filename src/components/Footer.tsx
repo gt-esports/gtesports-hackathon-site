@@ -1,4 +1,4 @@
-import { siteConfig } from "../config/site"
+import { siteConfig } from "../data/site"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()

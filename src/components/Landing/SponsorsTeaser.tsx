@@ -1,5 +1,5 @@
 import { type FC, useMemo, useState } from "react";
-import "../cssFiles/sponsor.css";
+import "../../cssFiles/sponsor.css";
 
 interface Card {
   img: string;

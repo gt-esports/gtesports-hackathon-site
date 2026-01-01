@@ -1,8 +1,8 @@
-import Hero from "../components/Hero"
-import About from "../components/About"
-import ScheduleTeaser from "../components/ScheduleTeaser"
-import SponsorsTeaser from "../components/SponsorsTeaser"
-import FAQ from "../components/FAQ"
+import Hero from "../components/Landing/Hero"
+import About from "../components/Landing/About"
+import ScheduleTeaser from "../components/Landing/ScheduleTeaser"
+import SponsorsTeaser from "../components/Landing/SponsorsTeaser"
+import FAQ from "../components/FAQ/FAQ"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 

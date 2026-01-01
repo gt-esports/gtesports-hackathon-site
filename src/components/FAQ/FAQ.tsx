@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import faqData from '../data/faqData';
-import FaqCard from './FAQ/FaqCard';
-import DialogueOverlay from './FAQ/DialogueOverlay';
+import faqData from '../../data/faqData';
+import FaqCard from './FaqCard';
+import DialogueOverlay from './DialogueOverlay';
 
 type FAQCategory = keyof typeof faqData;
 
@@ -31,41 +31,41 @@ export default function FAQ() {
 
             {/* FAQ Categories */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <FaqCard 
-                category="general" 
-                title="General FAQ" 
-                description="General Questions About The Event." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="general"
+                title="General FAQ"
+                description="General Questions About The Event."
+                onClick={handleFAQClick}
               />
-              <FaqCard 
-                category="food" 
-                title="Food" 
-                description="Catering, Dietary Restrictions, and Allergies." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="food"
+                title="Food"
+                description="Catering, Dietary Restrictions, and Allergies."
+                onClick={handleFAQClick}
               />
-              <FaqCard 
-                category="venue" 
-                title="Venue" 
-                description="Location Details, Entry, Parking." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="venue"
+                title="Venue"
+                description="Location Details, Entry, Parking."
+                onClick={handleFAQClick}
               />
-              <FaqCard 
-                category="items" 
-                title="Adventurer's Pack" 
-                description="What to Bring, How to Prepare, etc." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="items"
+                title="Adventurer's Pack"
+                description="What to Bring, How to Prepare, etc."
+                onClick={handleFAQClick}
               />
-              <FaqCard 
-                category="lost" 
-                title="Lost & Found" 
-                description="Reporting and Retrieving Lost Items." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="lost"
+                title="Lost & Found"
+                description="Reporting and Retrieving Lost Items."
+                onClick={handleFAQClick}
               />
-              <FaqCard 
-                category="misc" 
-                title="Other Questions" 
-                description="Miscellaneous FAQ." 
-                onClick={handleFAQClick} 
+              <FaqCard
+                category="misc"
+                title="Other Questions"
+                description="Miscellaneous FAQ."
+                onClick={handleFAQClick}
               />
             </div>
           </div>

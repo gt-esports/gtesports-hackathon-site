@@ -1,4 +1,4 @@
-import CountdownCarousel from './CountdownCarousel';
+import CountdownCarousel from '../CountdownCarousel';
 
 export default function ScheduleTeaser() {
   return (

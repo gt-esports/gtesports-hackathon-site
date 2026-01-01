@@ -1,6 +1,6 @@
 "use client"
 
-import { siteConfig } from "../config/site"
+import { siteConfig } from "../../data/site"
 
 export default function Hero() {
 

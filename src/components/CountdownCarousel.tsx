@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { siteConfig } from '../config/site';
+import { siteConfig } from '../data/site';
 
 interface CountdownCarouselProps {
   className?: string;

@@ -1,61 +1,43 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import CountdownCarousel from './CountdownCarousel';
-import { supabase } from '../utils/supabaseClient';
+import CountdownCarousel from '../CountdownCarousel';
+import { supabase } from '../../utils/supabaseClient';
 import EditProfileModal from './EditProfileModal';
-import type { Profile } from '../types/database.types';
+import { useProfile } from '../../hooks/useProfile';
 
 interface DashboardHeroProps {
-  user: any; // We'll try to cast this or use a better type if possible, but keep it compatible for now
+  user: any;
   applications: any[];
 }
 
 export default function DashboardHero({ user: initialUser, applications }: DashboardHeroProps) {
   const navigate = useNavigate();
-  // We need a local state for the user that can be updated when the profile changes
-  // Ideally, the parent should handle this, but for now we can fetch fresh data or update local state
-  const [user, setUser] = useState({
-    ...initialUser,
-    name: initialUser?.user_metadata?.full_name || initialUser?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
-    profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
-    university: initialUser?.college || "Georgia Institute of Technology"
-  });
+  const { profile, refetch } = useProfile();
 
-  // Need a proper Profile object for the modal
-  const [profileData, setProfileData] = useState<Profile | null>(null);
+  // Local state for display, derived from profile or initialUser
+  const [displayUser, setDisplayUser] = useState({
+    name: "Hacker",
+    profilePic: "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+    university: "Georgia Institute of Technology"
+  });
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
-    // If we have initialUser, try to set up the profileData for the modal
-    if (initialUser) {
-      // Map initialUser (which might be a session user or mixed object) to Profile shape as best as we can
-      // Or fetch the real profile if initialUser is just auth user
-      fetchProfile();
+    if (profile) {
+      setDisplayUser({
+        name: profile.full_name || (profile.first_name ? `${profile.first_name} ${profile.last_name || ''}`.trim() : "Hacker"),
+        profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+        university: profile.college || "Georgia Institute of Technology"
+      });
+    } else if (initialUser) {
+      setDisplayUser({
+        name: initialUser?.user_metadata?.full_name || initialUser?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
+        profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+        university: initialUser?.college || "Georgia Institute of Technology"
+      });
     }
-  }, [initialUser]);
-
-  const fetchProfile = async () => {
-    if (!initialUser?.id) return;
-
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', initialUser.id)
-      .single();
-
-    if (data) {
-      setProfileData(data);
-      // Also update the display user state
-      setUser((prev: any) => ({
-        ...prev,
-        name: data.full_name || data.first_name ? `${data.first_name || ''} ${data.last_name || ''}`.trim() : prev.name,
-        university: data.college || prev.university,
-        // Keep profile pic from auth metadata if not in profile, or use default
-        profilePic: prev.profilePic
-      }));
-    }
-  };
+  }, [profile, initialUser]);
 
   const handleSignOut = async () => {
     try {
@@ -75,8 +57,7 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
   };
 
   const handleProfileUpdate = () => {
-    // Refresh profile data
-    fetchProfile();
+    refetch(); // Use the refetch from hook
   };
 
   return (
@@ -97,8 +78,8 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
           <div className="text-center max-w-4xl mx-auto px-4">
             <div className="relative inline-block">
               <img
-                src={user.profilePic}
-                alt={`${user.name}'s profile`}
+                src={displayUser.profilePic}
+                alt={`${displayUser.name}'s profile`}
                 className="w-48 h-48 rounded-full object-cover border-6 border-white/40 mx-auto mb-10 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-200"
                 onClick={() => setIsEditModalOpen(true)}
                 title="Click to edit profile"
@@ -113,10 +94,10 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 ✏️
               </button>
             </div>
-            <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8" style={{ fontSize: '1.5rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
-              {getGreeting()}, {user.name}! 👋
+            <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8 text-shadow-glow" style={{ fontSize: '1.5rem' }}>
+              {getGreeting()}, {displayUser.name}! 👋
             </h1>
-            <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{ fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
+            <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10 text-shadow-glow" style={{ fontSize: '1rem' }}>
               Ready to build something amazing?
             </p>
             {/* Apply Now Button */}
@@ -183,11 +164,11 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
         <CountdownCarousel />
       </div>
 
-      {profileData && (
+      {profile && (
         <EditProfileModal
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
-          currentUser={profileData}
+          currentUser={profile}
           onUpdate={handleProfileUpdate}
         />
       )}

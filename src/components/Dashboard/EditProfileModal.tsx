@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../utils/supabaseClient';
-import type { Profile } from '../types/database.types';
+import { supabase } from '../../utils/supabaseClient';
+import type { Profile } from '../../types/database.types';
 
 interface EditProfileModalProps {
     isOpen: boolean;
