@@ -1,11 +1,46 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../utils/supabaseClient";
 import DashboardHero from "../components/DashboardHero";
-import Footer from "../components/Footer"
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+
+        if (!session) {
+          navigate("/login");
+          return;
+        }
+
+        setUser(session.user);
+      } catch (error) {
+        console.error("Error checking auth:", error);
+        navigate("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, [navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-valley-cream flex items-center justify-center">
+        <div className="text-valley-brown font-pixel text-xl">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full hero-pixel-clouds relative">
-      <DashboardHero />
-      <Footer />
+      <DashboardHero user={user} />
     </div>
   );
 }

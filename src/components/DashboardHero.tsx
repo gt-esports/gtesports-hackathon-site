@@ -1,16 +1,20 @@
 import { useState } from 'react'
-import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import CountdownCarousel from './CountdownCarousel';
+import { supabase } from '../utils/supabaseClient';
 
-export default function DashboardHero() {
+interface DashboardHeroProps {
+  user: any;
+}
+
+export default function DashboardHero({ user: initialUser }: DashboardHeroProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const navigate = useNavigate();
   // User Greeting State
   const [user, setUser] = useState({
-    name: "Alex Developer",
-    profilePic: "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
-    email: "alex@example.com",
+    name: initialUser?.user_metadata?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
+    profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
+    email: initialUser?.email || "email@example.com",
     university: "Georgia Institute of Technology"
   });
 
@@ -21,6 +25,16 @@ export default function DashboardHero() {
     profilePic: user.profilePic,
     university: user.university
   });
+
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -55,14 +69,25 @@ export default function DashboardHero() {
       ...editForm,
       [e.target.name]: e.target.value
     });
+    setEditForm({
+      ...editForm,
+      [e.target.name]: e.target.value
+    });
   };
-  
+
   return (
     <>
-      <Navbar />
+      <div className="absolute top-4 right-4 z-50">
+        <button
+          onClick={handleSignOut}
+          className="btn-pixel bg-red-500 hover:bg-red-600 px-4 py-2 text-sm text-white transition-transform duration-200 hover:scale-105 shadow-md flex items-center gap-2"
+        >
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
 
       {/* Main Dashboard Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-32 pb-32">
+      <div className="relative z-10 flex items-center justify-center h-screen px-4 overflow-hidden">
         <div className="text-center max-w-4xl mx-auto">
           {/* User Greeting Section */}
           <div className="text-center max-w-4xl mx-auto px-4">
@@ -74,7 +99,7 @@ export default function DashboardHero() {
                 onClick={handleEditClick}
                 title="Click to edit profile"
               />
-              <button 
+              <button
                 className="absolute bottom-12 right-0 bg-valley-gold hover:bg-valley-gold/90 text-valley-brown rounded-full p-2 border-2 border-white/50 shadow-lg transition-all duration-200 hover:scale-110"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -84,20 +109,29 @@ export default function DashboardHero() {
                 ✏️
               </button>
             </div>
-            <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8" style={{fontSize: '1.5rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
+            <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8" style={{ fontSize: '1.5rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
               {getGreeting()}, {user.name}! 👋
             </h1>
-            <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
+            <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10" style={{ fontSize: '1rem', textShadow: '0 0 60px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.85), 0 0 100px rgba(0,0,0,0.75), 0 4px 10px rgba(0,0,0,0.9)' }}>
               Ready to build something amazing?
             </p>
             {/* Apply Now Button */}
-            <div className="mb-10">
+            <div className="mb-10 flex flex-wrap justify-center gap-6">
               <button
                 onClick={() => navigate('/application')}
                 className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-lg transition-transform duration-200 hover:scale-105"
               >
                 Apply Now
               </button>
+
+              <a
+                href="https://discord.gg/temporary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pixel btn-pixel-secondary text-lg inline-block hover:scale-105 transition-transform duration-200"
+              >
+                👥 Team Lookup on Discord
+              </a>
             </div>
             <div className="bg-black/30 backdrop-blur-md rounded-2xl p-10 border border-white/40 mb-10 shadow-2xl">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -115,19 +149,9 @@ export default function DashboardHero() {
                 </div>
               </div>
             </div>
-
-            {/* Team Lookup Button */}
-            <a
-              href="https://discord.gg/temporary" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-pixel btn-pixel-secondary text-lg inline-block hover:scale-105 transition-transform duration-200"
-            >
-              👥 Team Lookup on Discord
-            </a>
           </div>
         </div>
-        
+
         {/* Countdown at bottom of dashboard screen */}
         <CountdownCarousel />
       </div>
@@ -140,7 +164,7 @@ export default function DashboardHero() {
               {/* Modal Header */}
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-pixel text-valley-brown">Edit Profile</h2>
-                <button 
+                <button
                   onClick={() => setIsEditModalOpen(false)}
                   className="text-valley-brown hover:text-valley-gold text-3xl font-bold leading-none transition-colors"
                 >
@@ -165,9 +189,9 @@ export default function DashboardHero() {
                   />
                   {editForm.profilePic && (
                     <div className="mt-3 flex justify-center">
-                      <img 
-                        src={editForm.profilePic} 
-                        alt="Preview" 
+                      <img
+                        src={editForm.profilePic}
+                        alt="Preview"
                         className="w-24 h-24 rounded-full object-cover border-2 border-valley-brown"
                         onError={(e) => {
                           e.currentTarget.src = "https://via.placeholder.com/150";
@@ -242,8 +266,8 @@ export default function DashboardHero() {
                     type="button"
                     onClick={() => setIsEditModalOpen(false)}
                     className="btn-pixel flex-1 text-sm"
-                    style={{ 
-                      backgroundColor: '#e74c3c', 
+                    style={{
+                      backgroundColor: '#e74c3c',
                       borderColor: '#c0392b',
                       color: 'white'
                     }}
