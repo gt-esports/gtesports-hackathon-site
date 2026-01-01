@@ -20,36 +20,14 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Stardew HUD - Day/Time Display (Visible on Desktop) */}
-        <div className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="hud-box rounded-xl">
-            <div className="text-right mr-3">
-              <div className="text-xs font-pixel text-valley-brown">Sat.</div>
-              <div className="text-xs font-pixel text-valley-brown">12</div>
-            </div>
-            <div className="h-8 w-[2px] bg-valley-brown/30 mx-2"></div>
 
-            {/* Sun/Weather Icon */}
-            <div className="text-2xl animate-pulse-glow">☀️</div>
-
-            <div className="ml-3">
-              <div className="text-xs font-pixel text-valley-brown ">9:00 am</div>
-            </div>
-
-            {/* Gold Display */}
-            <div className="ml-6 flex items-center bg-valley-cream/50 px-2 py-1 rounded border border-valley-brown/30">
-              <div className="w-3 h-3 bg-yellow-400 rounded-full border border-orange-600 mr-2"></div>
-              <span className="text-xs font-pixel text-valley-brown">36h</span>
-            </div>
-          </div>
-        </div>
 
         {/* Navigation Elements */}
         <div className="flex items-center gap-3">
           {/* Sign In Button */}
           <Link
             to="/login"
-            className="btn-pixel-secondary px-3 py-2 flex items-center gap-2 !bg-valley-blue !border-valley-brown text-white"
+            className="btn-pixel flex items-center gap-2 !py-2 !px-3"
             aria-label="Go to login"
           >
             <span className="text-sm">👤</span>

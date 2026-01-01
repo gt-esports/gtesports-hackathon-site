@@ -1,27 +1,32 @@
 export default function NavbarDropdownMenu() {
   return (
-    <div className="absolute top-full right-0 mt-2 w-56 card-pixel overflow-hidden z-30 shadow-2xl bg-white rounded-lg border border-gray-200">
-      <a
-        href="/"
-        className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-      >
-        🏠 Home
-      </a>
-      <a
-        href="/#schedule"
-        className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-      >
-        📅 Schedule
-      </a>
-      <a
-        href="/#sponsors"
-        className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm"
-      >
-        🏢 Sponsors
-      </a>
-      <a href="/teams" className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-sm">
-        👥 Teams
-      </a>
+    <div className="!absolute top-full right-0 mt-2 w-56 card-pixel z-30 animate-fadeInUp">
+      <div className="flex flex-col py-2">
+        <a
+          href="/"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+        >
+          <span className="mr-2">🏠</span> Home
+        </a>
+        <a
+          href="/#schedule"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+        >
+          <span className="mr-2">📅</span> Schedule
+        </a>
+        <a
+          href="/#sponsors"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+        >
+          <span className="mr-2">🏢</span> Sponsors
+        </a>
+        <a
+          href="/teams"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide"
+        >
+          <span className="mr-2">👥</span> Teams
+        </a>
+      </div>
     </div>
   )
 }
