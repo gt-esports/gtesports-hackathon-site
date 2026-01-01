@@ -20,54 +20,81 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-20 gradient-primary" id="faq" aria-labelledby="faq-heading">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 id="faq-heading" className="text-4xl md:text-5xl font-bold text-white mb-4 font-pixel drop-shadow-lg">FAQ</h2>
-        </div>
-        <div className="text-center text-white/80 font-pixel">
-          <div className="bg-[#f5dcb0] border-[12px] border-valley-brown shadow-lg w-full mx-auto p-6" style={{ boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)' }}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-valley-brown text-center mb-8 font-bold" style={{ textShadow: '2px 2px 0px #e0c8a8' }}>Frequently Asked Questions</h2>
+    <section className="py-20 relative overflow-hidden" id="faq" aria-labelledby="faq-heading"
+      style={{
+        background: 'linear-gradient(to bottom, #66a05b 0%, #5d4037 100%)'
+      }}
+    >
+      {/* Nature/Farm Background Elements */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#3e2723 1px, transparent 1px)",
+          backgroundSize: "24px 24px"
+        }}
+      ></div>
 
-            {/* FAQ Categories */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <FaqCard
-                category="general"
-                title="General FAQ"
-                description="General Questions About The Event."
-                onClick={handleFAQClick}
-              />
-              <FaqCard
-                category="food"
-                title="Food"
-                description="Catering, Dietary Restrictions, and Allergies."
-                onClick={handleFAQClick}
-              />
-              <FaqCard
-                category="venue"
-                title="Venue"
-                description="Location Details, Entry, Parking."
-                onClick={handleFAQClick}
-              />
-              <FaqCard
-                category="items"
-                title="Adventurer's Pack"
-                description="What to Bring, How to Prepare, etc."
-                onClick={handleFAQClick}
-              />
-              <FaqCard
-                category="lost"
-                title="Lost & Found"
-                description="Reporting and Retrieving Lost Items."
-                onClick={handleFAQClick}
-              />
-              <FaqCard
-                category="misc"
-                title="Other Questions"
-                description="Miscellaneous FAQ."
-                onClick={handleFAQClick}
-              />
+      <div className="max-w-5xl mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <h2 id="faq-heading" className="text-4xl md:text-5xl font-bold text-[#fdf6e3] mb-4 font-serif drop-shadow-md tracking-wider">
+            Town Notice Board
+          </h2>
+          <p className="text-[#e2dbc9] font-pixel text-lg opacity-90">Have a question? Check the board!</p>
+        </div>
+
+        <div className="relative">
+          {/* Wooden Board/Sign Container */}
+          <div className="bg-[#8d6e63] p-1 rounded-sm shadow-2xl border-[6px] border-[#5d4037] relative" style={{ boxShadow: '8px 8px 0px rgba(0,0,0,0.3)' }}>
+            {/* Roof/Top of Board */}
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-[98%] h-8 bg-[#5d4037] rounded-t-sm shadow-lg z-0 border-x-[6px] border-t-[6px] border-[#3e2723]"></div>
+
+            {/* Content Area */}
+            <div className="bg-[#cc8d58] p-6 rounded-sm border-[4px] border-[#5d4037] border-opacity-70 shadow-inner">
+              {/* Notes/Crates Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <FaqCard
+                  category="general"
+                  title="General"
+                  description="Basic event info."
+                  onClick={handleFAQClick}
+                />
+                <FaqCard
+                  category="food"
+                  title="Food"
+                  description="Meals & Snacks."
+                  onClick={handleFAQClick}
+                />
+                <FaqCard
+                  category="venue"
+                  title="Venue"
+                  description="Location & Parking."
+                  onClick={handleFAQClick}
+                />
+                <FaqCard
+                  category="items"
+                  title="Adventure Pack"
+                  description="What to bring."
+                  onClick={handleFAQClick}
+                />
+                <FaqCard
+                  category="lost"
+                  title="Lost & Found"
+                  description="Missing items."
+                  onClick={handleFAQClick}
+                />
+                <FaqCard
+                  category="misc"
+                  title="Other"
+                  description="Everything else."
+                  onClick={handleFAQClick}
+                />
+              </div>
             </div>
+          </div>
+
+          {/* Post Legs */}
+          <div className="w-[80%] mx-auto flex justify-between px-10 -mt-2 relative -z-10">
+            <div className="w-8 h-24 bg-[#5d4037] border-x-2 border-[#3e2723]"></div>
+            <div className="w-8 h-24 bg-[#5d4037] border-x-2 border-[#3e2723]"></div>
           </div>
 
           {/* Overlay to Show Interactive FAQ */}
