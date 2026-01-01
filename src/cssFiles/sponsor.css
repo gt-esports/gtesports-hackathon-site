@@ -1,27 +1,51 @@
 @import "tailwindcss";
 
-.card-container {
-    @apply relative overflow-hidden m-6 rounded-lg border-[5px] border-gray-300/50 bg-white/20 backdrop-blur-md transition-transform duration-300 ease-in-out cursor-default;
-    width: 90%;
-    max-width: 300px;
-    min-height: 250px;
+.card-component {
+    @apply relative bg-[#fffdf0] p-6 shadow-md transition-transform duration-300 ease-in-out cursor-pointer rounded-sm;
+    min-height: 280px;
+    background-image: linear-gradient(#fbf6e0 1px, transparent 1px);
+    background-size: 100% 1.5rem;
+    box-shadow: 2px 2px 8px rgba(93, 58, 34, 0.15);
+    /* Softer brownish shadow */
+    transform: rotate(var(--rotation, 0deg));
+    border: 1px solid rgba(141, 94, 60, 0.1);
+    /* Subtle wood border */
+}
+
+.card-component:hover {
+    @apply transform scale-105 z-10;
+    box-shadow: 5px 10px 20px rgba(93, 58, 34, 0.25);
+}
+
+.card-component:nth-child(odd) {
+    --rotation: -2deg;
+}
+
+.card-component:nth-child(even) {
+    --rotation: 2deg;
+}
+
+.card-component:nth-child(3n) {
+    --rotation: 1deg;
 }
 
 .card-image {
-    @apply rounded-lg mt-2;
-    width: 20%;
-    height: auto;
+    @apply rounded-sm;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
+    filter: sepia(0.2);
 }
 
 .card-content {
-    @apply absolute top-0 w-[90%] h-full p-4 z-10;
+    @apply w-full text-center mt-2;
 }
 
 .card-title {
-    @apply text-pink-200 text-xl transition-transform duration-300 cursor-pointer;
+    @apply text-[#5d4037] text-xl font-bold font-serif;
 }
 
 .card-desc {
-    @apply text-gray-900 text-sm bg-white/85 rounded-lg p-2 transition-transform duration-300;
+    @apply text-[#5d4037] text-sm leading-6 mt-2;
+    font-family: 'Courier New', Courier, monospace;
 }
