@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import type { User } from '@supabase/supabase-js';
 import CountdownCarousel from '../CountdownCarousel';
 import { supabase } from '../../utils/supabaseClient';
 import EditProfileModal from './EditProfileModal';
 import { useProfile } from '../../hooks/useProfile';
+import type { Application } from '../../types/database.types';
 
 interface DashboardHeroProps {
-  user: any;
-  applications: any[];
+  user: User | null;
+  applications: Application[];
 }
 
 export default function DashboardHero({ user: initialUser, applications }: DashboardHeroProps) {
@@ -32,9 +34,9 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
       });
     } else if (initialUser) {
       setDisplayUser({
-        name: initialUser?.user_metadata?.full_name || initialUser?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
+        name: initialUser?.user_metadata?.full_name || initialUser?.email?.split('@')[0] || "Hacker",
         profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
-        university: initialUser?.college || "Georgia Institute of Technology"
+        university: initialUser?.user_metadata?.college || "Georgia Institute of Technology"
       });
     }
   }, [profile, initialUser]);
