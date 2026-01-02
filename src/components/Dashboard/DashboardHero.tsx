@@ -26,7 +26,9 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
+    console.log("DashboardHero profile update:", { profile, initialUser });
     if (profile) {
+      console.log("Profile is_admin:", profile.is_admin);
       setDisplayUser({
         name: profile.full_name || (profile.first_name ? `${profile.first_name} ${profile.last_name || ''}`.trim() : "Hacker"),
         profilePic: initialUser?.user_metadata?.avatar_url || "https://pbs.twimg.com/profile_images/1762648109044187136/ZSsezdVZ_400x400.jpg",
@@ -119,6 +121,15 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
               >
                 👥 Team Lookup on Discord
               </a>
+
+              {profile?.is_admin && (
+                <button
+                  onClick={() => navigate('/admin')}
+                  className="btn-pixel bg-valley-brown hover:bg-valley-brown/80 px-6 py-4 text-lg text-valley-gold transition-transform duration-200 hover:scale-105"
+                >
+                  Admin Dashboard
+                </button>
+              )}
             </div>
             {/* Applications List */}
             <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-white/40 mb-10 shadow-2xl">
@@ -131,9 +142,11 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
               ) : (
                 <div className="space-y-4">
                   {applications.map((app) => (
-                    <div
+                    <a
                       key={app.id}
-                      onClick={() => navigate(`/application?id=${app.id}`)}
+                      href={`/application?id=${app.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-white/10 rounded-lg p-4 flex justify-between items-center border border-white/20 hover:bg-white/20 transition-colors cursor-pointer group"
                     >
                       <div className="text-left">
@@ -155,7 +168,7 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                           {app.status}
                         </span>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               )}

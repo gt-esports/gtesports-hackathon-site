@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Application from "./pages/Application";
 import Onboarding from "./pages/Onboarding";
+import AdminDashboard from "./pages/AdminDashboard";
 import RequireProfile from "./components/RequireProfile";
 
 import StubPage from "./components/StubPage";
@@ -21,6 +22,14 @@ export default function App() {
           element={
             <RequireProfile>
               <Dashboard />
+            </RequireProfile>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <RequireProfile>
+              <AdminDashboard />
             </RequireProfile>
           }
         />

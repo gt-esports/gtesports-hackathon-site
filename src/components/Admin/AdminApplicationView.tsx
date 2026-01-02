@@ -1,0 +1,142 @@
+import type { Application, Profile } from "../../types/database.types";
+import { useEffect, useState } from "react";
+import { supabase } from "../../utils/supabaseClient";
+
+interface AdminApplicationViewProps {
+    application: Application;
+    onClose: () => void;
+}
+
+export default function AdminApplicationView({ application, onClose }: AdminApplicationViewProps) {
+    const [applicantProfile, setApplicantProfile] = useState<Profile | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const { data, error } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', application.user_id)
+                .single();
+
+            if (error) {
+                console.error("Error fetching profile:", error);
+            } else {
+                setApplicantProfile(data);
+            }
+            setLoading(false);
+        };
+
+        fetchProfile();
+    }, [application.user_id]);
+
+    if (loading) {
+        return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+                <div className="bg-valley-cream border-4 border-valley-brown p-8 rounded-lg">
+                    <p className="text-valley-brown font-pixel">Loading profile...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Parse answers safely
+    let answers: Record<string, unknown> = {};
+    if (application.answers && typeof application.answers === 'object') {
+        answers = application.answers as Record<string, unknown>;
+    }
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
+            <div className="bg-valley-cream border-4 border-valley-brown rounded-lg w-full max-w-4xl my-8 relative flex flex-col max-h-[90vh]">
+                {/* Header */}
+                <div className="p-6 border-b-4 border-valley-brown bg-valley-green-light sticky top-0 z-10 flex justify-between items-start">
+                    <div>
+                        <h2 className="text-2xl font-pixel text-valley-brown mb-2">
+                            {applicantProfile?.full_name || "Unknown Applicant"}
+                        </h2>
+                        <div className="flex gap-4 font-pixel text-sm text-valley-brown/80">
+                            <p>{applicantProfile?.email}</p>
+                            <p>•</p>
+                            <p>{applicantProfile?.college || "No College Listed"}</p>
+                        </div>
+                        <div className="mt-2">
+                            <span className={`px-2 py-1 rounded text-xs font-pixel uppercase ${application.status === 'accepted' ? 'bg-green-500 text-white' :
+                                application.status === 'rejected' ? 'bg-red-500 text-white' :
+                                    application.status === 'waitlisted' ? 'bg-yellow-500 text-white' :
+                                        'bg-gray-400 text-white'
+                                }`}>
+                                {application.status}
+                            </span>
+                        </div>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="text-valley-brown hover:text-red-500 font-pixel text-xl"
+                    >
+                        ✕
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 overflow-y-auto font-sans text-valley-brown space-y-6">
+                    <section>
+                        <h3 className="text-xl font-pixel text-valley-green mb-4 border-b-2 border-valley-green/20 pb-2">
+                            Application Responses
+                        </h3>
+
+                        <div className="grid gap-6">
+                            {Object.entries(answers).map(([key, value]) => (
+                                <div key={key} className="bg-white/50 p-4 rounded border-2 border-valley-brown/10">
+                                    <p className="font-bold mb-2 capitalize text-valley-green-dark">
+                                        {key.replace(/_/g, ' ')}
+                                    </p>
+                                    <div className="whitespace-pre-wrap text-gray-800">
+                                        {typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value)}
+                                    </div>
+                                </div>
+                            ))}
+                            {Object.keys(answers).length === 0 && (
+                                <p className="italic text-gray-500">No text answers submitted.</p>
+                            )}
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 className="text-xl font-pixel text-valley-green mb-4 border-b-2 border-valley-green/20 pb-2">
+                            Metadata
+                        </h3>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span className="font-bold">Applied:</span> {new Date(application.created_at).toLocaleString()}
+                            </div>
+                            <div>
+                                <span className="font-bold">Last Updated:</span> {new Date(application.updated_at).toLocaleString()}
+                            </div>
+                            <div>
+                                <span className="font-bold">User ID:</span> <span className="font-mono text-xs">{application.user_id}</span>
+                            </div>
+                            <div>
+                                <span className="font-bold">App ID:</span> <span className="font-mono text-xs">{application.id}</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                {/* Footer Actions (Placeholder for now) */}
+                <div className="p-6 border-t-4 border-valley-brown bg-valley-cream sticky bottom-0 z-10">
+                    <div className="flex justify-end gap-4">
+                        {/* Add Accept/Reject/Waitlist buttons here later */}
+                        <button
+                            onClick={onClose}
+                            className="px-6 py-2 bg-valley-brown text-valley-cream font-pixel rounded hover:scale-105 transition-transform"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
