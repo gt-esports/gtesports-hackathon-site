@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import FaqOptions from './FaqOptions';
 import React from 'react';
 import faqData from '../../data/faqData';
@@ -18,7 +19,15 @@ function DialogueOverlay({ open, onClose, data }: {
     if (open) {
       setCurrentView('greeting');
       setAnswer(null);
+      // Prevent scrolling on body when modal is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
     }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [open, data]);
 
   if (!open || !data) return null;
@@ -30,9 +39,9 @@ function DialogueOverlay({ open, onClose, data }: {
     }
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-2 py-6 sm:px-4"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 px-2 py-6 sm:px-4"
       onClick={handleOverlayClick}
       style={{ cursor: 'pointer' }}>
 
@@ -45,13 +54,13 @@ function DialogueOverlay({ open, onClose, data }: {
 
         {/* Dialogue Box */}
         <div className="w-full bg-[#f5dcb0] border-4 border-valley-brown rounded-lg shadow-lg flex flex-col-reverse sm:flex-row font-pixel" style={{ boxShadow: '0 0 0 4px #c7966b' }}>
-          
+
           {/* Response */}
           <div className="flex-1 p-4 sm:p-6 relative min-h-[8rem] sm:min-h-[10rem] flex flex-col justify-between">
-            <div 
-              className="text-lg sm:text-xl md:text-2xl text-valley-brown leading-tight min-h-[4rem] break-words"
+            <div
+              className="text-base sm:text-lg md:text-xl text-valley-brown leading-relaxed min-h-[4rem] break-words whitespace-pre-wrap"
               id="dialog-title"
-              role="region" 
+              role="region"
               aria-live="polite"
             >
               {currentView === 'greeting' ? data.greeting : answer}
@@ -59,7 +68,7 @@ function DialogueOverlay({ open, onClose, data }: {
           </div>
 
           {/* Portrait/Name */}
-          <div 
+          <div
             className="flex-shrink-0 sm:w-48 bg-[#c7966b] p-3 sm:p-4 border-b-4 sm:border-b-0 sm:border-l-4 border-valley-brown flex flex-col items-center gap-2 justify-center"
             role="complementary"
             aria-label="Character portrait"
@@ -84,7 +93,8 @@ function DialogueOverlay({ open, onClose, data }: {
           backOptionEnabled={currentView === 'answer'}
         />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

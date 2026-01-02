@@ -18,7 +18,7 @@ export default function Footer() {
               collaboration, and cozy coding vibes.
             </p>
             <p className="text-[#ffcc80]/80 mb-6 font-pixel text-xs">
-              Hosted by <span className="text-[#ffab40] font-semibold">GT Esports</span>
+              Hosted by <span className="text-[#ffab40] font-semibold">Georgia Tech Esports</span>
             </p>
             <div className="flex space-x-4">
               <a
@@ -94,7 +94,6 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-[#ffecb3]/60 text-sm font-pixel">📍 {siteConfig.event.location}</li>
-              <li className="text-[#ffecb3]/60 text-sm font-pixel">🏢 Hosted by <span className="text-[#ffab40] font-semibold">GT Esports</span></li>
             </ul>
           </div>
         </div>
@@ -106,7 +105,7 @@ export default function Footer() {
               © {currentYear} TechHack Valley. All rights reserved.
             </div>
             <div className="flex items-center space-x-4 text-[#ffecb3]/60 text-sm font-pixel">
-              <span>Made with 💚 by Georgia Tech students</span>
+              <span>Made with 💚 by Georgia Tech Esports Development Team</span>
               <div className="flex space-x-2">
                 <span className="animate-bounce-gentle">🌱</span>
                 <span className="animate-bounce-gentle" style={{ animationDelay: "0.2s" }}>💻</span>

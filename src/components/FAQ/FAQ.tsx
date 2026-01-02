@@ -50,43 +50,48 @@ export default function FAQ() {
             {/* Content Area */}
             <div className="bg-[#cc8d58] p-6 rounded-sm border-[4px] border-[#5d4037] border-opacity-70 shadow-inner">
               {/* Notes/Crates Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <FaqCard
-                  category="general"
-                  title="General"
-                  description="Basic event info."
-                  onClick={handleFAQClick}
-                />
-                <FaqCard
-                  category="food"
-                  title="Food"
-                  description="Meals & Snacks."
-                  onClick={handleFAQClick}
-                />
-                <FaqCard
-                  category="venue"
-                  title="Venue"
-                  description="Location & Parking."
-                  onClick={handleFAQClick}
-                />
-                <FaqCard
-                  category="items"
-                  title="Adventure Pack"
-                  description="What to bring."
-                  onClick={handleFAQClick}
-                />
-                <FaqCard
-                  category="lost"
-                  title="Lost & Found"
-                  description="Missing items."
-                  onClick={handleFAQClick}
-                />
-                <FaqCard
-                  category="misc"
-                  title="Other"
-                  description="Everything else."
-                  onClick={handleFAQClick}
-                />
+              <div className="flex flex-wrap justify-center gap-6">
+                <div className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                  <FaqCard
+                    category="general"
+                    title="General"
+                    description="Basic event info."
+                    onClick={handleFAQClick}
+                  />
+                </div>
+                <div className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                  <FaqCard
+                    category="food"
+                    title="Food"
+                    description="Meals & Snacks."
+                    onClick={handleFAQClick}
+                  />
+                </div>
+                <div className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                  <FaqCard
+                    category="venue"
+                    title="Venue"
+                    description="Location & Parking."
+                    onClick={handleFAQClick}
+                  />
+                </div>
+                <div className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                  <FaqCard
+                    category="items"
+                    title="Adventure Pack"
+                    description="What to bring."
+                    onClick={handleFAQClick}
+                  />
+                </div>
+
+                <div className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                  <FaqCard
+                    category="misc"
+                    title="Other"
+                    description="Everything else."
+                    onClick={handleFAQClick}
+                  />
+                </div>
               </div>
             </div>
           </div>

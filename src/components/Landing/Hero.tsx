@@ -102,7 +102,7 @@ export default function Hero() {
         >
           <div className="bg-valley-brown/80 border-2 border-valley-gold px-6 py-3 rounded-full backdrop-blur-sm">
             <p className="text-white font-pixel text-xs">
-              Hosted by <span className="text-valley-gold">GT Esports</span>
+              Hosted by <span className="text-valley-gold">Georgia Tech Esports</span>
             </p>
           </div>
         </a>
