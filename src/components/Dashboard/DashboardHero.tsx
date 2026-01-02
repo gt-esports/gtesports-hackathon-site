@@ -133,10 +133,11 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                   {applications.map((app) => (
                     <div
                       key={app.id}
-                      className="bg-white/10 rounded-lg p-4 flex justify-between items-center border border-white/20 hover:bg-white/20 transition-colors"
+                      onClick={() => navigate(`/application?id=${app.id}`)}
+                      className="bg-white/10 rounded-lg p-4 flex justify-between items-center border border-white/20 hover:bg-white/20 transition-colors cursor-pointer group"
                     >
                       <div className="text-left">
-                        <span className="block text-white font-pixel text-sm mb-1">
+                        <span className="block text-white font-pixel text-sm mb-1 group-hover:text-valley-gold transition-colors">
                           Application #{app.id.slice(0, 8)}
                         </span>
                         <span className="text-white/60 text-xs">

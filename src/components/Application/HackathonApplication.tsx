@@ -5,7 +5,7 @@ import "survey-core/survey-core.min.css";
 import "../../index.css";
 import { surveyJson } from "../../data/appQuestions";
 import { supabase } from "../../utils/supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function HackathonApplication() {
     const navigate = useNavigate();
@@ -22,6 +22,9 @@ export default function HackathonApplication() {
         }
     }, []);
 
+    const [searchParams] = useSearchParams();
+    const applicationId = searchParams.get("id");
+
     useEffect(() => {
         const checkUserAndStatus = async () => {
             try {
@@ -33,17 +36,43 @@ export default function HackathonApplication() {
                     return;
                 }
 
-                // Check if user has already applied
-                const { data: existingApp } = await supabase
-                    .from("applications")
-                    .select("id")
-                    .eq("user_id", session.user.id)
-                    .single();
+                let existingApp = null;
+                let fetchError = null;
+
+                if (applicationId) {
+                    const { data, error } = await supabase
+                        .from("applications")
+                        .select("id, answers")
+                        .eq("user_id", session.user.id)
+                        .eq("id", applicationId)
+                        .single();
+                    existingApp = data;
+                    fetchError = error;
+                } else {
+                    const { data, error } = await supabase
+                        .from("applications")
+                        .select("id, answers")
+                        .eq("user_id", session.user.id)
+                        .order('created_at', { ascending: false })
+                        .limit(1);
+
+                    if (data && data.length > 0) {
+                        existingApp = data[0];
+                    }
+                    fetchError = error;
+                }
+
+                // If looking for specific ID and error (not found), might want to handle that
+                if (applicationId && fetchError) {
+                    console.error("Application not found", fetchError);
+                    setLoading(false);
+                    return;
+                }
 
                 if (existingApp) {
                     setHasApplied(true);
-                    // Optional: set model to display mode or readonly
                     model.mode = "display";
+                    model.data = existingApp.answers;
                 }
 
             } catch (err) {
@@ -54,7 +83,7 @@ export default function HackathonApplication() {
         };
 
         checkUserAndStatus();
-    }, [model, navigate]);
+    }, [model, navigate, applicationId]);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -81,6 +110,8 @@ export default function HackathonApplication() {
                     if (error.code === '23505') {
                         alert("You have already submitted an application.");
                         setHasApplied(true);
+                        // Reload to fetch stats
+                        window.location.reload();
                     } else {
                         throw error;
                     }
@@ -88,6 +119,7 @@ export default function HackathonApplication() {
                     console.log("Application submitted:", data);
                     alert("Application submitted successfully!");
                     setHasApplied(true);
+                    model.mode = "display";
                     navigate("/dashboard");
                 }
 
@@ -107,27 +139,17 @@ export default function HackathonApplication() {
         return <div className="text-center text-valley-brown font-pixel p-10">Loading application status...</div>;
     }
 
-    if (hasApplied) {
-        return (
-            <div className="max-w-3xl mx-auto my-10 p-8 rounded-3xl shadow-2xl bg-valley-cream border-4 border-valley-green text-center">
-                <h2 className="text-3xl font-pixel text-valley-green mb-4">Application Received!</h2>
-                <p className="font-pixel text-valley-brown mb-6">
-                    Thank you for applying to TechHack Valley and being a part of our 2026 application cycle!
-                    Check your dashboard for updates.
-                </p>
-                <button
-                    onClick={() => navigate("/dashboard")}
-                    className="px-6 py-3 bg-valley-green text-valley-cream font-pixel rounded-lg hover:bg-valley-dark-green transition-colors"
-                >
-                    Go to Dashboard
-                </button>
-            </div>
-        );
-    }
-
     return (
         <div className="max-w-3xl mx-auto my-10 p-8 rounded-3xl shadow-2xl bg-gradient-to-br from-white to-gray-50">
+            {hasApplied && (
+                <div className="mb-6 bg-valley-green/10 border border-valley-green text-valley-dark-green px-4 py-3 rounded relative text-center font-pixel">
+                    <strong className="font-bold">Application Submitted!</strong>
+                    <span className="block sm:inline"> You are viewing your submitted application.</span>
+                </div>
+            )}
             <Survey model={model} key={modelKey} />
         </div>
     );
+
+
 }
