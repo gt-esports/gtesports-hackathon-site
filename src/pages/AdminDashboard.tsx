@@ -9,7 +9,7 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
     const [applications, setApplications] = useState<Application[]>([]);
-    const [stats, setStats] = useState({ total: 0, pending: 0, accepted: 0 });
+    const [stats, setStats] = useState({ total: 0, pending: 0, accepted: 0, waitlisted: 0 });
     const [selectedApp, setSelectedApp] = useState<Application | null>(null);
 
     // Pagination / Filter states could go here
@@ -54,7 +54,8 @@ export default function AdminDashboard() {
                     const total = apps?.length || 0;
                     const pending = apps?.filter(a => a.status === 'pending').length || 0;
                     const accepted = apps?.filter(a => a.status === 'accepted').length || 0;
-                    setStats({ total, pending, accepted });
+                    const waitlisted = apps?.filter(a => a.status === 'waitlisted').length || 0;
+                    setStats({ total, pending, accepted, waitlisted });
                 }
 
             } catch (error) {
@@ -94,14 +95,18 @@ export default function AdminDashboard() {
             <div className="max-w-7xl mx-auto grid gap-6 md:gap-8">
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     <div className="bg-valley-green-light border-4 border-valley-green p-4 md:p-6 rounded-lg text-center">
                         <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Total Applications</h3>
                         <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.total}</p>
                     </div>
-                    <div className="bg-yellow-100 border-4 border-yellow-500 p-4 md:p-6 rounded-lg text-center">
+                    <div className="bg-gray-100 border-4 border-gray-300 p-4 md:p-6 rounded-lg text-center">
                         <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Pending Review</h3>
                         <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.pending}</p>
+                    </div>
+                    <div className="bg-yellow-100 border-4 border-yellow-500 p-4 md:p-6 rounded-lg text-center">
+                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Waitlisted</h3>
+                        <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.waitlisted}</p>
                     </div>
                     <div className="bg-green-100 border-4 border-green-500 p-4 md:p-6 rounded-lg text-center">
                         <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Accepted</h3>
