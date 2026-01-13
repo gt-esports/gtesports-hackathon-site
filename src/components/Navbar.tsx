@@ -8,13 +8,15 @@ export default function Navbar() {
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-3 border-b-4 border-valley-brown wood-panel shadow-lg rounded-none">
         {/* Logo/Brand */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <img
+            src="/logo.png"
+            alt="TechHack Valley Logo"
+            className="h-10 w-auto md:h-12 object-contain"
+          />
           {/* Logo Text */}
-          <div className="text-valley-brown font-pixel text-lg md:text-xl drop-shadow-sm flex flex-col">
-            <div>
-              <span className="text-valley-brown font-bold">TechHack</span> <span className="text-valley-blue">Valley</span>
-            </div>
-            <div className="text-[10px] text-valley-brown/80 font-pixel uppercase tracking-widest -mt-1">
+          <div className="text-valley-brown font-pixel text-lg md:text-xl drop-shadow-sm flex flex-col justify-center h-full">
+            <div className="text-[10px] text-valley-brown/80 font-pixel uppercase tracking-widest">
               Spring 2026
             </div>
           </div>

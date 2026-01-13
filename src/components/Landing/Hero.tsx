@@ -40,11 +40,12 @@ export default function Hero() {
         <div className="animate-float">
 
           {/* Main Title - Pixel Art Style */}
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-6xl font-bold font-pixel text-valley-gold drop-shadow-[4px_4px_0_var(--valley-brown)]"
-              style={{ textShadow: "4px 4px 0 #8b4513, -2px -2px 0 #2E446F" }}>
-              TechHack Valley
-            </h1>
+          <div className="mb-8 flex flex-col items-center">
+            <img
+              src="/logo.png"
+              alt="TechHack Valley Logo"
+              className="w-48 md:w-80 mb-4 object-contain drop-shadow-sm"
+            />
             <div className="h-4"></div>
             <p className="font-pixel text-xs md:text-sm text-valley-cream uppercase tracking-widest bg-valley-brown/60 inline-block px-4 py-2 rounded">
               Spring 2026 Season
