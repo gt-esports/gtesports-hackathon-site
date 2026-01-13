@@ -117,7 +117,7 @@ export default function Footer() {
                   className="group flex items-center space-x-2 text-valley-cream/80 hover:text-valley-gold transition-colors duration-200 font-pixel text-sm"
                 >
                   <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                  <span>{siteConfig.links.email}</span>
+                  <span className="break-all">{siteConfig.links.email}</span>
                 </a>
               </li>
               <li>

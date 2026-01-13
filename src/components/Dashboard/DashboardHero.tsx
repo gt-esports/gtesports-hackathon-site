@@ -117,7 +117,7 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 href="https://discord.gg/temporary"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pixel btn-pixel-secondary text-lg inline-block hover:scale-105 transition-transform duration-200"
+                className="btn-pixel btn-pixel-discord text-lg inline-block hover:scale-105 transition-transform duration-200"
               >
                 👥 Team Lookup on Discord
               </a>

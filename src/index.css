@@ -34,6 +34,8 @@
   --accent-red: #e74c3c;
   --accent-yellow: #f1c40f;
   --accent-cyan: #1abc9c;
+  /* Brand Colors */
+  --discord-blue: #5865F2;
 }
 
 /* Custom Tailwind Classes */
@@ -49,6 +51,8 @@ body {
 .bg-primary-blue {
   background-color: var(--primary-blue);
 }
+
+
 
 .bg-sky-blue {
   background-color: var(--sky-blue);
@@ -524,6 +528,16 @@ body {
 
 .btn-pixel-secondary:hover {
   background: var(--valley-pink);
+}
+
+.btn-pixel-discord {
+  background: var(--discord-blue);
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.btn-pixel-discord:hover {
+  background: #4752c4;
 }
 
 /* Pixel Art Card Styles */

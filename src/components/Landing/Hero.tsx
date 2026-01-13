@@ -86,7 +86,7 @@ export default function Hero() {
             href={siteConfig.links.discord}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-pixel btn-pixel-secondary text-sm md:text-base flex items-center justify-center gap-2"
+            className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2"
           >
             <span>💬</span>
             <span>Join Discord</span>
