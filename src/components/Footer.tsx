@@ -40,8 +40,8 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { name: "Schedule", url: "/schedule", icon: <Calendar className="w-4 h-4" /> },
-    { name: "Sponsors", url: "/sponsors", icon: <Building className="w-4 h-4" /> },
+    { name: "Schedule", url: "/#schedule", icon: <Calendar className="w-4 h-4" /> },
+    { name: "Sponsors", url: "/#sponsors", icon: <Building className="w-4 h-4" /> },
     { name: "Teams", url: "/teams", icon: <Users className="w-4 h-4" /> },
   ]
 
