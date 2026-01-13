@@ -56,20 +56,20 @@ export default function EditProfileModal({ isOpen, onClose, currentUser, onUpdat
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
             <div className="bg-valley-cream rounded-xl border-4 border-valley-brown max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                <div className="p-8">
+                <div className="p-4 md:p-8">
                     {/* Modal Header */}
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-pixel text-valley-brown">Edit Profile</h2>
+                        <h2 className="text-lg md:text-2xl font-pixel text-valley-brown">Edit Profile</h2>
                         <button
                             onClick={onClose}
-                            className="text-valley-brown hover:text-valley-gold text-3xl font-bold leading-none transition-colors"
+                            className="text-valley-brown hover:text-valley-gold text-2xl md:text-3xl font-bold leading-none transition-colors"
                         >
                             ✖️
                         </button>
                     </div>
 
                     {/* Edit Form */}
-                    <form onSubmit={handleSave} className="space-y-6">
+                    <form onSubmit={handleSave} className="space-y-4 md:space-y-6">
 
                         {/* First Name */}
                         <div>
@@ -117,11 +117,11 @@ export default function EditProfileModal({ isOpen, onClose, currentUser, onUpdat
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="btn-pixel flex-1 text-sm bg-valley-green hover:bg-valley-blue text-white disabled:opacity-50"
+                                className="btn-pixel flex-1 text-sm bg-valley-green hover:bg-valley-blue text-white disabled:opacity-50 py-3 sm:py-2"
                             >
                                 {loading ? 'Saving...' : '💾 Save Changes'}
                             </button>
@@ -129,7 +129,7 @@ export default function EditProfileModal({ isOpen, onClose, currentUser, onUpdat
                                 type="button"
                                 onClick={onClose}
                                 disabled={loading}
-                                className="btn-pixel flex-1 text-sm bg-red-500 hover:bg-red-600 text-white disabled:opacity-50"
+                                className="btn-pixel flex-1 text-sm bg-red-500 hover:bg-red-600 text-white disabled:opacity-50 py-3 sm:py-2"
                             >
                                 ❌ Cancel
                             </button>

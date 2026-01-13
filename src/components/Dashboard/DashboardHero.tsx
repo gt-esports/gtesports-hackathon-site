@@ -84,12 +84,12 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
               <img
                 src={displayUser.profilePic}
                 alt={`${displayUser.name}'s profile`}
-                className="w-48 h-48 rounded-full object-cover border-6 border-white/40 mx-auto mb-10 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-200"
+                className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 md:border-6 border-white/40 mx-auto mb-6 md:mb-10 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-200"
                 onClick={() => setIsEditModalOpen(true)}
                 title="Click to edit profile"
               />
               <button
-                className="absolute bottom-12 right-0 bg-valley-gold hover:bg-valley-gold/90 text-valley-brown rounded-full p-2 border-2 border-white/50 shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute bottom-8 md:bottom-12 right-0 bg-valley-gold hover:bg-valley-gold/90 text-valley-brown rounded-full p-2 border-2 border-white/50 shadow-lg transition-all duration-200 hover:scale-110"
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsEditModalOpen(true);
@@ -98,17 +98,17 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 ✏️
               </button>
             </div>
-            <h1 className="text-2xl md:text-3xl font-pixel text-white mb-8 text-shadow-glow" style={{ fontSize: '1.5rem' }}>
+            <h1 className="text-xl md:text-3xl font-pixel text-white mb-4 md:mb-8 text-shadow-glow">
               {getGreeting()}, {displayUser.name}! 👋
             </h1>
-            <p className="text-lg md:text-xl text-valley-gold font-pixel mb-10 text-shadow-glow" style={{ fontSize: '1rem' }}>
+            <p className="text-base md:text-xl text-valley-gold font-pixel mb-6 md:mb-10 text-shadow-glow">
               Ready to build something amazing?
             </p>
             {/* Apply Now Button */}
-            <div className="mb-10 flex flex-wrap justify-center gap-6">
+            <div className="mb-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 md:gap-6">
               <button
                 onClick={() => navigate('/application')}
-                className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-lg transition-transform duration-200 hover:scale-105"
+                className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-base md:text-lg transition-transform duration-200 hover:scale-105"
               >
                 Apply Now
               </button>
@@ -117,7 +117,7 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 href="https://discord.gg/temporary"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pixel btn-pixel-discord text-lg inline-block hover:scale-105 transition-transform duration-200"
+                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block hover:scale-105 transition-transform duration-200"
               >
                 👥 Team Lookup on Discord
               </a>
@@ -125,15 +125,15 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
               {profile?.is_admin && (
                 <button
                   onClick={() => navigate('/admin')}
-                  className="btn-pixel bg-valley-brown hover:bg-valley-brown/80 px-6 py-4 text-lg text-valley-gold transition-transform duration-200 hover:scale-105"
+                  className="btn-pixel bg-valley-brown hover:bg-valley-brown/80 px-6 py-4 text-base md:text-lg text-valley-gold transition-transform duration-200 hover:scale-105"
                 >
                   Admin Dashboard
                 </button>
               )}
             </div>
             {/* Applications List */}
-            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-white/40 mb-10 shadow-2xl">
-              <h3 className="text-xl font-pixel text-white mb-6">Your Applications</h3>
+            <div className="bg-black/30 backdrop-blur-md rounded-2xl p-4 md:p-8 border border-white/40 mb-10 shadow-2xl">
+              <h3 className="text-lg md:text-xl font-pixel text-white mb-4 md:mb-6">Your Applications</h3>
 
               {applications.length === 0 ? (
                 <p className="text-valley-gold font-pixel text-sm">
@@ -147,9 +147,9 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                       href={`/application?id=${app.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white/10 rounded-lg p-4 flex justify-between items-center border border-white/20 hover:bg-white/20 transition-colors cursor-pointer group"
+                      className="bg-white/10 rounded-lg p-3 md:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center border border-white/20 hover:bg-white/20 transition-colors cursor-pointer group gap-2"
                     >
-                      <div className="text-left">
+                      <div className="text-left w-full sm:w-auto">
                         <span className="block text-white font-pixel text-sm mb-1 group-hover:text-valley-gold transition-colors">
                           Application #{app.id.slice(0, 8)}
                         </span>
@@ -157,8 +157,8 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                           Submitted: {new Date(app.created_at).toLocaleDateString()}
                         </span>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <span className={`px-3 py-1 rounded-full text-xs font-pixel uppercase tracking-wide
+                      <div className="flex flex-col items-start sm:items-end gap-2 w-full sm:w-auto">
+                        <span className={`px-3 py-1 rounded-full text-xs font-pixel uppercase tracking-wide w-full sm:w-auto text-center
                           ${app.status === 'accepted' ? 'bg-green-500/20 text-green-300 border border-green-500/50' :
                             app.status === 'rejected' ? 'bg-red-500/20 text-red-300 border border-red-500/50' :
                               app.status === 'waitlisted' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/50' :
