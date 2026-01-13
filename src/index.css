@@ -46,6 +46,7 @@ body {
   overflow-x: hidden;
   /* Prevent horizontal scroll */
   width: 100%;
+  background-color: var(--earth-brown);
 }
 
 .bg-primary-blue {
