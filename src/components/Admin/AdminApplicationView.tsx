@@ -169,7 +169,7 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             Close
                         </button>
 
-                        <div className="flex gap-2 order-1 sm:order-2">
+                        <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 order-1 sm:order-2 w-full sm:w-auto">
                             <button
                                 onClick={() => updateStatus('pending')}
                                 disabled={loadingStatus || application.status === 'pending'}
