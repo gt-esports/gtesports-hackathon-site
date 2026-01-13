@@ -79,73 +79,73 @@ export default function AdminDashboard() {
     if (!isAdmin) return null; // Should have redirected
 
     return (
-        <div className="min-h-screen bg-valley-cream p-8">
+        <div className="min-h-screen bg-valley-cream p-4 md:p-8">
             {/* Header */}
-            <div className="max-w-7xl mx-auto mb-8 flex justify-between items-center">
-                <h1 className="text-4xl font-pixel text-valley-brown">Admin Dashboard</h1>
+            <div className="max-w-7xl mx-auto mb-6 md:mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <h1 className="text-2xl md:text-4xl font-pixel text-valley-brown text-center md:text-left">Admin Dashboard</h1>
                 <button
                     onClick={() => navigate('/dashboard')}
-                    className="px-4 py-2 border-2 border-valley-brown text-valley-brown font-pixel hover:bg-valley-brown hover:text-valley-cream transition-colors"
+                    className="px-4 py-2 border-2 border-valley-brown text-valley-brown font-pixel hover:bg-valley-brown hover:text-valley-cream transition-colors text-sm md:text-base"
                 >
                     Back to User Dashboard
                 </button>
             </div>
 
-            <div className="max-w-7xl mx-auto grid gap-8">
+            <div className="max-w-7xl mx-auto grid gap-6 md:gap-8">
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-valley-green-light border-4 border-valley-green p-6 rounded-lg text-center">
-                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2">Total Applications</h3>
-                        <p className="font-pixel text-4xl text-valley-brown">{stats.total}</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <div className="bg-valley-green-light border-4 border-valley-green p-4 md:p-6 rounded-lg text-center">
+                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Total Applications</h3>
+                        <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.total}</p>
                     </div>
-                    <div className="bg-yellow-100 border-4 border-yellow-500 p-6 rounded-lg text-center">
-                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2">Pending Review</h3>
-                        <p className="font-pixel text-4xl text-valley-brown">{stats.pending}</p>
+                    <div className="bg-yellow-100 border-4 border-yellow-500 p-4 md:p-6 rounded-lg text-center">
+                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Pending Review</h3>
+                        <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.pending}</p>
                     </div>
-                    <div className="bg-green-100 border-4 border-green-500 p-6 rounded-lg text-center">
-                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2">Accepted</h3>
-                        <p className="font-pixel text-4xl text-valley-brown">{stats.accepted}</p>
+                    <div className="bg-green-100 border-4 border-green-500 p-4 md:p-6 rounded-lg text-center">
+                        <h3 className="font-pixel text-valley-brown opacity-80 mb-2 text-sm md:text-base">Accepted</h3>
+                        <p className="font-pixel text-3xl md:text-4xl text-valley-brown">{stats.accepted}</p>
                     </div>
                 </div>
 
                 {/* Applications List */}
                 <div className="bg-white border-4 border-valley-brown rounded-lg overflow-hidden">
-                    <div className="p-4 bg-valley-brown text-valley-cream font-pixel flex justify-between items-center">
-                        <h2 className="text-xl">Applications</h2>
-                        <span className="text-sm opacity-80">Showing latest {applications.length}</span>
+                    <div className="p-3 md:p-4 bg-valley-brown text-valley-cream font-pixel flex flex-col sm:flex-row justify-between items-center gap-2">
+                        <h2 className="text-lg md:text-xl">Applications</h2>
+                        <span className="text-xs md:text-sm opacity-80">Showing latest {applications.length}</span>
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead className="bg-valley-cream border-b-2 border-valley-brown/20 font-pixel text-sm text-valley-brown uppercase tracking-wider">
+                        <table className="w-full text-left min-w-[600px] md:min-w-0">
+                            <thead className="bg-valley-cream border-b-2 border-valley-brown/20 font-pixel text-xs md:text-sm text-valley-brown uppercase tracking-wider">
                                 <tr>
-                                    <th className="p-4">Date</th>
-                                    <th className="p-4">Applicant</th>
-                                    <th className="p-4">Status</th>
-                                    <th className="p-4 text-right">Actions</th>
+                                    <th className="p-3 md:p-4">Date</th>
+                                    <th className="p-3 md:p-4">Applicant</th>
+                                    <th className="p-3 md:p-4">Status</th>
+                                    <th className="p-3 md:p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-valley-brown/10 font-mono text-sm">
+                            <tbody className="divide-y divide-valley-brown/10 font-mono text-xs md:text-sm">
                                 {applications.map((app) => {
                                     const answers = app.answers as Record<string, unknown>;
                                     const fullName = typeof answers?.full_name === 'string' ? answers.full_name : "Unknown";
 
                                     return (
                                         <tr key={app.id} className="hover:bg-valley-green-light/20 transition-colors">
-                                            <td className="p-4 whitespace-nowrap">
-                                                {new Date(app.created_at).toLocaleDateString()} <span className="opacity-50 text-xs">{new Date(app.created_at).toLocaleTimeString()}</span>
+                                            <td className="p-3 md:p-4 whitespace-nowrap">
+                                                {new Date(app.created_at).toLocaleDateString()} <span className="opacity-50 text-[10px] md:text-xs block md:inline">{new Date(app.created_at).toLocaleTimeString()}</span>
                                             </td>
-                                            <td className="p-4">
+                                            <td className="p-3 md:p-4">
                                                 <div className="font-bold text-valley-brown">
                                                     {fullName}
                                                 </div>
-                                                <div className="font-mono text-xs opacity-50">
+                                                <div className="font-mono text-[10px] md:text-xs opacity-50 truncate max-w-[100px] md:max-w-none">
                                                     {app.user_id}
                                                 </div>
                                             </td>
-                                            <td className="p-4">
-                                                <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wide ${app.status === 'accepted' ? 'bg-green-100 text-green-800' :
+                                            <td className="p-3 md:p-4">
+                                                <span className={`px-2 py-1 rounded text-[10px] md:text-xs font-bold uppercase tracking-wide ${app.status === 'accepted' ? 'bg-green-100 text-green-800' :
                                                     app.status === 'rejected' ? 'bg-red-100 text-red-800' :
                                                         app.status === 'waitlisted' ? 'bg-yellow-100 text-yellow-800' :
                                                             'bg-gray-100 text-gray-800'
@@ -153,10 +153,10 @@ export default function AdminDashboard() {
                                                     {app.status}
                                                 </span>
                                             </td>
-                                            <td className="p-4 text-right">
+                                            <td className="p-3 md:p-4 text-right">
                                                 <button
                                                     onClick={() => setSelectedApp(app)}
-                                                    className="text-valley-blue hover:text-valley-blue-dark font-bold hover:underline"
+                                                    className="text-valley-blue hover:text-valley-blue-dark font-bold hover:underline whitespace-nowrap"
                                                 >
                                                     View Details
                                                 </button>
