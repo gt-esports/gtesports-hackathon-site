@@ -155,7 +155,7 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-2 text-valley-cream/60 text-xs font-pixel">
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-2 whitespace-nowrap">
                 Made with <Heart className="w-3 h-3 text-red-400 fill-red-400 animate-pulse" /> by GT Esports
               </span>
               <div className="flex gap-1 ml-2">

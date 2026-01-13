@@ -44,9 +44,8 @@ export default function Hero() {
             <img
               src="/logo.png"
               alt="TechHack Valley Logo"
-              className="w-48 md:w-80 mb-4 object-contain drop-shadow-sm"
+              className="w-80 md:w-[32rem] mb-2 object-contain drop-shadow-md"
             />
-            <div className="h-4"></div>
             <p className="font-pixel text-xs md:text-sm text-valley-cream uppercase tracking-widest bg-valley-brown/60 inline-block px-4 py-2 rounded">
               Spring 2026 Season
             </p>
