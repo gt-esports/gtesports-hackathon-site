@@ -6,7 +6,7 @@ export const siteConfig = {
   event: {
     name: "TechHack Valley 2026",
     tagline: "Cultivate Innovation, Harvest Success",
-    date:"MARCH 06, 2026",
+    date: "MARCH 06, 2026",
     date_time: "2026-03-06T19:00:00",
     location: "Georgia Institute of Technology",
     registrationOpen: true,
@@ -25,7 +25,7 @@ export const siteConfig = {
     discord: "https://discord.gg/BjP48Np3kB",
     instagram: "https://www.instagram.com/gatechesports_/",
     linkedin: "https://www.linkedin.com/company/georgia-tech-esports/",
-    email: "hello@techhack-valley.com",
+    email: "georgiatechesports@gmail.com",
     codeOfConduct: "/code-of-conduct",
   },
 
