@@ -20,7 +20,7 @@ const SponsorsTeaser: FC = () => {
       </div>
 
       {/* Wooden Board Container */}
-      <div className="relative w-full max-w-6xl mx-auto p-8 wood-panel rounded-lg transform rotate-[-0.5deg]">
+      <div className="relative w-full max-w-6xl mx-auto p-4 md:p-8 wood-panel rounded-lg transform rotate-[-0.5deg]">
 
         {/* Board Header */}
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-valley-cream px-10 md:px-16 py-4 border-4 border-valley-brown rotate-[-1deg] flex flex-col items-center shadow-lg z-10">

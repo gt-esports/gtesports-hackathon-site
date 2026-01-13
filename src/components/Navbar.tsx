@@ -23,11 +23,11 @@ export default function Navbar() {
 
 
         {/* Navigation Elements */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           {/* Sign In Button */}
           <Link
             to="/login"
-            className="btn-pixel flex items-center gap-2 !py-2 !px-3"
+            className="btn-pixel flex items-center gap-2 !py-2 !px-2 md:!px-3"
             aria-label="Go to login"
           >
             <span className="text-sm">👤</span>
@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="btn-pixel flex items-center gap-2 !py-2 !px-3"
+              className="btn-pixel flex items-center gap-2 !py-2 !px-2 md:!px-3"
             >
               <div className="flex flex-col gap-[3px]">
                 <span className="block w-4 h-[2px] bg-valley-brown"></span>

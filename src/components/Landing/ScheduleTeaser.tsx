@@ -17,7 +17,7 @@ export default function ScheduleTeaser() {
           <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-1 h-20 bg-[#5d4037] -z-10 shadow-md"></div> {/* Nail/String */}
 
           {/* Inner Paper Area */}
-          <div className="bg-valley-cream p-6 md:p-10 border-2 border-[#eec39a] relative shadow-inner h-full min-h-[500px] flex flex-col items-center">
+          <div className="bg-valley-cream p-4 md:p-10 border-2 border-[#eec39a] relative shadow-inner h-full min-h-[500px] flex flex-col items-center">
 
             {/* Paper texture overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none"

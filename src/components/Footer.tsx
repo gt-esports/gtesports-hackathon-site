@@ -61,7 +61,7 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-4 bg-[url('https://www.transparenttextures.com/patterns/black-scales.png')] opacity-20 pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-12">
           {/* Brand section */}
           <div className="md:col-span-2 space-y-6">
             <div>

@@ -41,7 +41,7 @@ export default function Hero() {
 
           {/* Main Title - Pixel Art Style */}
           <div className="mb-8">
-            <h1 className="text-4xl md:text-6xl font-bold font-pixel text-valley-gold drop-shadow-[4px_4px_0_var(--valley-brown)]"
+            <h1 className="text-3xl md:text-6xl font-bold font-pixel text-valley-gold drop-shadow-[4px_4px_0_var(--valley-brown)]"
               style={{ textShadow: "4px 4px 0 #8b4513, -2px -2px 0 #2E446F" }}>
               TechHack Valley
             </h1>

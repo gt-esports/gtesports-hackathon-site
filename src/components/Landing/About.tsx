@@ -199,7 +199,7 @@ export default function About() {
   }, [completeAnimation]);
 
   return (
-    <section className="min-h-screen relative overflow-hidden flex items-start md:items-center pt-36 md:pt-0">
+    <section className="min-h-screen relative overflow-hidden flex items-start md:items-center pt-24 md:pt-0">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-[position:75%_center] md:bg-center bg-no-repeat"
@@ -231,8 +231,8 @@ export default function About() {
         {/* Large About text */}
         <div className="mb-8 md:mb-12 ml-0 md:ml-4 relative">
           <h2 className={`text-[1.3rem] md:text-[3rem] font-bold text-navy-blue min-h-[4rem] md:min-h-[8rem] transition-all duration-1000 ease-out ${typewriterState.isComplete
-              ? 'transform translate-y-0 text-left'
-              : 'transform translate-y-[20vh] md:translate-y-[0vh]'
+            ? 'transform translate-y-0 text-left'
+            : 'transform translate-y-[20vh] md:translate-y-[0vh]'
             } ${typewriterState.currentSequenceIndex < 2 ? 'text-center' : 'text-left'
             }`} style={{ fontFamily: "'Press Start 2P', monospace" }}>
             <span className="whitespace-pre-line">

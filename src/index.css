@@ -563,7 +563,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .font-pixel {
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
 
   .btn-pixel {
