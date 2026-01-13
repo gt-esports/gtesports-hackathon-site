@@ -10,22 +10,33 @@ const FaqCard = ({ category, title, description, onClick }: {
 }) => (
   <button
     type="button"
-    className="bg-[#fffdf0] p-4 text-[#5d4037] cursor-pointer text-center relative shadow-sm hover:translate-y-[-4px] hover:shadow-lg transition-all duration-200 font-pixel border-4 border-[#8d6e63] rounded-sm group transform rotate-1 hover:rotate-0"
+    className="w-full bg-valley-cream p-5 text-valley-brown cursor-pointer text-left relative shadow-sm hover:translate-y-[-4px] hover:shadow-lg transition-all duration-200 border-2 border-[#eec39a] group"
     style={{
-      backgroundImage: 'linear-gradient(#fbf6e0 2px, transparent 2px), linear-gradient(90deg, #fbf6e0 2px, transparent 2px)',
-      backgroundSize: '20px 20px',
-      imageRendering: 'pixelated'
+      // Paper texture effect
+      backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px)',
+      backgroundSize: '100% 24px',
+      boxShadow: '2px 2px 4px rgba(0,0,0,0.1)'
     }}
     onClick={() => onClick(category)}
   >
-    {/* Thumbtack */}
-    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#ef5350] border border-[#b71c1c] shadow-sm z-10 group-hover:scale-110 transition-transform"></div>
+    {/* Tape or Pin */}
+    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-valley-brown border border-white/30 shadow-sm opacity-90"></div>
 
-    {/* Content */}
-    <div className="mt-2">
-      <h3 className="text-xl font-bold leading-tight break-words uppercase tracking-wide text-[#3e2723] font-pixel">{title}</h3>
-      <div className="w-full h-1 bg-[#8d6e63] my-2 opacity-30 border-t-2 border-dashed border-[#5d4037]"></div>
-      <p className="text-sm leading-snug break-words text-[#5d4037] opacity-90 font-pixel">{description}</p>
+    {/* Quest Content */}
+    <div className="mt-2 text-center">
+      <h3 className="text-sm md:text-base font-pixel uppercase tracking-wide text-valley-brown mb-2 group-hover:text-valley-green transition-colors">
+        {title}
+      </h3>
+
+      <div className="w-2/3 mx-auto h-px bg-valley-brown/20 mb-3"></div>
+
+      <p className="text-xs md:text-sm font-pixel text-valley-brown/80 leading-relaxed">
+        {description}
+      </p>
+
+      <div className="mt-4 text-xs font-pixel text-valley-orange text-right opacity-0 group-hover:opacity-100 transition-opacity">
+        Read Page &gt;
+      </div>
     </div>
   </button>
 );
