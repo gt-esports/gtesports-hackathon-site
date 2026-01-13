@@ -6,12 +6,14 @@ import Application from "./pages/Application";
 import Onboarding from "./pages/Onboarding";
 import AdminDashboard from "./pages/AdminDashboard";
 import RequireProfile from "./components/RequireProfile";
+import { Analytics } from "@vercel/analytics/react";
 
 import StubPage from "./components/StubPage";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Analytics />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />

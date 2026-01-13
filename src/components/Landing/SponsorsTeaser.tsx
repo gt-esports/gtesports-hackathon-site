@@ -1,72 +1,10 @@
 import { type FC } from "react";
 import "../../cssFiles/sponsor.css";
 
-interface Card {
-  img: string;
-  title: string;
-  desc: string;
-  link: string;
-}
 
-
-
-interface CardComponentProps {
-  card: Card;
-  shellHovered: boolean;
-}
-
-const CardComponent: FC<CardComponentProps> = ({ card }) => {
-  return (
-    <div className="card-component group">
-      {/* Pin */}
-      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-red-600 shadow-sm z-20 border border-red-800"></div>
-
-      <a href={card.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-        <div className="flex flex-col items-center h-full">
-          <div className="flex justify-center w-full mb-4">
-            <img src={card.img} alt={card.title} className="card-image" />
-          </div>
-
-          <div className="card-content">
-            <h2 className="card-title">
-              {card.title}
-            </h2>
-            <div className="w-full h-px bg-[#8d6e63] my-2 opacity-30"></div>
-            <p className="card-desc">
-              {card.desc}
-            </p>
-          </div>
-
-          <div className="mt-auto pt-4 text-[#8d6e63] text-xs font-bold uppercase tracking-widest">
-            Click for details!
-          </div>
-        </div>
-      </a>
-    </div>
-  );
-};
 
 const SponsorsTeaser: FC = () => {
-  const cards: Card[] = [
-    {
-      img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg",
-      title: "Sponsor1",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos beatae maiores velit.",
-      link: "https://google.com",
-    },
-    {
-      img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      title: "Sponsor2",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos beatae maiores velit.",
-      link: "https://google.com",
-    },
-    {
-      img: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      title: "Sponsor3",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos beatae maiores velit.",
-      link: "https://google.com",
-    },
-  ];
+
 
   return (
     <div id="sponsors" className="relative flex flex-col items-center justify-center min-h-screen bg-[#66a05b] py-20 overflow-hidden">
@@ -114,9 +52,17 @@ const SponsorsTeaser: FC = () => {
 
         {/* Content Area */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16 p-6">
-          {cards.map((card, index) => (
+          {/* {cards.map((card, index) => (
             <CardComponent key={index} card={card} shellHovered={false} />
-          ))}
+          ))} */}
+          <div className="col-span-full flex flex-col items-center justify-center py-20">
+            <h2 className="text-4xl md:text-6xl font-black text-[#5d3a22] uppercase tracking-widest drop-shadow-md transform -rotate-2">
+              Coming Soon
+            </h2>
+            <p className="mt-4 text-[#795548] font-bold text-xl tracking-wide">
+              We are gathering our village allies!
+            </p>
+          </div>
         </div>
       </div>
     </div>
