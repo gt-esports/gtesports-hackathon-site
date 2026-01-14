@@ -5,7 +5,7 @@ import { siteConfig } from "../../data/site"
 export default function Hero() {
 
   return (
-    <section className="relative mt-0 pt-0 min-h-screen w-full flex items-center justify-center overflow-hidden hero-pixel-mountains">
+    <section id="hero" className="relative mt-0 pt-24 min-h-screen w-full flex items-center justify-center overflow-hidden hero-pixel-mountains">
 
       {/* Starry background */}
       <div className="absolute inset-0">
