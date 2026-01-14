@@ -57,7 +57,8 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full hero-pixel-clouds relative">
+    <div className="relative min-h-screen w-full">
+      <div className="fixed inset-0 hero-pixel-clouds z-0" />
       <DashboardHero user={user} applications={applications} />
     </div>
   );

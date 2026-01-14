@@ -76,7 +76,7 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
       </div>
 
       {/* Main Dashboard Content */}
-      <div className="relative z-10 flex items-center justify-center h-screen px-4 overflow-hidden">
+      <div className="relative z-10 flex flex-col items-center min-h-screen pt-24 pb-32 px-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* User Greeting Section */}
           <div className="text-center max-w-4xl mx-auto px-4">
