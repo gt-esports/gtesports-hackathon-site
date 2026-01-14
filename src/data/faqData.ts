@@ -1,8 +1,8 @@
 // Suggestion: Create Pixel Art of the Hackathon Organizers in the Style of Stardew Valley Characters
 const faqData = {
     general: {
-        townie: "Character 1",
-        portrait: "https://placehold.co/128x128.png",
+        townie: "Kinglet",
+        portrait: "/faq/kinglet.png",
         greeting: `Welcome to my shop!
 
 ...Er, the hackathon!
@@ -20,8 +20,8 @@ However, we are prioritizing applications from students at Georgia Tech.`},
         ]
     },
     food: {
-        townie: "Character 2",
-        portrait: "https://placehold.co/128x128.png",
+        townie: "Wren",
+        portrait: "/faq/wren.png",
         greeting: `Welcome, friend! 
 
 The Stardrop Saloon is proud to cater this hackathon.
@@ -41,8 +41,8 @@ This is subject to change.`
         ]
     },
     venue: {
-        townie: "Character 3",
-        portrait: "https://placehold.co/128x128.png",
+        townie: "Gallinule",
+        portrait: "/faq/gallinule.png",
         greeting: `Hello there, villager! 
 
 I've got the official event proclamations right here.
@@ -58,8 +58,8 @@ The locations of the venues will be revealed via Discord and the website.` },
         ]
     },
     items: {
-        townie: "Character 4",
-        portrait: "https://placehold.co/128x128.png",
+        townie: "Tanager",
+        portrait: "/faq/tanager.png",
         greeting: `Oh, hello, dear! It's lovely to see you.
 
 Are you getting your things ready?
@@ -76,8 +76,8 @@ I have my hands full with my own!`,
     },
 
     misc: {
-        townie: "Character 6",
-        portrait: "https://placehold.co/128x128.png",
+        townie: "Vireo",
+        portrait: "/faq/vireo.png",
         greeting: `Ah... you have arrived, as the spirits foresaw.
         
 Your mind is clouded with questions.

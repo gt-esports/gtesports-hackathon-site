@@ -19,24 +19,24 @@ export default function FAQ() {
   };
 
   const getCharacterSprite = (category: string) => {
-    // Map categories to specific emojis or placeholder sprites for now
+    // Return paths to the new bird images
     switch (category) {
-      case 'general': return '🧙‍♂️'; // Wizard/Mayor
-      case 'food': return '👩‍🍳'; // Gus/Saloon Owner
-      case 'venue': return '👷'; // Robin/Carpenter
-      case 'items': return '🎒'; // Adventure Guild
-      case 'misc': return '🔮'; // Welwick/Oracle
-      default: return '👱';
+      case 'general': return '/faq/kinglet.png';
+      case 'food': return '/faq/wren.png';
+      case 'venue': return '/faq/gallinule.png';
+      case 'items': return '/faq/tanager.png';
+      case 'misc': return '/faq/vireo.png';
+      default: return '/faq/kinglet.png';
     }
   };
 
   const getCharacterRole = (category: string) => {
     switch (category) {
-      case 'general': return 'The Mayor';
-      case 'food': return 'Saloon Owner';
-      case 'venue': return 'Carpenter';
-      case 'items': return 'Adventurer';
-      case 'misc': return 'The Oracle';
+      case 'general': return 'General';
+      case 'food': return 'Food';
+      case 'venue': return 'Venue';
+      case 'items': return 'Items';
+      case 'misc': return 'Misc';
       default: return 'Villager';
     }
   };
@@ -89,13 +89,19 @@ export default function FAQ() {
 
                 {/* Character Sprite Container (Pixel Frame) */}
                 <div className="w-24 h-24 md:w-32 md:h-32 bg-[#e0c8a8] border-4 border-[#8b4513] rounded-sm flex items-center justify-center shadow-lg relative overflow-hidden group-hover:border-[#fcd34d] transition-colors">
-                  <span className="text-5xl md:text-6xl filter drop-shadow-md animate-bounce-gentle" style={{ animationDuration: '3s' }}>
-                    {getCharacterSprite(category)}
-                  </span>
+                  <img
+                    src={getCharacterSprite(category)}
+                    alt={getCharacterRole(category)}
+                    className="w-full h-full object-contain filter drop-shadow-md animate-bounce-gentle p-2"
+                    style={{
+                      animationDuration: '3s',
+                      imageRendering: 'pixelated'
+                    }}
+                  />
                 </div>
 
                 {/* Character Name Plate */}
-                <div className="mt-[-10px] bg-[#8b4513] text-[#fcd34d] px-3 py-1 font-pixel text-xs md:text-sm border-2 border-[#fcd34d] rounded-sm shadow-md z-10 text-center uppercase tracking-wide">
+                <div className="mt-[-10px] bg-[#8b4513] text-[#fcd34d] px-3 py-1 font-pixel text-xs md:text-sm border-2 border-[#fcd34d] rounded-sm shadow-md z-10 text-center uppercase tracking-wide whitespace-nowrap">
                   {getCharacterRole(category)}
                 </div>
 

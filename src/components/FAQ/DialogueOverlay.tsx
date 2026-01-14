@@ -69,7 +69,7 @@ function DialogueOverlay({ open, onClose, data }: {
 
           {/* Portrait/Name */}
           <div
-            className="flex-shrink-0 sm:w-48 bg-[#c7966b] p-2 sm:p-4 border-b-4 sm:border-b-0 sm:border-l-4 border-valley-brown flex flex-row sm:flex-col items-center gap-3 sm:gap-2 justify-start sm:justify-center"
+            className="flex-shrink-0 sm:min-w-48 sm:w-auto bg-[#c7966b] p-2 sm:p-4 border-b-4 sm:border-b-0 sm:border-l-4 border-valley-brown flex flex-row sm:flex-col items-center gap-3 sm:gap-2 justify-start sm:justify-center"
             role="complementary"
             aria-label="Character portrait"
           >
@@ -79,7 +79,7 @@ function DialogueOverlay({ open, onClose, data }: {
               </div>
             </div>
             <div className="bg-[#f5dcb0] border-2 border-valley-brown rounded-md px-3 sm:px-5 py-1 text-center shadow-sm w-auto sm:w-full">
-              <h3 className="text-sm sm:text-lg md:text-xl lg:text-2xl text-valley-brown font-bold leading-tight break-words">{data.townie}</h3>
+              <h3 className="text-sm sm:text-lg md:text-xl lg:text-2xl text-valley-brown font-bold leading-tight whitespace-nowrap">{data.townie}</h3>
             </div>
           </div>
 
