@@ -9,12 +9,7 @@ const faqData = {
 
 What can I do for you?`,
         questions: [
-            {
-                q: "What is TechHack?",
-                a: `TechHack is a student-run hackathon at Georgia Tech, hosted by the Georgia Tech Esports and Gaming student organization.
 
-The event brings together builders, designers, and developers to create innovative solutions for gaming and adjacent challenges, including alternative and accessible gaming controllers, anti cheat and analytics software, and original indie games or interactive experiences.`
-            },
             { q: "When is TechHack 2026?", a: "TechHack 2026 will be held on March 6-8, 2026." },
             {
                 q: "Who can Apply?", a: `Any student in the United States can apply to participate in TechHack.

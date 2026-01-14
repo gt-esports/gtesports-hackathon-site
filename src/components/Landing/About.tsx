@@ -249,11 +249,11 @@ export default function About() {
           <div className="md:w-[85%] lg:w-[90%] relative z-10 animate-fadeInUp">
             <div className="dialogue-box">
               <p className="font-pixel text-valley-brown leading-relaxed text-sm md:text-base mb-4">
-                Welcome to GT Esports' first-ever hackathon! We're gathering farmers, foragers, and fighters from all over for 36 hours of creation.
+                TechHack is a student-run hackathon at Georgia Tech, hosted by the Georgia Tech Esports and Gaming student organization.
               </p>
 
               <p className="font-pixel text-valley-brown leading-relaxed text-sm md:text-base mb-0">
-                Whether you're crafting code or harvesting data, join us to cultivate something amazing. Let's make this event legendary!
+                The event brings together builders, designers, and developers to create innovative solutions for gaming and adjacent challenges, including alternative and accessible gaming controllers, anti cheat and analytics software, and original indie games or interactive experiences.
               </p>
             </div>
           </div>

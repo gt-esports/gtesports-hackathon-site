@@ -45,7 +45,7 @@ function DialogueOverlay({ open, onClose, data }: {
       onClick={handleOverlayClick}
       style={{ cursor: 'pointer' }}>
 
-      <div className="relative w-full max-w-4xl p-4 sm:p-6 md:p-8 max-h-[95vh] overflow-y-auto">
+      <div className="relative w-full max-w-4xl p-2 sm:p-6 md:p-8 max-h-[95vh] overflow-y-auto">
 
         {/* Close Button */}
         <div className="absolute top-2 right-2 z-10">
@@ -69,17 +69,17 @@ function DialogueOverlay({ open, onClose, data }: {
 
           {/* Portrait/Name */}
           <div
-            className="flex-shrink-0 sm:w-48 bg-[#c7966b] p-3 sm:p-4 border-b-4 sm:border-b-0 sm:border-l-4 border-valley-brown flex flex-col items-center gap-2 justify-center"
+            className="flex-shrink-0 sm:w-48 bg-[#c7966b] p-2 sm:p-4 border-b-4 sm:border-b-0 sm:border-l-4 border-valley-brown flex flex-row sm:flex-col items-center gap-3 sm:gap-2 justify-start sm:justify-center"
             role="complementary"
             aria-label="Character portrait"
           >
             <div className="relative">
-              <div className="w-20 h-20 sm:w-28 sm:h-28 border-4 border-valley-brown rounded-md overflow-hidden bg-[#e0c8a8]">
+              <div className="w-14 h-14 sm:w-28 sm:h-28 border-4 border-valley-brown rounded-md overflow-hidden bg-[#e0c8a8]">
                 <img src={data.portrait} alt={`Portrait of ${data.townie}`} className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
             </div>
-            <div className="bg-[#f5dcb0] border-2 border-valley-brown rounded-md px-3 sm:px-5 py-1 text-center shadow-sm mt-2 w-full">
-              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl text-valley-brown font-bold leading-tight break-words">{data.townie}</h3>
+            <div className="bg-[#f5dcb0] border-2 border-valley-brown rounded-md px-3 sm:px-5 py-1 text-center shadow-sm w-auto sm:w-full">
+              <h3 className="text-sm sm:text-lg md:text-xl lg:text-2xl text-valley-brown font-bold leading-tight break-words">{data.townie}</h3>
             </div>
           </div>
 
