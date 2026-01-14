@@ -69,7 +69,7 @@ export const surveyJson = {
           acceptedTypes: ".pdf",
           allowMultiple: false,
           maxSize: 2097152, // 2MB
-          storeDataAsText: true
+          storeDataAsText: false
         }
       ]
     },

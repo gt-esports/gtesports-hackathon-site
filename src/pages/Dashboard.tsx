@@ -28,6 +28,7 @@ export default function Dashboard() {
         const { data: apps, error: appsError } = await supabase
           .from('applications')
           .select('*')
+          .eq('user_id', session.user.id)
           .order('created_at', { ascending: false });
 
         if (appsError) {

@@ -120,17 +120,90 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             Application Responses
                         </h3>
 
+
                         <div className="grid gap-4 md:gap-6">
-                            {Object.entries(answers).map(([key, value]) => (
-                                <div key={key} className="bg-white/50 p-3 md:p-4 rounded border-2 border-valley-brown/10">
-                                    <p className="font-bold mb-2 capitalize text-valley-green-dark text-sm md:text-base">
-                                        {key.replace(/_/g, ' ')}
-                                    </p>
-                                    <div className="whitespace-pre-wrap text-gray-800 text-sm md:text-base">
-                                        {typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value)}
+                            {Object.entries(answers).map(([key, value]) => {
+                                if (key === 'resume') {
+                                    return (
+                                        <div key={key} className="bg-white/50 p-3 md:p-4 rounded border-2 border-valley-brown/10">
+                                            <p className="font-bold mb-2 capitalize text-valley-green-dark text-sm md:text-base">
+                                                {key.replace(/_/g, ' ')}
+                                            </p>
+                                            <button
+                                                onClick={async () => {
+                                                    let path = "";
+                                                    if (Array.isArray(value) && value.length > 0 && value[0].content) {
+                                                        path = value[0].content;
+                                                    } else if (typeof value === 'string') {
+                                                        path = value;
+                                                    }
+
+                                                    if (!path) {
+                                                        alert("No resume path found");
+                                                        return;
+                                                    }
+
+                                                    // Open window immediately to avoid popup blockers
+                                                    const newWindow = window.open('', '_blank');
+                                                    if (newWindow) {
+                                                        newWindow.document.write('Loading resume...');
+                                                    }
+
+                                                    // Use createSignedUrl
+                                                    const { data, error } = await supabase.storage
+                                                        .from('resumes')
+                                                        .createSignedUrl(path, 60);
+
+                                                    if (error) {
+                                                        console.error("Error creating signed URL:", error);
+                                                        if (newWindow) newWindow.close();
+                                                        alert("Failed to get resume download link");
+                                                        return;
+                                                    }
+
+                                                    if (data?.signedUrl) {
+                                                        try {
+                                                            const response = await fetch(data.signedUrl);
+                                                            const blob = await response.blob();
+                                                            const url = window.URL.createObjectURL(blob);
+
+                                                            if (newWindow) {
+                                                                newWindow.location.href = url;
+                                                            } else {
+                                                                window.open(url, '_blank');
+                                                            }
+
+                                                            // Revoke after a delay
+                                                            setTimeout(() => window.URL.revokeObjectURL(url), 60000);
+                                                        } catch (err) {
+                                                            console.error("Error fetching resume:", err);
+                                                            // Fallback to direct link
+                                                            if (newWindow) {
+                                                                newWindow.location.href = data.signedUrl;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (newWindow) newWindow.close();
+                                                    }
+                                                }}
+                                                className="bg-valley-brown text-valley-cream px-4 py-2 rounded text-sm font-pixel hover:opacity-90 transition-opacity"
+                                            >
+                                                Download Resume
+                                            </button>
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <div key={key} className="bg-white/50 p-3 md:p-4 rounded border-2 border-valley-brown/10">
+                                        <p className="font-bold mb-2 capitalize text-valley-green-dark text-sm md:text-base">
+                                            {key.replace(/_/g, ' ')}
+                                        </p>
+                                        <div className="whitespace-pre-wrap text-gray-800 text-sm md:text-base">
+                                            {typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value)}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            })}
                             {Object.keys(answers).length === 0 && (
                                 <p className="italic text-gray-500">No text answers submitted.</p>
                             )}

@@ -153,8 +153,52 @@ export default function HackathonApplication() {
         };
 
         model.onComplete.add(handleComplete);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        model.onUploadFiles.add(async (_: any, options: any) => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.user) {
+                options.callback("error", "No active session");
+                return;
+            }
+
+            const newFiles = [];
+            for (const file of options.files) {
+                try {
+                    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                    const fileName = `${session.user.id}/${Date.now()}_${sanitizedName}`;
+
+                    const { data, error } = await supabase.storage
+                        .from('resumes')
+                        .upload(fileName, file, {
+                            upsert: true
+                        });
+
+                    if (error) {
+                        console.error("Upload error:", error);
+                        options.callback("error", error.message);
+                        return;
+                    }
+
+                    if (data) {
+                        newFiles.push({
+                            file: file,
+                            content: data.path // Store the storage path
+                        });
+                    }
+                } catch (e) {
+                    console.error("Exception during upload:", e);
+                    options.callback("error", "Upload failed");
+                    return;
+                }
+            }
+
+            options.callback("success", newFiles);
+        });
+
         return () => {
             model.onComplete.remove(handleComplete);
+            model.onUploadFiles.clear();
         };
     }, [model, navigate]);
 
