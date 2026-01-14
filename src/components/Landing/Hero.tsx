@@ -49,6 +49,12 @@ export default function Hero() {
             <p className="font-pixel text-xs md:text-sm text-valley-cream uppercase tracking-widest bg-valley-brown/60 inline-block px-4 py-2 rounded">
               Spring 2026 Season
             </p>
+
+            <div className="mt-4 bg-valley-gold/90 border-2 border-valley-brown px-6 py-2 rounded transform -rotate-1 shadow-lg animate-float" style={{ animationDelay: '1s' }}>
+              <p className="font-pixel text-lg md:text-xl text-valley-brown drop-shadow-sm">
+                📅 {siteConfig.event.date}
+              </p>
+            </div>
           </div>
 
           {/* Dialogue Box for Tagline/Description */}
@@ -108,6 +114,6 @@ export default function Hero() {
         </a>
 
       </div>
-    </section>
+    </section >
   )
 }
