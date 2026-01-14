@@ -32,29 +32,26 @@ export default function FAQ() {
 
   const getCharacterRole = (category: string) => {
     switch (category) {
-      case 'general': return 'General';
-      case 'food': return 'Food';
-      case 'venue': return 'Venue';
-      case 'items': return 'Items';
-      case 'misc': return 'Misc';
+      case 'general': return 'General Store';
+      case 'food': return 'The Saloon';
+      case 'venue': return 'Town Hall';
+      case 'items': return 'Backpack';
+      case 'misc': return 'The Tower';
       default: return 'Villager';
     }
   };
 
   return (
-    <section className="py-20 relative overflow-hidden bg-[#76b07b]" id="faq" aria-labelledby="faq-heading">
-
-      {/* Nature Background Elements (Grass dots) */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(#2d5016 2px, transparent 2px)",
-          backgroundSize: "32px 32px"
-        }}
-      ></div>
-
-      {/* Decorative Tree Lines (Simple colored blocks for pixel art trees) */}
-      <div className="absolute -left-10 top-0 bottom-0 w-24 bg-[#2d5016] opacity-30 skew-x-6"></div>
-      <div className="absolute -right-10 top-0 bottom-0 w-24 bg-[#2d5016] opacity-30 -skew-x-6"></div>
+    <section className="py-20 relative overflow-hidden" id="faq" aria-labelledby="faq-heading"
+      style={{
+        backgroundImage: "url('/faq/town_square_bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        imageRendering: "pixelated"
+      }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
 
 
       <div className="max-w-6xl mx-auto px-4 relative z-10 flex flex-col items-center">

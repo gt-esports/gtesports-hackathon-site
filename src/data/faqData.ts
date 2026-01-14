@@ -3,21 +3,21 @@ const faqData = {
     general: {
         townie: "Kinglet",
         portrait: "/faq/kinglet.png",
-        greeting: `Welcome to my shop!
+        greeting: `Welcome to my shop! 
 
-...Er, the hackathon!
+...Er, the hackathon! 
 
-What can I do for you?`,
+How can I help?`,
         questions: [
 
-            { q: "When is TechHack 2026?", a: "TechHack 2026 will be held on March 6-8, 2026." },
+            { q: "When is TechHack 2026?", a: "March 6-8, 2026." },
             {
-                q: "Who can Apply?", a: `Any student in the United States can apply to participate in TechHack.
+                q: "Who can Apply?", a: `Any US student can apply.
                 
-However, we are prioritizing applications from students at Georgia Tech.`},
-            { q: "What is the cost?", a: "The hackathon is free to attend." },
-            { q: "When is the registration deadline?", a: "The registration deadline is February 22, 2026." },
-            { q: "What is the theme of the hackathon?", a: "The theme will be revealed at the opening ceremony!" }
+We prioritize Georgia Tech students.`},
+            { q: "What is the cost?", a: "It's free to attend." },
+            { q: "When is the registration deadline?", a: "February 22, 2026." },
+            { q: "What are the tracks?", a: "One main track + sponsor tracks. Details coming soon!" }
         ]
     },
     food: {
@@ -25,70 +25,59 @@ However, we are prioritizing applications from students at Georgia Tech.`},
         portrait: "/faq/wren.png",
         greeting: `Welcome, friend! 
 
-The Stardrop Saloon is proud to cater this hackathon.
+The Saloon is ready to serve. 
 
-I've got a little something for everyone.
-
-What are you thirsty for?`,
+Hungry? Thirsty?`,
         questions: [
             {
-                q: "Will meals be provided?", a: `Meals will not be provided at this time due to limited funding as this is our first year hosting the hackathon. 
+                q: "Will meals be provided?", a: `No meals this year due to funding. 
                 
-As support and sponsorship grow, we plan to offer meals at future TechHack events.
-
-This is subject to change.`
+We hope to offer them in the future!`
             },
-            { q: "Will there be snacks and drinks?", a: "Yes, we will have snacks and drinks available 24/7." },
+            { q: "Will there be snacks and drinks?", a: "Yes! Snacks and drinks available 24/7." },
         ]
     },
     venue: {
         townie: "Gallinule",
         portrait: "/faq/gallinule.png",
-        greeting: `Hello there, villager! 
+        greeting: `Greetings, citizen! 
 
-I've got the official event proclamations right here.
+I hold the official proclamations. 
 
-What information do you require?`,
+What do you need?`,
         questions: [
             {
-                q: "Where is the hackathon located?", a: `The hackathon is located at the Georgia Institute of Technology.
+                q: "Where is the hackathon located?", a: `Georgia Tech campus.
                 
-The locations of the venues will be revealed via Discord and the website.` },
-            { q: "Is there parking available?", a: "Yes, there is paid guest parking available on campus." },
-            { q: "What are the venue hours?", a: "During the Hackathon, you will be able to access announced venues any time from the kickoff ceremony to the final project presentations." }
+Exact venues will be announced on Discord.` },
+            { q: "Is there parking available?", a: "Yes, paid guest parking is available on campus." },
+            { q: "What are the venue hours?", a: "Venues are open from kickoff to final presentations." }
         ]
     },
     items: {
         townie: "Tanager",
         portrait: "/faq/tanager.png",
-        greeting: `Oh, hello, dear! It's lovely to see you.
+        greeting: `Hello, dear! Packing up?
 
-Are you getting your things ready?
-
-It's always good to be prepared.
-
-Just... please don't bring any stray animals, alright?
-
-I have my hands full with my own!`,
+Just... please don't bring any stray animals, alright?`,
         questions: [
-            { q: "What should I bring?", a: "You should bring your laptop, charger, and any other hardware you need for your project. We do not provide monitors, keyboards, and mice." },
-            { q: "Can I bring a sleeping bag?", a: "Yes, you should bring a sleeping bag if you plan on staying overnight." },
+            { q: "What should I bring?", a: "Laptop, charger, and hardware. We don't provide monitors or peripherals." },
+            { q: "Can I bring a sleeping bag?", a: "Yes, bring one if you plan to stay overnight!" },
         ]
     },
 
     misc: {
         townie: "Vireo",
         portrait: "/faq/vireo.png",
-        greeting: `Ah... you have arrived, as the spirits foresaw.
+        greeting: `The spirits foresaw your arrival.
         
-Your mind is clouded with questions.
-
-Speak, and I shall consult the spirits for an answer.`,
+Speak, and I shall reveal the answers.`,
         questions: [
-            { q: "How many members can be in a group?", a: "Teams can have up to 4 members." },
-            { q: "Will there be prizes?", a: "Yes, there will be prizes for the top 3 teams selected by our judges as well as company sponsored prizes." },
-            { q: "Who are the judges?", a: "The judges will be a panel of industry experts, faculty, and students from Georgia Tech." },
-            { q: "How do I submit my project?", a: "Project submissions will be done through Devpost. More details will be provided during the event." }
+            { q: "How many members can be in a group?", a: "Up to 4 members." },
+            { q: "Will there be prizes?", a: "Yes! Top 3 teams + sponsor prizes." },
+            { q: "Who are the judges?", a: "Industry experts, faculty, and GT students." },
+            { q: "How do I submit my project?", a: "Devpost. Details at the event." },
+            { q: "Is there travel reimbursement?", a: "No, not at this time." }
         ]
     }
 };
