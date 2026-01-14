@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SESClient, SendEmailCommand } from "npm:@aws-sdk/client-ses@3.454.0";
+import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -24,61 +24,49 @@ serve(async (req) => {
 
         console.log(`Attempting to send email to ${email}`);
 
-        const accessKeyId = Deno.env.get("AWS_ACCESS_KEY_ID");
-        const secretAccessKey = Deno.env.get("AWS_SECRET_ACCESS_KEY");
-        const sessionToken = Deno.env.get("AWS_SESSION_TOKEN");
-        const sourceEmail = Deno.env.get("SES_FROM_EMAIL");
+        const resendApiKey = Deno.env.get("RESEND_API_KEY");
+        const sourceEmail = Deno.env.get("RESEND_FROM_EMAIL") || "onboarding@resend.dev";
 
-        if (!accessKeyId || !secretAccessKey || !sourceEmail) {
-            console.error("Missing AWS environment variables");
-            throw new Error("Server configuration error: Missing AWS credentials");
+        if (!resendApiKey) {
+            console.error("Missing RESEND_API_KEY environment variable");
+            throw new Error("Server configuration error: Missing Resend API Key");
         }
 
-        const client = new SESClient({
-            region: Deno.env.get("AWS_REGION") ?? "us-east-1",
-            credentials: {
-                accessKeyId,
-                secretAccessKey,
-                sessionToken,
-            },
-        });
+        const resend = new Resend(resendApiKey);
 
-        const command = new SendEmailCommand({
-            Source: sourceEmail,
-            Destination: {
-                ToAddresses: [email],
-            },
-            Message: {
-                Subject: {
-                    Data: "TechHack Valley 2026 - Application Received!",
-                },
-                Body: {
-                    Text: {
-                        Data: `Hi ${name},\n\nThanks for applying to TechHack Valley 2026! We've received your application and will review it shortly.\n\nIf you have any questions or issues, please email gatechesports@gmail.com.\n\nBest,\nThe TechHack Team`,
-                    },
-                    Html: {
-                        Data: `
+        const { data, error } = await resend.emails.send({
+            from: sourceEmail,
+            to: [email],
+            subject: "TechHack Valley 2026 - Application Received!",
+            html: `
               <div style="font-family: sans-serif; color: #333;">
                 <h2>Application Received!</h2>
                 <p>Hi ${name},</p>
                 <p>Thanks for applying to <strong>TechHack Valley 2026</strong>! We've received your application and will review it shortly.</p>
                 <p>If you have any questions or issues, please email <a href="mailto:gatechesports@gmail.com">gatechesports@gmail.com</a>.</p>
-                <p>Stay tuned for updates!</p>
+                <p>
+                    Visit <a href="https://techhack.gatechesports.com">TechHack Valley</a> for more info, or check out our main site at <a href="https://gatechesports.com">gatechesports.com</a>.
+                </p>
+                <p>
+                    Also, be sure to join our Discord server (linked on the <a href="https://techhack.gatechesports.com">TechHack website</a>) for all the latest updates!
+                </p>
                 <br>
                 <p>Best,</p>
                 <p>The TechHack Team</p>
               </div>
             `,
-                    },
-                },
-            },
+            text: `Hi ${name},\n\nThanks for applying to TechHack Valley 2026! We've received your application and will review it shortly.\n\nIf you have any questions or issues, please email gatechesports@gmail.com.\n\nVisit https://techhack.gatechesports.com for more info, or check out our main site at https://gatechesports.com.\n\nAlso, be sure to join our Discord server (linked on the TechHack website) for all the latest updates!\n\nBest,\nThe TechHack Team`,
         });
 
-        const data = await client.send(command);
-        console.log("Email sent successfully:", data.MessageId);
+        if (error) {
+            console.error("Error sending email via Resend:", error);
+            throw error;
+        }
+
+        console.log("Email sent successfully:", data?.id);
 
         return new Response(
-            JSON.stringify({ message: "Email sent successfully", messageId: data.MessageId }),
+            JSON.stringify({ message: "Email sent successfully", messageId: data?.id }),
             {
                 headers: { ...corsHeaders, "Content-Type": "application/json" },
                 status: 200,

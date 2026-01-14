@@ -19,6 +19,7 @@ export default function HackathonApplication() {
     const [loading, setLoading] = useState(true);
     const [hasApplied, setHasApplied] = useState(false);
 
+
     // --- Hot reload fix ---
     const [modelKey, setModelKey] = useState("prod");
 
@@ -78,7 +79,23 @@ export default function HackathonApplication() {
                 if (existingApp) {
                     setHasApplied(true);
                     model.mode = "display";
-                    model.data = existingApp.answers;
+
+
+                    // Fetch resume URL if exists
+                    const answers = existingApp.answers as unknown as SurveyData;
+                    if (answers.resume && Array.isArray(answers.resume) && answers.resume.length > 0) {
+                        const fileItem = answers.resume[0] as { content: string };
+                        if (fileItem && fileItem.content) {
+                            const { data: urlData } = await supabase.storage
+                                .from('resumes')
+                                .createSignedUrl(fileItem.content, 60 * 60 * 24); // 24 hours expiration
+
+                            if (urlData) {
+                                fileItem.content = urlData.signedUrl;
+                            }
+                        }
+                    }
+                    model.data = answers;
                 }
 
             } catch (err) {

@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.75.0",
+    "@supabase/supabase-js": "^2.90.1",
     "@tailwindcss/vite": "^4.1.13",
     "@vercel/analytics": "^1.6.1",
     "bcrypt": "^6.0.0",
