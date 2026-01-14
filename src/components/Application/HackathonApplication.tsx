@@ -7,6 +7,12 @@ import { surveyJson } from "../../data/appQuestions";
 import { supabase } from "../../utils/supabaseClient";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+interface SurveyData {
+    email: string;
+    full_name: string;
+    [key: string]: unknown;
+}
+
 export default function HackathonApplication() {
     const navigate = useNavigate();
     const [model] = useState(() => new Model(surveyJson));
@@ -88,7 +94,7 @@ export default function HackathonApplication() {
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const handleComplete = async (sender: any) => {
-            const data = sender.data;
+            const data = sender.data as SurveyData;
             try {
                 const { data: { session } } = await supabase.auth.getSession();
                 if (!session) {
@@ -101,7 +107,8 @@ export default function HackathonApplication() {
                     .from("applications")
                     .insert({
                         user_id: session.user.id,
-                        answers: data,
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        answers: data as any,
                         status: "pending"
                     });
 
@@ -117,6 +124,22 @@ export default function HackathonApplication() {
                     }
                 } else {
                     console.log("Application submitted:", data);
+
+                    // Send confirmation email
+                    try {
+                        const { error: fnError } = await supabase.functions.invoke('send-confirmation-email', {
+                            body: {
+                                email: data.email,
+                                name: data.full_name,
+                            },
+                        });
+                        if (fnError) {
+                            console.error("Failed to trigger email confirmation:", fnError);
+                        }
+                    } catch (emailErr) {
+                        console.error("Exception triggering email confirmation:", emailErr);
+                    }
+
                     alert("Application submitted successfully!");
                     setHasApplied(true);
                     model.mode = "display";

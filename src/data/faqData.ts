@@ -15,6 +15,7 @@ What can I do for you?`,
                 q: "Who can Apply?", a: `Any student in the United States can apply to participate in TechHack.
                 
 However, we are prioritizing applications from students at Georgia Tech.`},
+            { q: "What is the cost?", a: "The hackathon is free to attend." },
             { q: "When is the registration deadline?", a: "The registration deadline is February 22, 2026." },
             { q: "What is the theme of the hackathon?", a: "The theme will be revealed at the opening ceremony!" }
         ]
