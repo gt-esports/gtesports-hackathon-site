@@ -13,6 +13,7 @@ export const surveyJson = {
           type: "text",
           name: "email",
           title: "School Email",
+          description: "This will be the email address where you receive all communications.",
           inputType: "email",
           isRequired: true,
           validators: [

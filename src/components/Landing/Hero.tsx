@@ -50,10 +50,20 @@ export default function Hero() {
               Spring 2026 Season
             </p>
 
-            <div className="mt-4 bg-valley-gold/90 border-2 border-valley-brown px-6 py-2 rounded transform -rotate-1 shadow-lg animate-float" style={{ animationDelay: '1s' }}>
-              <p className="font-pixel text-lg md:text-xl text-valley-brown drop-shadow-sm">
-                📅 {siteConfig.event.date}
-              </p>
+            <div className="mt-8 wood-panel px-8 py-6 transform -rotate-2 animate-float mx-auto inline-block max-w-full" style={{ animationDelay: '1s' }}>
+              <div className="flex flex-col items-center justify-center">
+                <span className="font-pixel text-[0.6rem] md:text-xs text-[#5d4037] mb-2 uppercase tracking-widest opacity-90">
+                  Mark your calendars
+                </span>
+                <p className="font-pixel text-base sm:text-lg md:text-2xl text-[#5d4037] font-bold tracking-wider leading-relaxed text-center">
+                  {siteConfig.event.date}
+                </p>
+              </div>
+              {/* Decorative corner nails */}
+              <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-[#4a332a] rounded-full opacity-60"></div>
+              <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-[#4a332a] rounded-full opacity-60"></div>
+              <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-[#4a332a] rounded-full opacity-60"></div>
+              <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-[#4a332a] rounded-full opacity-60"></div>
             </div>
           </div>
 

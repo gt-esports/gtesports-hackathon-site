@@ -43,7 +43,8 @@ serve(async (req) => {
                 <h2>Application Received!</h2>
                 <p>Hi ${name},</p>
                 <p>Thanks for applying to <strong>TechHack Valley 2026</strong>! We've received your application and will review it shortly.</p>
-                <p>If you have any questions or issues, please email <a href="mailto:gatechesports@gmail.com">gatechesports@gmail.com</a>.</p>
+                <p>Application decisions will be released on a rolling basis. If you haven't received an email by two weeks before the event, please email <a href="mailto:georgiatechesports@gmail.com">georgiatechesports@gmail.com</a>.</p>
+                <p>If you have any other questions or issues, please email <a href="mailto:georgiatechesports@gmail.com">georgiatechesports@gmail.com</a>.</p>
                 <p>
                     Visit <a href="https://techhack.gatechesports.com">TechHack Valley</a> for more info, or check out our main site at <a href="https://gatechesports.com">gatechesports.com</a>.
                 </p>
@@ -55,7 +56,7 @@ serve(async (req) => {
                 <p>The TechHack Team</p>
               </div>
             `,
-            text: `Hi ${name},\n\nThanks for applying to TechHack Valley 2026! We've received your application and will review it shortly.\n\nIf you have any questions or issues, please email gatechesports@gmail.com.\n\nVisit https://techhack.gatechesports.com for more info, or check out our main site at https://gatechesports.com.\n\nAlso, be sure to join our Discord server (linked on the TechHack website) for all the latest updates!\n\nBest,\nThe TechHack Team`,
+            text: `Hi ${name},\n\nThanks for applying to TechHack Valley 2026! We've received your application and will review it shortly.\n\nApplication decisions will be released on a rolling basis. If you haven't received an email by two weeks before the event, please email georgiatechesports@gmail.com.\n\nIf you have any other questions or issues, please email georgiatechesports@gmail.com.\n\nVisit https://techhack.gatechesports.com for more info, or check out our main site at https://gatechesports.com.\n\nAlso, be sure to join our Discord server (linked on the TechHack website) for all the latest updates!\n\nBest,\nThe TechHack Team`,
         });
 
         if (error) {

@@ -41,7 +41,7 @@ export default function Navbar() {
             className="h-10 w-auto md:h-12 object-contain"
           />
           {/* Logo Text */}
-          <div className="hidden sm:flex text-valley-brown font-pixel text-lg md:text-xl drop-shadow-sm flex-col justify-center h-full">
+          <div className="hidden sm:flex text-valley-brown font-pixel text-lg md:text-xl drop-shadow-sm flex-col justify-center h-full pt-1">
             <div className="text-[10px] text-valley-brown/80 font-pixel uppercase tracking-widest">
               Spring 2026
             </div>
@@ -55,11 +55,10 @@ export default function Navbar() {
           {/* Sign In Button */}
           <Link
             to="/login"
-            className="btn-pixel flex items-center gap-2 !py-2 !px-2 md:!px-3"
+            className="hidden sm:flex btn-pixel items-center justify-center gap-2 !pt-[10px] !pb-[6px] !px-2 md:!px-3"
             aria-label="Go to login"
           >
-            <span className="text-sm">👤</span>
-            <span className="hidden sm:inline font-pixel text-xs">Sign In</span>
+            <span className="font-pixel text-xs">Sign In</span>
           </Link>
 
           {/* Menu Button and Dropdown */}

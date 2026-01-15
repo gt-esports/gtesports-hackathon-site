@@ -21,10 +21,10 @@ export default function NavbarDropdownMenu() {
           <span className="mr-2">🏢</span> Sponsors
         </a>
         <a
-          href="/teams"
-          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide"
+          href="/login"
+          className="sm:hidden block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide"
         >
-          <span className="mr-2">👥</span> Teams
+          Sign In
         </a>
       </div>
     </div>
