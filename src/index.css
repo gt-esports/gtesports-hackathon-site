@@ -47,6 +47,8 @@ body {
   /* Prevent horizontal scroll */
   width: 100%;
   background-color: var(--earth-brown);
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 .bg-primary-blue {
