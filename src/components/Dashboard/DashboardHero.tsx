@@ -113,14 +113,11 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 Apply Now
               </button>
 
-              <a
-                href="https://discord.gg/temporary"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block hover:scale-105 transition-transform duration-200"
+              <span
+                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block opacity-75 cursor-not-allowed filter grayscale-[0.5]"
               >
-                👥 Team Lookup on Discord
-              </a>
+                👥 Team Lookup (Coming Soon)
+              </span>
 
               {profile?.is_admin && (
                 <button

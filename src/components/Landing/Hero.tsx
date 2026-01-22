@@ -98,15 +98,12 @@ export default function Hero() {
             <span>📜</span>
             <span>Apply Now</span>
           </a>
-          <a
-            href={siteConfig.links.discord}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2"
+          <span
+            className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2 opacity-75 cursor-not-allowed filter grayscale-[0.5]"
           >
             <span>💬</span>
-            <span>Join Discord</span>
-          </a>
+            <span>Discord Coming Soon</span>
+          </span>
         </div>
 
         {/* Hosted By Pill */}
