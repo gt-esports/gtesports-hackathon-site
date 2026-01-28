@@ -99,13 +99,12 @@ export default function Hero() {
             <span>Apply Now</span>
           </a>
           <a
-            href={siteConfig.links.discord}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-105"
+            href="#"
+            className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2 cursor-not-allowed opacity-60"
+            onClick={(e) => e.preventDefault()}
           >
             <span>💬</span>
-            <span>Join Discord</span>
+            <span>Coming Soon</span>
           </a>
         </div>
 
