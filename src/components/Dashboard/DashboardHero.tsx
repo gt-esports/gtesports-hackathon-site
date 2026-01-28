@@ -6,6 +6,7 @@ import { supabase } from '../../utils/supabaseClient';
 import EditProfileModal from './EditProfileModal';
 import { useProfile } from '../../hooks/useProfile';
 import type { Application } from '../../types/database.types';
+import { siteConfig } from '../../data/site';
 
 interface DashboardHeroProps {
   user: User | null;
@@ -113,11 +114,14 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
                 Apply Now
               </button>
 
-              <span
-                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block opacity-75 cursor-not-allowed filter grayscale-[0.5]"
+              <a
+                href={siteConfig.links.discord}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block transition-transform duration-200 hover:scale-105"
               >
-                👥 Team Lookup (Coming Soon)
-              </span>
+                👥 Team Lookup
+              </a>
 
               {profile?.is_admin && (
                 <button

@@ -22,7 +22,7 @@ export const siteConfig = {
   ],
 
   links: {
-    discord: "https://discord.gg/BjP48Np3kB",
+    discord: "https://discord.gg/CbaXUEfpgW",
     instagram: "https://www.instagram.com/gatechesports_/",
     linkedin: "https://www.linkedin.com/company/georgia-tech-esports/",
     email: "georgiatechesports@gmail.com",
