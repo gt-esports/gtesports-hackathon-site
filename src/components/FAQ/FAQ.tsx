@@ -41,15 +41,30 @@ export default function FAQ() {
     }
   };
 
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'general': return 'General Info';
+      case 'food': return 'Food & Drink';
+      case 'venue': return 'Venue Info';
+      case 'items': return 'Packing List';
+      case 'misc': return 'Misc Info';
+      default: return 'Info';
+    }
+  };
+
   return (
-    <section className="py-20 relative overflow-hidden" id="faq" aria-labelledby="faq-heading"
-      style={{
-        backgroundImage: "url('/faq/town_square_bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        imageRendering: "pixelated"
-      }}
-    >
+    <section className="py-20 relative overflow-hidden" id="faq" aria-labelledby="faq-heading">
+      {/* Background Image with Transparency */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-80"
+        style={{
+          backgroundImage: "url('/faq/town_square_bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          imageRendering: "pixelated"
+        }}
+      ></div>
+
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
 
@@ -64,6 +79,7 @@ export default function FAQ() {
             Talk to the villagers to learn more!
           </p>
         </div>
+
 
         {/* Characters Grid / Town Square */}
         <div className="flex flex-wrap justify-center gap-12 md:gap-20">
@@ -100,6 +116,11 @@ export default function FAQ() {
                 {/* Character Name Plate */}
                 <div className="mt-[-10px] bg-[#8b4513] text-[#fcd34d] px-3 py-1 font-pixel text-xs md:text-sm border-2 border-[#fcd34d] rounded-sm shadow-md z-10 text-center uppercase tracking-wide whitespace-nowrap">
                   {getCharacterRole(category)}
+                </div>
+
+                {/* Category Label */}
+                <div className="mt-2 text-[#3e2723] font-pixel text-xs bg-[#fdf6e3]/90 px-2 py-1 rounded-sm border border-[#8b4513] shadow-sm transform group-hover:scale-105 transition-transform">
+                  {getCategoryLabel(category)}
                 </div>
 
                 {/* Shadow */}
