@@ -92,7 +92,7 @@ export default function Hero() {
         {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <a
-            href="/login"
+            href="/signup"
             className="btn-pixel text-sm md:text-base animate-pulse-glow flex items-center justify-center gap-2 group"
           >
             <span>📜</span>
