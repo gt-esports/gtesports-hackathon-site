@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Application from "./pages/Application";
 import Onboarding from "./pages/Onboarding";
+import CodeOfConduct from "./pages/CodeOfConduct";
 import AdminDashboard from "./pages/AdminDashboard";
 import RequireProfile from "./components/RequireProfile";
 import { Analytics } from "@vercel/analytics/react";
@@ -79,6 +80,7 @@ export default function App() {
             />
           }
         />
+        <Route path="/code-of-conduct" element={<CodeOfConduct />} />
         {/* Fallback: redirect anything unknown to home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
