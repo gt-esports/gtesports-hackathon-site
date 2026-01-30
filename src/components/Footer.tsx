@@ -53,6 +53,7 @@ export default function Footer() {
     { name: "Schedule", url: "/#schedule", icon: <Calendar className="w-4 h-4" /> },
     { name: "Sponsors", url: "/#sponsors", icon: <Building className="w-4 h-4" /> },
     { name: "Teams", url: "/teams", icon: <Users className="w-4 h-4" /> },
+    { name: "Meet the Team", url: siteConfig.links.ourTeam, icon: <Users className="w-4 h-4" /> },
   ]
 
   return (
@@ -105,6 +106,8 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.url}
+                    target={link.url.startsWith("http") ? "_blank" : undefined}
+                    rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="group flex items-center space-x-2 text-valley-cream/80 hover:text-valley-gold transition-colors duration-200 font-pixel text-sm"
                   >
                     <span className="group-hover:scale-110 transition-transform duration-200">{link.icon}</span>
@@ -113,6 +116,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            {/* Additional Meet the Team link or buttons if needed */}
           </div>
 
           {/* Contact info */}
