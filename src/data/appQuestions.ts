@@ -175,6 +175,11 @@ export const surveyJson = {
             { value: "agree", text: "I understand that once submitted, I cannot make changes to my application." }
           ],
           isRequired: true
+        },
+        {
+          type: "html",
+          name: "coc_agreement",
+          html: "<p class='mt-4 text-center text-sm text-gray-600 font-pixel'>By submitting you are agreeing to the <a href='/code-of-conduct' target='_blank' class='text-valley-green underline hover:text-valley-dark-green'>Code of Conduct</a></p>"
         }
       ]
     }
