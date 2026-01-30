@@ -115,11 +115,12 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
               </button>
 
               <a
-                href="#"
-                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block cursor-not-allowed opacity-60"
-                onClick={(e) => e.preventDefault()}
+                href="https://discord.gg/CbaXUEfpgW"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pixel btn-pixel-discord text-base md:text-lg inline-block"
               >
-                Coming Soon
+                Join Discord
               </a>
 
               {profile?.is_admin && (
