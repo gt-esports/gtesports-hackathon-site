@@ -27,7 +27,7 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/company/georgia-tech-esports/",
     email: "georgiatechesports@gmail.com",
     codeOfConduct: "/code-of-conduct",
-    ourTeam: "https://gtesports.org/team",
+    ourTeam: "https://www.gatechesports.com/ourteam",
   },
 
   about: {
