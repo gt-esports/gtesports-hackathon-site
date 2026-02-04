@@ -3,9 +3,10 @@ import { siteConfig } from '../data/site';
 
 interface CountdownCarouselProps {
   className?: string;
+  position?: 'fixed' | 'absolute';
 }
 
-export default function CountdownCarousel({ className = "" }: CountdownCarouselProps) {
+export default function CountdownCarousel({ className = "", position = 'fixed' }: CountdownCarouselProps) {
   const hackathonStartDate = new Date(siteConfig.event.date_time).getTime();
 
   const calculateTimeLeft = useCallback(() => {
@@ -61,7 +62,7 @@ export default function CountdownCarousel({ className = "" }: CountdownCarouselP
   );
 
   return (
-    <div className={`fixed bottom-0 left-0 right-0 z-20 overflow-hidden ${className}`}>
+    <div className={`${position === 'fixed' ? 'fixed' : 'absolute'} bottom-0 left-0 right-0 z-20 overflow-hidden ${className}`}>
       <div className="bg-gradient-to-r from-black/10 via-black/45 to-black/20 backdrop-blur-md border-valley-gold/30 py-6 shadow-2xl">
         <div className="flex animate-scroll-single">
           {/* First countdown */}

@@ -2,7 +2,7 @@ import CountdownCarousel from '../CountdownCarousel';
 
 export default function ScheduleTeaser() {
   return (
-    <section id="schedule" className="min-h-screen relative flex flex-col items-center justify-center py-20 overflow-hidden gradient-valley-sky">
+    <section id="schedule" className="relative flex flex-col items-center justify-center pt-16 pb-32 overflow-hidden gradient-valley-sky">
       {/* Decorative Cloud/Sky elements */}
       <div className="absolute top-10 left-10 opacity-60 text-6xl animate-float">☁️</div>
       <div className="absolute top-20 right-20 opacity-50 text-5xl animate-float" style={{ animationDelay: '2s' }}>☁️</div>
@@ -85,7 +85,7 @@ export default function ScheduleTeaser() {
       </div>
 
       <div className="relative z-10 w-full mt-8">
-        <CountdownCarousel />
+        <CountdownCarousel position="absolute" />
       </div>
     </section>
   )
