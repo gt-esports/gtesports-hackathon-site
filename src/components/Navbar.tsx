@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { siteConfig } from '../data/site';
 import NavbarDropdownMenu from './NavbarDropdownMenu';
+import { PixelHome, PixelCalendar, PixelHeart, PixelUsers } from './PixelIcons';
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -40,18 +42,42 @@ export default function Navbar() {
             alt="TechHack Valley Logo"
             className="h-10 w-auto md:h-12 object-contain"
           />
-          {/* Logo Text */}
-          <div className="hidden sm:flex text-valley-brown font-pixel text-lg md:text-xl drop-shadow-sm flex-col justify-center h-full pt-1">
-            <div className="text-[10px] text-valley-brown/80 font-pixel uppercase tracking-widest">
-              Spring 2026
-            </div>
-          </div>
         </Link>
 
 
 
         {/* Navigation Elements */}
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-2 md:gap-4">
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center gap-1 lg:gap-2">
+            <a
+              href="/"
+              className="px-3 py-2 text-valley-brown hover:bg-valley-gold/20 rounded-md transition-colors font-pixel text-xs uppercase tracking-wide flex items-center gap-2"
+            >
+              <PixelHome className="mb-1" /> Home
+            </a>
+            <a
+              href="/#schedule"
+              className="px-3 py-2 text-valley-brown hover:bg-valley-gold/20 rounded-md transition-colors font-pixel text-xs uppercase tracking-wide flex items-center gap-2"
+            >
+              <PixelCalendar className="mb-0.5" /> Schedule
+            </a>
+            <a
+              href="/#sponsors"
+              className="px-3 py-2 text-valley-brown hover:bg-valley-gold/20 rounded-md transition-colors font-pixel text-xs uppercase tracking-wide flex items-center gap-2"
+            >
+              <PixelHeart className="mb-0.5" /> Sponsors
+            </a>
+            <a
+              href={siteConfig.links.ourTeam}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 text-valley-brown hover:bg-valley-gold/20 rounded-md transition-colors font-pixel text-xs uppercase tracking-wide flex items-center gap-2"
+            >
+              <PixelUsers className="mb-0.5" /> Meet the Team
+            </a>
+          </div>
+
           {/* Sign In Button */}
           <Link
             to="/login"
@@ -61,11 +87,11 @@ export default function Navbar() {
             <span className="font-pixel text-xs">Sign In</span>
           </Link>
 
-          {/* Menu Button and Dropdown */}
-          <div className="relative">
+          {/* Menu Button and Dropdown - Only visible on small screens */}
+          <div className="relative lg:hidden">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="btn-pixel flex items-center gap-2 !py-2 !px-2 md:!px-3"
+              className="btn-pixel flex items-center gap-2 !py-2 !px-2"
             >
               <div className="flex flex-col gap-[3px]">
                 <span className="block w-4 h-[2px] bg-valley-brown"></span>

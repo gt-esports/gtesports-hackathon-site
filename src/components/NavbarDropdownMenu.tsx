@@ -1,4 +1,5 @@
 import { siteConfig } from '../data/site';
+import { PixelHome, PixelCalendar, PixelHeart, PixelUsers } from './PixelIcons';
 
 export default function NavbarDropdownMenu() {
   return (
@@ -6,29 +7,29 @@ export default function NavbarDropdownMenu() {
       <div className="flex flex-col py-2">
         <a
           href="/"
-          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0 flex items-center"
         >
-          <span className="mr-2">🏠</span> Home
+          <PixelHome className="mr-2 mb-1" /> Home
         </a>
         <a
           href="/#schedule"
-          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0 flex items-center"
         >
-          <span className="mr-2">📅</span> Schedule
+          <PixelCalendar className="mr-2 mb-0.5" /> Schedule
         </a>
         <a
           href="/#sponsors"
-          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0 flex items-center"
         >
-          <span className="mr-2">🏢</span> Sponsors
+          <PixelHeart className="mr-2 mb-0.5" /> Sponsors
         </a>
         <a
           href={siteConfig.links.ourTeam}
           target="_blank"
           rel="noopener noreferrer"
-          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 sm:border-b-0 last:border-0"
+          className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 sm:border-b-0 last:border-0 flex items-center"
         >
-          <span className="mr-2">👥</span> Meet the Team
+          <PixelUsers className="mr-2 mb-0.5" /> Meet the Team
         </a>
         <a
           href="/login"
