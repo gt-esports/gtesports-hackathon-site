@@ -237,7 +237,12 @@ export default function About() {
             }`} style={{ fontFamily: "'Press Start 2P', monospace" }}>
             <span className="whitespace-pre-line">
               {typewriterState.displayedText}
-              <span className={`text-valley-gold inline-block w-0 overflow-visible ${typewriterState.showCursor ? "animate-pulse opacity-100" : "opacity-0"}`}>|</span>
+              <span
+                aria-hidden="true"
+                className={`text-valley-gold inline-block w-[0.6ch] -mr-[0.6ch] align-baseline ${typewriterState.showCursor ? "animate-pulse opacity-100" : "opacity-0"}`}
+              >
+                |
+              </span>
             </span>
           </h2>
         </div>

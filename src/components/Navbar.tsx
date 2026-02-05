@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { siteConfig } from '../data/site';
 import NavbarDropdownMenu from './NavbarDropdownMenu';
-import { PixelHome, PixelCalendar, PixelHeart, PixelUsers } from './PixelIcons';
+import { PixelHome, PixelCalendar, PixelHeart, PixelUsers, PixelMenu, PixelSignIn } from './PixelIcons';
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -81,9 +81,10 @@ export default function Navbar() {
           {/* Sign In Button */}
           <Link
             to="/login"
-            className="hidden sm:flex btn-pixel items-center justify-center gap-2 !pt-[10px] !pb-[6px] !px-2 md:!px-3"
+            className="hidden sm:flex btn-pixel btn-pixel-primary items-center justify-center gap-2 !pt-[10px] !pb-[6px] !px-2 md:!px-3"
             aria-label="Go to login"
           >
+            <PixelSignIn size={16} className="mb-0.5" />
             <span className="font-pixel text-xs">Sign In</span>
           </Link>
 
@@ -91,13 +92,10 @@ export default function Navbar() {
           <div className="relative lg:hidden">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="btn-pixel flex items-center gap-2 !py-2 !px-2"
+              className="btn-pixel btn-pixel-icon !p-2"
+              aria-label="Toggle menu"
             >
-              <div className="flex flex-col gap-[3px]">
-                <span className="block w-4 h-[2px] bg-valley-brown"></span>
-                <span className="block w-4 h-[2px] bg-valley-brown"></span>
-                <span className="block w-4 h-[2px] bg-valley-brown"></span>
-              </div>
+              <PixelMenu />
             </button>
 
             {/* Dropdown Menu */}

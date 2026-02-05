@@ -53,3 +53,20 @@ export const PixelUsers = ({ className, size = 20 }: IconProps) => (
     <path d="M9 3h4v4H9V3zm1 4h2v1h-2V7zm-2 2h6v7H8V9z" />
   </svg>
 );
+
+export const PixelMenu = ({ className, size = 20 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
+    <rect x="2" y="3" width="12" height="2" />
+    <rect x="2" y="7" width="12" height="2" />
+    <rect x="2" y="11" width="12" height="2" />
+  </svg>
+);
+
+export const PixelSignIn = ({ className, size = 20 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
+    {/* Door Frame - Using correct winding or evenodd rule to ensure hole isn't filled */}
+    <path fillRule="evenodd" clipRule="evenodd" d="M3 1h8v14H3V1zm2 2h4v10H5V3z" />
+    {/* Arrow */}
+    <path d="M10 7h3v2h-3v2l-3-3 3-3v2z" />
+  </svg>
+);

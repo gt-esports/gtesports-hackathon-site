@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import "tailwindcss";
 
 /* Stardew Valley Inspired Color Palette */
 :root {
   /* Primary Blue Palette */
-  --primary-blue: #394ABB;
-  --sky-blue: #65C7FF;
-  --navy-blue: #2E446F;
-  --medium-blue: #425E95;
+  --primary-blue: #394abb;
+  --sky-blue: #65c7ff;
+  --navy-blue: #2e446f;
+  --medium-blue: #425e95;
   --white: #ffffff;
 
   /* Valley Colors - Warm, cozy tones */
@@ -21,7 +21,7 @@
   --valley-orange: #ff6b35;
 
   /* Tech Colors - Georgia Tech inspired */
-  --tech-navy: #2E446F;
+  --tech-navy: #2e446f;
   --tech-gold: #b3a369;
   --tech-white: #ffffff;
 
@@ -35,7 +35,7 @@
   --accent-yellow: #f1c40f;
   --accent-cyan: #1abc9c;
   /* Brand Colors */
-  --discord-blue: #5865F2;
+  --discord-blue: #5865f2;
 }
 
 /* Custom Tailwind Classes */
@@ -54,8 +54,6 @@ body {
 .bg-primary-blue {
   background-color: var(--primary-blue);
 }
-
-
 
 .bg-sky-blue {
   background-color: var(--sky-blue);
@@ -273,8 +271,7 @@ body {
   /* Dark wood border */
   box-shadow:
     inset 0 0 0 2px #e6cdb2,
-    /* Inner light highlight */
-    0 6px 0 rgba(0, 0, 0, 0.3);
+    /* Inner light highlight */ 0 6px 0 rgba(0, 0, 0, 0.3);
   /* Drop shadow */
   position: relative;
 }
@@ -287,12 +284,13 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    repeating-linear-gradient(45deg,
-      rgba(93, 64, 55, 0.05) 0px,
-      rgba(93, 64, 55, 0.05) 2px,
-      transparent 2px,
-      transparent 10px);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(93, 64, 55, 0.05) 0px,
+    rgba(93, 64, 55, 0.05) 2px,
+    transparent 2px,
+    transparent 10px
+  );
   pointer-events: none;
 }
 
@@ -307,7 +305,7 @@ body {
 }
 
 .dialogue-box::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4px;
   left: -4px;
@@ -320,7 +318,7 @@ body {
 
 /* Pixel Art Font */
 .font-pixel {
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   font-size: 0.8em;
   line-height: 1.8;
 }
@@ -339,7 +337,7 @@ body {
 }
 
 .pixel-border-alt::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4px;
   left: -4px;
@@ -351,7 +349,6 @@ body {
 
 /* Animations */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -363,7 +360,6 @@ body {
 }
 
 @keyframes twinkle {
-
   0%,
   100% {
     opacity: 0.3;
@@ -375,7 +371,6 @@ body {
 }
 
 @keyframes bounce-gentle {
-
   0%,
   100% {
     transform: translateY(0);
@@ -387,7 +382,6 @@ body {
 }
 
 @keyframes pulse-glow {
-
   0%,
   100% {
     box-shadow: 0 0 5px rgba(244, 208, 63, 0.5);
@@ -444,39 +438,73 @@ body {
   animation: scroll-single 15s linear infinite;
 }
 
-
 /* Custom Gradients */
 .gradient-primary {
-  background: linear-gradient(135deg, var(--primary-blue), var(--medium-blue), var(--navy-blue));
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue),
+    var(--medium-blue),
+    var(--navy-blue)
+  );
 }
 
 .gradient-sky {
-  background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue), var(--medium-blue));
+  background: linear-gradient(
+    135deg,
+    var(--sky-blue),
+    var(--primary-blue),
+    var(--medium-blue)
+  );
 }
 
 .gradient-navy {
-  background: linear-gradient(135deg, var(--navy-blue), var(--primary-blue), var(--sky-blue));
+  background: linear-gradient(
+    135deg,
+    var(--navy-blue),
+    var(--primary-blue),
+    var(--sky-blue)
+  );
 }
 
 .gradient-valley-sunset {
-  background: linear-gradient(135deg, var(--valley-orange), var(--valley-pink), var(--valley-purple));
+  background: linear-gradient(
+    135deg,
+    var(--valley-orange),
+    var(--valley-pink),
+    var(--valley-purple)
+  );
 }
 
 .gradient-valley-sky {
-  background: linear-gradient(135deg, var(--sky-blue), var(--valley-blue), var(--valley-purple));
+  background: linear-gradient(
+    135deg,
+    var(--sky-blue),
+    var(--valley-blue),
+    var(--valley-purple)
+  );
 }
 
 .gradient-valley-earth {
-  background: linear-gradient(135deg, var(--valley-green), var(--forest-green), var(--earth-brown));
+  background: linear-gradient(
+    135deg,
+    var(--valley-green),
+    var(--forest-green),
+    var(--earth-brown)
+  );
 }
 
 .gradient-valley-gold {
-  background: linear-gradient(135deg, var(--valley-gold), var(--sunset-orange), var(--valley-orange));
+  background: linear-gradient(
+    135deg,
+    var(--valley-gold),
+    var(--sunset-orange),
+    var(--valley-orange)
+  );
 }
 
 /* Hero background image utility (served from Vite public dir) */
 .hero-pixel-mountains {
-  background-image: url('/pixel-mountains.png');
+  background-image: url("/pixel-mountains.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -486,7 +514,7 @@ body {
 
 /* Dashboard Hero background image utility (served from Vite public dir) */
 .hero-pixel-clouds {
-  background-image: url('/58cab525-a7f1-4940-866a-3c2db770e229.jpg');
+  background-image: url("/58cab525-a7f1-4940-866a-3c2db770e229.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -499,7 +527,7 @@ body {
 
 /* Pixel Art Button Styles */
 .btn-pixel {
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   font-size: 0.7em;
   padding: 12px 24px;
   border: 3px solid var(--valley-brown);
@@ -543,6 +571,25 @@ body {
   background: #4752c4;
 }
 
+.btn-pixel-primary {
+  background: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--navy-blue);
+}
+
+.btn-pixel-primary:hover {
+  background: var(--medium-blue);
+  color: var(--white);
+}
+
+.btn-pixel-icon {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
 /* Pixel Art Card Styles */
 .card-pixel {
   background: var(--valley-cream);
@@ -553,7 +600,7 @@ body {
 }
 
 .card-pixel::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -6px;
   left: -6px;
