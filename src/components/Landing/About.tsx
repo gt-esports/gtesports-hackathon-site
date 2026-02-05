@@ -9,8 +9,8 @@ const TYPEWRITER_SEQUENCES = [
 
 const FINAL_TEXT = "What is\nTechHack Valley?";
 const CURSOR_BLINK_INTERVAL = 530;
-const BASE_TYPING_SPEED = 50;
-const DELETE_SPEED = 30;
+const BASE_TYPING_SPEED = 75;
+const DELETE_SPEED = 45;
 
 interface TypewriterState {
   displayedText: string;
