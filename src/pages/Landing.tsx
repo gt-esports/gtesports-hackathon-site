@@ -1,5 +1,6 @@
 import Hero from "../components/Landing/Hero"
 import About from "../components/Landing/About"
+import TracksTeaser from "../components/Landing/TracksTeaser"
 import ScheduleTeaser from "../components/Landing/ScheduleTeaser"
 import SponsorsTeaser from "../components/Landing/SponsorsTeaser"
 import FAQ from "../components/FAQ/FAQ"
@@ -12,6 +13,7 @@ export default function Landing() {
       <Navbar />
       <Hero />
       <About />
+      <TracksTeaser />
       <ScheduleTeaser />
       <SponsorsTeaser />
       <FAQ />
