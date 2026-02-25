@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../utils/supabaseClient";
 import type { Application } from "../types/database.types";
@@ -11,6 +11,32 @@ export default function AdminDashboard() {
     const [applications, setApplications] = useState<Application[]>([]);
     const [stats, setStats] = useState({ total: 0, pending: 0, accepted: 0, waitlisted: 0 });
     const [selectedApp, setSelectedApp] = useState<Application | null>(null);
+
+    // Sorting state
+    const [sortField, setSortField] = useState<'created_at' | 'updated_at'>('created_at');
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+
+    const sortedApplications = useMemo(() => {
+        return [...applications].sort((a, b) => {
+            const dateA = new Date(a[sortField]).getTime();
+            const dateB = new Date(b[sortField]).getTime();
+            
+            if (sortDirection === 'asc') {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+    }, [applications, sortField, sortDirection]);
+
+    const handleSort = (field: 'created_at' | 'updated_at') => {
+        if (sortField === field) {
+            setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortField(field);
+            setSortDirection('desc'); // Default to newest first when switching fields
+        }
+    };
 
     // Pagination / Filter states could go here
 
@@ -125,15 +151,35 @@ export default function AdminDashboard() {
                         <table className="w-full text-left min-w-[600px] md:min-w-0">
                             <thead className="bg-valley-cream border-b-2 border-valley-brown/20 font-pixel text-xs md:text-sm text-valley-brown uppercase tracking-wider">
                                 <tr>
-                                    <th className="p-3 md:p-4">Submitted</th>
-                                    <th className="p-3 md:p-4">Last Updated</th>
+                                    <th 
+                                        className={`p-3 md:p-4 cursor-pointer transition-all duration-200 group ${sortField === 'created_at' ? 'bg-valley-green text-white shadow-inner rounded-t-sm' : 'hover:bg-gray-100 text-gray-400'}`}
+                                        onClick={() => handleSort('created_at')}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span className={sortField === 'created_at' ? 'font-black' : 'font-medium'}>Submitted</span>
+                                            <span className={`text-sm transition-colors ${sortField === 'created_at' ? 'text-white' : 'text-gray-300 group-hover:text-gray-500'}`}>
+                                                {sortField === 'created_at' && sortDirection === 'asc' ? '↑' : '↓'}
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th 
+                                        className={`p-3 md:p-4 cursor-pointer transition-all duration-200 group ${sortField === 'updated_at' ? 'bg-valley-green text-white shadow-inner rounded-t-sm' : 'hover:bg-gray-100 text-gray-400'}`}
+                                        onClick={() => handleSort('updated_at')}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span className={sortField === 'updated_at' ? 'font-black' : 'font-medium'}>Last Updated</span>
+                                            <span className={`text-sm transition-colors ${sortField === 'updated_at' ? 'text-white' : 'text-gray-300 group-hover:text-gray-500'}`}>
+                                                {sortField === 'updated_at' && sortDirection === 'asc' ? '↑' : '↓'}
+                                            </span>
+                                        </div>
+                                    </th>
                                     <th className="p-3 md:p-4">Applicant</th>
                                     <th className="p-3 md:p-4">Status</th>
                                     <th className="p-3 md:p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-valley-brown/10 font-mono text-xs md:text-sm">
-                                {applications.map((app) => {
+                                {sortedApplications.map((app) => {
                                     const answers = app.answers as Record<string, unknown>;
                                     const fullName = typeof answers?.full_name === 'string' ? answers.full_name : "Unknown";
 
