@@ -125,7 +125,8 @@ export default function AdminDashboard() {
                         <table className="w-full text-left min-w-[600px] md:min-w-0">
                             <thead className="bg-valley-cream border-b-2 border-valley-brown/20 font-pixel text-xs md:text-sm text-valley-brown uppercase tracking-wider">
                                 <tr>
-                                    <th className="p-3 md:p-4">Date</th>
+                                    <th className="p-3 md:p-4">Submitted</th>
+                                    <th className="p-3 md:p-4">Last Updated</th>
                                     <th className="p-3 md:p-4">Applicant</th>
                                     <th className="p-3 md:p-4">Status</th>
                                     <th className="p-3 md:p-4 text-right">Actions</th>
@@ -139,7 +140,16 @@ export default function AdminDashboard() {
                                     return (
                                         <tr key={app.id} className="hover:bg-valley-green-light/20 transition-colors">
                                             <td className="p-3 md:p-4 whitespace-nowrap">
-                                                {new Date(app.created_at).toLocaleDateString()} <span className="opacity-50 text-[10px] md:text-xs block md:inline">{new Date(app.created_at).toLocaleTimeString()}</span>
+                                                <div className="flex flex-col">
+                                                    <span>{new Date(app.created_at).toLocaleDateString()}</span>
+                                                    <span className="opacity-50 text-[10px] md:text-xs">{new Date(app.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                </div>
+                                            </td>
+                                            <td className="p-3 md:p-4 whitespace-nowrap">
+                                                <div className="flex flex-col">
+                                                    <span>{new Date(app.updated_at).toLocaleDateString()}</span>
+                                                    <span className="opacity-50 text-[10px] md:text-xs">{new Date(app.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                </div>
                                             </td>
                                             <td className="p-3 md:p-4">
                                                 <div className="font-bold text-valley-brown">
@@ -171,7 +181,7 @@ export default function AdminDashboard() {
                                 })}
                                 {applications.length === 0 && (
                                     <tr>
-                                        <td colSpan={4} className="p-8 text-center text-gray-500 italic">
+                                        <td colSpan={5} className="p-8 text-center text-gray-500 italic">
                                             No applications found.
                                         </td>
                                     </tr>
