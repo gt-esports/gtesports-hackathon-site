@@ -30,11 +30,12 @@ The Saloon is ready to serve.
 Hungry? Thirsty?`,
         questions: [
             {
-                q: "Will meals be provided?", a: `No meals this year due to funding. 
+                q: "Will meals be provided?", a: `Yes! A meal will be provided on:
                 
-We hope to offer them in the future!`
+• Friday Night
+• Saturday Night`
             },
-            { q: "Will there be snacks and drinks?", a: "Yes! Snacks and drinks available 24/7." },
+            { q: "Will there be snacks and drinks?", a: "Yes, we will be providing snacks and drinks. Details will be posted on Discord." },
         ]
     },
     venue: {
@@ -47,11 +48,10 @@ I hold the official proclamations.
 What do you need?`,
         questions: [
             {
-                q: "Where is the hackathon located?", a: `Georgia Tech campus.
+                q: "Where is the hackathon located?", a: `Howey Physics @ Georgia Tech Campus.
                 
-Exact venues will be announced on Discord.` },
-            { q: "Is there parking available?", a: "Yes, paid guest parking is available on campus." },
-            { q: "What are the venue hours?", a: "Venues are open from kickoff to final presentations." }
+Exact room details on Discord.` },
+            { q: "Is there parking available?", a: "Yes, paid guest parking is available on campus." }
         ]
     },
     items: {
@@ -62,7 +62,7 @@ Exact venues will be announced on Discord.` },
 Just... please don't bring any stray animals, alright?`,
         questions: [
             { q: "What should I bring?", a: "Laptop, charger, and hardware. We don't provide monitors or peripherals." },
-            { q: "Can I bring a sleeping bag?", a: "Yes, bring one if you plan to stay overnight!" },
+            { q: "Can I bring sleeping equipment?", a: "We don't offer an overnight venue, so on-campus participants can go home and other participants can try and see if other arrangements can be made." },
         ]
     },
 
@@ -74,9 +74,16 @@ Just... please don't bring any stray animals, alright?`,
 Speak, and I shall reveal the answers.`,
         questions: [
             { q: "How many members can be in a group?", a: "Up to 4 members." },
-            { q: "Will there be prizes?", a: "Yes! Top 3 teams + sponsor prizes." },
+            {
+                q: "Will there be prizing?", a: `Yes! There will be a prize for each member on the following winning teams:
+                
+• Top Overall Team
+• Software Track
+• Hardware Track
+• Game Dev Track`
+            },
             { q: "Who are the judges?", a: "Industry experts, faculty, and GT students." },
-            { q: "How do I submit my project?", a: "Devpost. Details at the event." },
+            { q: "How do I submit my project?", a: "Devpost! Details will be announced on Discord and at the event." },
             { q: "Is there travel reimbursement?", a: "No, not at this time." }
         ]
     }
