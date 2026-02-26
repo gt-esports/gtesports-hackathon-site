@@ -17,3 +17,5 @@ bun.lock
 bun.lock.json
 bun.lock.yaml
 bun.lock.json.DS_Store
+
+settings.local.json

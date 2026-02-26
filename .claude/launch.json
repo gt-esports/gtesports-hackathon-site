@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/kevinhu/.nvm/versions/node/v22.17.1/bin/npx",
+      "runtimeArgs": ["vite", "--port", "5173", "--host"],
+      "port": 5173,
+      "env": {
+        "PATH": "/Users/kevinhu/.nvm/versions/node/v22.17.1/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  ]
+}
