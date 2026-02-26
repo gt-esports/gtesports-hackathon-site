@@ -4,6 +4,22 @@ import { supabase } from "../utils/supabaseClient";
 import type { Application } from "../types/database.types";
 import AdminApplicationView from "../components/Admin/AdminApplicationView";
 
+// Returns current local datetime string for datetime-local input max
+function getLocalNow(): string {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    return now.toISOString().slice(0, 16);
+}
+
+function formatDateForCSV(dateStr: string): string {
+    const d = new Date(dateStr);
+    return d.toLocaleString('en-US', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: true,
+    });
+}
+
 export default function AdminDashboard() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -16,18 +32,31 @@ export default function AdminDashboard() {
     const [sortField, setSortField] = useState<'created_at' | 'updated_at'>('created_at');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
+    // Date/time filter state
+    const [filterStart, setFilterStart] = useState('');
+    const [filterEnd, setFilterEnd] = useState('');
+
+    const filteredApplications = useMemo(() => {
+        return applications.filter((app) => {
+            const appDate = new Date(app.created_at).getTime();
+            if (filterStart && appDate < new Date(filterStart).getTime()) return false;
+            if (filterEnd && appDate > new Date(filterEnd).getTime()) return false;
+            return true;
+        });
+    }, [applications, filterStart, filterEnd]);
+
     const sortedApplications = useMemo(() => {
-        return [...applications].sort((a, b) => {
+        return [...filteredApplications].sort((a, b) => {
             const dateA = new Date(a[sortField]).getTime();
             const dateB = new Date(b[sortField]).getTime();
-            
+
             if (sortDirection === 'asc') {
                 return dateA - dateB;
             } else {
                 return dateB - dateA;
             }
         });
-    }, [applications, sortField, sortDirection]);
+    }, [filteredApplications, sortField, sortDirection]);
 
     const handleSort = (field: 'created_at' | 'updated_at') => {
         if (sortField === field) {
@@ -38,7 +67,40 @@ export default function AdminDashboard() {
         }
     };
 
-    // Pagination / Filter states could go here
+    const handleFilterEndChange = (value: string) => {
+        const now = getLocalNow();
+        // Cap to current time if user picks a future datetime
+        setFilterEnd(value > now ? now : value);
+    };
+
+    const exportCSV = () => {
+        const csvRows: string[] = [];
+        csvRows.push('Name,Email,Submitted,Last Updated');
+
+        for (const app of sortedApplications) {
+            const answers = app.answers as Record<string, unknown> | null;
+            const name = typeof answers?.full_name === 'string' ? answers.full_name : 'Unknown';
+            const email = typeof answers?.email === 'string' ? answers.email : '';
+
+            // Escape CSV fields
+            const escapeCsv = (val: string) => `"${val.replace(/"/g, '""')}"`;
+
+            csvRows.push([
+                escapeCsv(name),
+                escapeCsv(email),
+                escapeCsv(formatDateForCSV(app.created_at)),
+                escapeCsv(formatDateForCSV(app.updated_at)),
+            ].join(','));
+        }
+
+        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `applications_${new Date().toISOString().slice(0, 10)}.csv`;
+        link.click();
+        URL.revokeObjectURL(url);
+    };
 
     useEffect(() => {
         const checkAdminAndFetchData = async () => {
@@ -140,11 +202,60 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
+                {/* Date Filter & Export */}
+                <div className="bg-white border-4 border-valley-brown rounded-lg p-4 md:p-6">
+                    <div className="flex flex-col lg:flex-row gap-4 items-end">
+                        <div className="flex flex-col sm:flex-row gap-4 flex-1">
+                            <div className="flex flex-col gap-1">
+                                <label className="font-pixel text-xs text-valley-brown uppercase">From</label>
+                                <input
+                                    type="datetime-local"
+                                    value={filterStart}
+                                    max={filterEnd || getLocalNow()}
+                                    onChange={(e) => setFilterStart(e.target.value)}
+                                    className="border-2 border-valley-brown rounded px-3 py-2 text-sm font-mono bg-valley-cream"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className="font-pixel text-xs text-valley-brown uppercase">To</label>
+                                <input
+                                    type="datetime-local"
+                                    value={filterEnd}
+                                    min={filterStart || undefined}
+                                    max={getLocalNow()}
+                                    onChange={(e) => handleFilterEndChange(e.target.value)}
+                                    className="border-2 border-valley-brown rounded px-3 py-2 text-sm font-mono bg-valley-cream"
+                                />
+                            </div>
+                            {(filterStart || filterEnd) && (
+                                <button
+                                    onClick={() => { setFilterStart(''); setFilterEnd(''); }}
+                                    className="self-end px-3 py-2 text-sm font-pixel text-valley-brown border-2 border-valley-brown/30 rounded hover:bg-valley-brown/10 transition-colors"
+                                >
+                                    Clear Filter
+                                </button>
+                            )}
+                        </div>
+                        <button
+                            onClick={exportCSV}
+                            disabled={sortedApplications.length === 0}
+                            className="px-4 py-2 bg-valley-green text-white font-pixel text-sm rounded border-2 border-valley-green hover:bg-valley-green-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                        >
+                            Export Names & Emails as CSV ({sortedApplications.length})
+                        </button>
+                    </div>
+                    {(filterStart || filterEnd) && (
+                        <p className="mt-2 text-xs font-pixel text-valley-brown/60">
+                            Showing {sortedApplications.length} of {applications.length} applications
+                        </p>
+                    )}
+                </div>
+
                 {/* Applications List */}
                 <div className="bg-white border-4 border-valley-brown rounded-lg overflow-hidden">
                     <div className="p-3 md:p-4 bg-valley-brown text-valley-cream font-pixel flex flex-col sm:flex-row justify-between items-center gap-2">
                         <h2 className="text-lg md:text-xl">Applications</h2>
-                        <span className="text-xs md:text-sm opacity-80">Showing latest {applications.length}</span>
+                        <span className="text-xs md:text-sm opacity-80">Showing {sortedApplications.length} of {applications.length}</span>
                     </div>
 
                     <div className="overflow-x-auto">
@@ -225,10 +336,12 @@ export default function AdminDashboard() {
                                         </tr>
                                     );
                                 })}
-                                {applications.length === 0 && (
+                                {sortedApplications.length === 0 && (
                                     <tr>
                                         <td colSpan={5} className="p-8 text-center text-gray-500 italic">
-                                            No applications found.
+                                            {applications.length === 0
+                                                ? 'No applications found.'
+                                                : 'No applications match the selected date range.'}
                                         </td>
                                     </tr>
                                 )}
