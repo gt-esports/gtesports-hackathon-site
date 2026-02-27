@@ -18,6 +18,7 @@ export default function HackathonApplication() {
     const [model] = useState(() => new Model(surveyJson));
     const [loading, setLoading] = useState(true);
     const [hasApplied, setHasApplied] = useState(false);
+    const [applicationStatus, setApplicationStatus] = useState<string | null>(null);
 
 
     // --- Hot reload fix ---
@@ -49,7 +50,7 @@ export default function HackathonApplication() {
                 if (applicationId) {
                     const { data, error } = await supabase
                         .from("applications")
-                        .select("id, answers")
+                        .select("id, answers, status")
                         .eq("user_id", session.user.id)
                         .eq("id", applicationId)
                         .single();
@@ -58,7 +59,7 @@ export default function HackathonApplication() {
                 } else {
                     const { data, error } = await supabase
                         .from("applications")
-                        .select("id, answers")
+                        .select("id, answers, status")
                         .eq("user_id", session.user.id)
                         .order('created_at', { ascending: false })
                         .limit(1);
@@ -78,6 +79,7 @@ export default function HackathonApplication() {
 
                 if (existingApp) {
                     setHasApplied(true);
+                    setApplicationStatus(existingApp.status);
                     model.mode = "display";
 
 
@@ -226,9 +228,32 @@ export default function HackathonApplication() {
     return (
         <div className="max-w-3xl mx-auto my-10 p-8 rounded-3xl shadow-2xl bg-gradient-to-br from-white to-gray-50">
             {hasApplied && (
-                <div className="mb-6 bg-valley-green/10 border border-valley-green text-valley-dark-green px-4 py-3 rounded relative text-center font-pixel">
-                    <strong className="font-bold">Application Submitted!</strong>
-                    <span className="block sm:inline"> You are viewing your submitted application.</span>
+                <div className={`mb-6 border px-4 py-3 rounded relative text-center font-pixel ${
+                    applicationStatus === 'accepted' 
+                        ? 'bg-green-100 border-green-400 text-green-700' 
+                        : 'bg-valley-green/10 border-valley-green text-valley-dark-green'
+                }`}>
+                    <strong className="font-bold">
+                        {applicationStatus === 'accepted' ? 'Application Accepted! 🎉' : 'Application Submitted!'}
+                    </strong>
+                    {applicationStatus === 'accepted' ? (
+                        <div className="mt-4 flex flex-col items-center gap-3 text-sm sm:text-base">
+                            <p>
+                                Congratulations! Please check your email for acceptance details and fill out the attendance form. 
+                                Don't forget to join our Discord! If you have any questions, you can ping <strong>@Admin</strong> in the server.
+                            </p>
+                            <a 
+                                href="https://forms.cloud.microsoft/r/vfsDjJLvCZ" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition-colors shadow-sm"
+                            >
+                                Fill Out Attendance Form
+                            </a>
+                        </div>
+                    ) : (
+                        <span className="block sm:inline mt-2"> You are viewing your submitted application.</span>
+                    )}
                 </div>
             )}
             <Survey model={model} key={modelKey} />
