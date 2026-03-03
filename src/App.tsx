@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "sonner";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -14,6 +15,7 @@ import StubPage from "./components/StubPage";
 export default function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-center" richColors closeButton />
       <Analytics />
       <Routes>
         <Route path="/" element={<Landing />} />

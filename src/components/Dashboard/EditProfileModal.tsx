@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
 import type { Profile } from '../../types/database.types';
+import { toast } from 'sonner';
 
 interface EditProfileModalProps {
     isOpen: boolean;
@@ -45,7 +46,7 @@ export default function EditProfileModal({ isOpen, onClose, currentUser, onUpdat
             onClose();
         } catch (error) {
             console.error('Error updating profile:', error);
-            alert('Failed to update profile. Please try again.');
+            toast.error('Failed to update profile. Please try again.');
         } finally {
             setLoading(false);
         }

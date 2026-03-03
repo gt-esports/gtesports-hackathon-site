@@ -6,6 +6,7 @@ import "../../index.css";
 import { surveyJson } from "../../data/appQuestions";
 import { supabase } from "../../utils/supabaseClient";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 
 interface SurveyData {
     email: string;
@@ -117,7 +118,7 @@ export default function HackathonApplication() {
             try {
                 const { data: { session } } = await supabase.auth.getSession();
                 if (!session) {
-                    alert("Session expired. Please log in again.");
+                    toast.error("Session expired. Please log in again.");
                     navigate("/login");
                     return;
                 }
@@ -134,16 +135,14 @@ export default function HackathonApplication() {
                 if (error) {
                     // Check for duplicate key error (code 23505 in Postgres)
                     if (error.code === '23505') {
-                        alert("You have already submitted an application.");
+                        toast.info("You have already submitted an application.");
                         setHasApplied(true);
-                        // Reload to fetch stats
-                        window.location.reload();
+                        setApplicationStatus('pending');
+                        model.mode = "display";
                     } else {
                         throw error;
                     }
                 } else {
-                    console.log("Application submitted:", data);
-
                     // Send confirmation email
                     try {
                         const { error: fnError } = await supabase.functions.invoke('send-confirmation-email', {
@@ -159,7 +158,7 @@ export default function HackathonApplication() {
                         console.error("Exception triggering email confirmation:", emailErr);
                     }
 
-                    alert("Application submitted successfully!");
+                    toast.success("Application submitted successfully!");
                     setHasApplied(true);
                     model.mode = "display";
                     navigate("/dashboard");
@@ -167,7 +166,7 @@ export default function HackathonApplication() {
 
             } catch (err) {
                 console.error("Failed to submit application:", err);
-                alert("Failed to submit application. Please try again.");
+                toast.error("Failed to submit application. Please try again.");
             }
         };
 

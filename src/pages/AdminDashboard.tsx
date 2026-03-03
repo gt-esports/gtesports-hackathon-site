@@ -441,6 +441,21 @@ export default function AdminDashboard() {
                 <AdminApplicationView
                     application={selectedApp}
                     onClose={() => setSelectedApp(null)}
+                    onUpdate={(updatedApp) => {
+                        setApplications(prev => {
+                            const updated = prev.map(app =>
+                                app.id === updatedApp.id ? updatedApp : app
+                            );
+                            // Recompute stats from the updated list
+                            const total = updated.length;
+                            const pending = updated.filter(a => a.status === 'pending').length;
+                            const accepted = updated.filter(a => a.status === 'accepted').length;
+                            const waitlisted = updated.filter(a => a.status === 'waitlisted').length;
+                            setStats({ total, pending, accepted, waitlisted });
+                            return updated;
+                        });
+                        setSelectedApp(updatedApp);
+                    }}
                 />
             )}
         </div>

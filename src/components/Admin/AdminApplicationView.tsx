@@ -1,16 +1,19 @@
 import type { Application, Profile } from "../../types/database.types";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabaseClient";
+import { toast } from "sonner";
 
 interface AdminApplicationViewProps {
     application: Application;
     onClose: () => void;
+    onUpdate: (updatedApp: Application) => void;
 }
 
-export default function AdminApplicationView({ application, onClose }: AdminApplicationViewProps) {
+export default function AdminApplicationView({ application, onClose, onUpdate }: AdminApplicationViewProps) {
     const [applicantProfile, setApplicantProfile] = useState<Profile | null>(null);
     const [loading, setLoading] = useState(true);
     const [loadingStatus, setLoadingStatus] = useState(false);
+    const [currentStatus, setCurrentStatus] = useState(application.status);
 
     const updateStatus = async (newStatus: Application['status']) => {
         if (!confirm(`Are you sure you want to change the status to ${newStatus}?`)) return;
@@ -23,25 +26,12 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
 
         if (error) {
             console.error("Error updating status:", error);
-            alert("Failed to update status");
+            toast.error("Failed to update status");
         } else {
-            // Optimistic update or reload? 
-            // Ideally we callback to parent to refresh, but for now we can rely on parent re-fetching if desired, 
-            // OR we can just mutate the local prop object via specific pattern, but props are read-only.
-            // The best way is to call an onUpdate callback if we had one.
-            // Since we don't, we'll just modify the local display if we want, OR we assume the parent will refresh.
-            // Actually, the parent (AdminDashboard) passes the 'application' object. 
-            // If we want the UI inside THIS component to update immediately, we might need local state for status 
-            // initialized from props, or we accept that it won't update until closed/reopened.
-            // BETTER: Notify parent. Let's assume parent might refresh or we force a reload.
-            // For this iteration, let's just alert success and close, OR ideally we should have an `onUpdate` prop.
-            // I'll stick to a simple alert and close for now, or just reload the window which is crude but works.
-            // WAIT, I can just mutate the application object passed in? No, that's bad React.
-            // Let's reload page for now to be safe, OR just `onClose()`.
-
-            // Actually, I'll update the plan to add onUpdate prop in a future step if needed. 
-            // For now, let's just reload the page to ensure fresh data.
-            window.location.reload();
+            setCurrentStatus(newStatus);
+            const updatedApp = { ...application, status: newStatus, updated_at: new Date().toISOString() };
+            onUpdate(updatedApp);
+            toast.success(`Status updated to ${newStatus}`);
         }
         setLoadingStatus(false);
     };
@@ -96,12 +86,12 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             <p className="w-full md:w-auto">{applicantProfile?.college || "No College Listed"}</p>
                         </div>
                         <div className="mt-2">
-                            <span className={`px-2 py-1 rounded text-xs font-pixel uppercase ${application.status === 'accepted' ? 'bg-green-500 text-white' :
-                                application.status === 'rejected' ? 'bg-red-500 text-white' :
-                                    application.status === 'waitlisted' ? 'bg-yellow-500 text-white' :
+                            <span className={`px-2 py-1 rounded text-xs font-pixel uppercase ${currentStatus === 'accepted' ? 'bg-green-500 text-white' :
+                                currentStatus === 'rejected' ? 'bg-red-500 text-white' :
+                                    currentStatus === 'waitlisted' ? 'bg-yellow-500 text-white' :
                                         'bg-gray-400 text-white'
                                 }`}>
-                                {application.status}
+                                {currentStatus}
                             </span>
                         </div>
                     </div>
@@ -139,7 +129,7 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                                                     }
 
                                                     if (!path) {
-                                                        alert("No resume path found");
+                                                        toast.error("No resume path found");
                                                         return;
                                                     }
 
@@ -157,7 +147,7 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                                                     if (error) {
                                                         console.error("Error creating signed URL:", error);
                                                         if (newWindow) newWindow.close();
-                                                        alert("Failed to get resume download link");
+                                                        toast.error("Failed to get resume download link");
                                                         return;
                                                     }
 
@@ -245,9 +235,9 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                         <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 order-1 sm:order-2 w-full sm:w-auto">
                             <button
                                 onClick={() => updateStatus('pending')}
-                                disabled={loadingStatus || application.status === 'pending'}
+                                disabled={loadingStatus || currentStatus === 'pending'}
                                 className={`px-3 md:px-4 py-2 border-2 text-sm md:text-base font-pixel rounded transition-colors
-                                    ${application.status === 'pending'
+                                    ${currentStatus === 'pending'
                                         ? 'border-gray-300 text-gray-300 cursor-not-allowed'
                                         : 'border-gray-500 text-gray-700 hover:bg-gray-100'
                                     }`}
@@ -256,9 +246,9 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             </button>
                             <button
                                 onClick={() => updateStatus('waitlisted')}
-                                disabled={loadingStatus || application.status === 'waitlisted'}
+                                disabled={loadingStatus || currentStatus === 'waitlisted'}
                                 className={`px-3 md:px-4 py-2 border-2 text-sm md:text-base font-pixel rounded transition-colors
-                                    ${application.status === 'waitlisted'
+                                    ${currentStatus === 'waitlisted'
                                         ? 'border-yellow-300 text-yellow-300 cursor-not-allowed'
                                         : 'border-yellow-600 text-yellow-700 hover:bg-yellow-50'
                                     }`}
@@ -267,9 +257,9 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             </button>
                             <button
                                 onClick={() => updateStatus('rejected')}
-                                disabled={loadingStatus || application.status === 'rejected'}
+                                disabled={loadingStatus || currentStatus === 'rejected'}
                                 className={`px-3 md:px-4 py-2 border-2 text-sm md:text-base font-pixel rounded transition-colors
-                                    ${application.status === 'rejected'
+                                    ${currentStatus === 'rejected'
                                         ? 'border-red-300 text-red-300 cursor-not-allowed'
                                         : 'border-red-600 text-red-700 hover:bg-red-50'
                                     }`}
@@ -278,9 +268,9 @@ export default function AdminApplicationView({ application, onClose }: AdminAppl
                             </button>
                             <button
                                 onClick={() => updateStatus('accepted')}
-                                disabled={loadingStatus || application.status === 'accepted'}
+                                disabled={loadingStatus || currentStatus === 'accepted'}
                                 className={`px-3 md:px-4 py-2 border-2 text-sm md:text-base font-pixel rounded transition-colors
-                                    ${application.status === 'accepted'
+                                    ${currentStatus === 'accepted'
                                         ? 'border-green-300 text-green-300 cursor-not-allowed'
                                         : 'border-green-600 text-green-700 hover:bg-green-50'
                                     }`}
