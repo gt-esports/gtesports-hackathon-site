@@ -30,17 +30,28 @@ alter table public.profiles enable row level security;
 alter table public.applications enable row level security;
 
 -- Create policies for profiles
+-- Security definer function to check admin status without triggering RLS recursion
+create or replace function public.is_admin()
+returns boolean
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  return exists (
+    select 1 from public.profiles
+    where id = auth.uid()
+    and is_admin = true
+  );
+end;
+$$;
+
 drop policy if exists "Public profiles are viewable by everyone." on public.profiles;
 drop policy if exists "Users can view own profile or admins can view all." on public.profiles;
 create policy "Users can view own profile or admins can view all."
   on public.profiles for select
   using (
     auth.uid() = id
-    or exists (
-      select 1 from public.profiles as p
-      where p.id = auth.uid()
-      and p.is_admin = true
-    )
+    or public.is_admin()
   );
 
 drop policy if exists "Users can insert their own profile." on public.profiles;
