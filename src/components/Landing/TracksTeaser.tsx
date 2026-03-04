@@ -6,7 +6,7 @@ export default function TracksTeaser() {
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
 
   return (
-    <section id="tracks" className="relative py-24 overflow-hidden bg-[#8fb6d3] flex flex-col items-center justify-center">
+    <section id="tracks" className="relative py-16 overflow-hidden bg-[#8fb6d3] flex flex-col items-center justify-center">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
@@ -22,7 +22,7 @@ export default function TracksTeaser() {
       <div className="container mx-auto px-4 relative z-10 flex flex-col items-center">
         
         {/* Section Header */}
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-center">
           <h2 className="text-4xl md:text-5xl font-pixel text-white drop-shadow-md mb-4 tracking-wide uppercase stroke-valley-brown stroke-2">
             Quest Board
           </h2>
@@ -53,7 +53,7 @@ export default function TracksTeaser() {
           <div className="absolute bottom-3 right-3 w-4 h-4 rounded-full bg-[#3e2723] shadow-inner border border-[#5d4037] z-20"></div>
 
           {/* Quest Papers Grid */}
-          <div className="flex flex-col gap-8 relative z-10 mt-8 mb-4 px-2 md:px-8">
+          <div className="flex flex-col gap-6 relative z-10 mt-6 mb-2 px-2 md:px-8">
             
             {/* Top Row: Best in Show (Centered) */}
             <div className="flex justify-center">
@@ -67,7 +67,7 @@ export default function TracksTeaser() {
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 w-4 h-4 rounded-full bg-valley-gold shadow-md border border-yellow-700"></div>
                   
                   {/* Paper */}
-                  <div className={`bg-[#fdfbf7] p-8 pt-10 shadow-lg border-2 ${track.color && track.color.replace('bg-', 'border-').replace('100', '200')} h-full flex flex-col items-center text-center relative overflow-hidden ring-4 ring-black/5`}>
+                  <div className={`bg-[#fdfbf7] p-6 pt-8 shadow-lg border-2 ${track.color && track.color.replace('bg-', 'border-').replace('100', '200')} h-full flex flex-col items-center text-center relative overflow-hidden ring-4 ring-black/5`}>
                      {/* Gold Glow for Grand Prize */}
                      <div className="absolute inset-0 bg-yellow-500/5 pointer-events-none"></div>
 
@@ -87,7 +87,7 @@ export default function TracksTeaser() {
                     <div className="w-1/2 h-px bg-valley-brown/20 mb-4"></div>
                     
                     {/* Description */}
-                    <p className="font-serif text-valley-brown/80 text-base leading-relaxed mb-6">
+                    <p className="font-serif text-valley-brown/80 text-base leading-relaxed mb-4">
                       {track.shortDescription}
                     </p>
 
@@ -109,9 +109,9 @@ export default function TracksTeaser() {
               ))}
             </div>
 
-            {/* Bottom Row: Category Tracks */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {tracks.slice(1).map((track, index) => (
+            {/* Middle Row: Category Tracks */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {tracks.slice(1, 4).map((track, index) => (
                 <div 
                   key={track.id}
                   onClick={() => setSelectedTrack(track)}
@@ -125,7 +125,7 @@ export default function TracksTeaser() {
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 w-4 h-4 rounded-full bg-red-500 shadow-md border border-red-700"></div>
                   
                   {/* Paper */}
-                  <div className="bg-[#fdfbf7] p-6 pt-8 pb-8 shadow-md border border-gray-200 h-full flex flex-col items-center text-center relative overflow-hidden">
+                  <div className={`bg-[#fdfbf7] p-5 pt-6 pb-6 shadow-md border-2 ${track.color ? track.color.replace('bg-', 'border-').replace('100', '300') : 'border-gray-200'} h-full flex flex-col items-center text-center relative overflow-hidden`}>
                     
                     {/* Folded corner effect */}
                     <div className="absolute top-0 right-0 border-t-[20px] border-r-[20px] border-t-[#fdfbf7] border-r-[#e0e0e0] shadow-sm transform rotate-90"></div>
@@ -161,6 +161,75 @@ export default function TracksTeaser() {
                 </div>
               ))}
             </div>
+
+            {/* Bottom Row: Sponsor Challenges */}
+            {tracks.length > 4 && (
+              <>
+                <div className="w-full flex justify-center mt-6 mb-4">
+                  <div className="relative px-8 py-3 bg-[#d7ccc8] border-2 border-[#8d6e63] shadow-md rotate-[-1deg] group">
+                    <div className="absolute top-1.5 left-1.5 w-2 h-2 rounded-full bg-[#3e2723] shadow-inner border border-[#1a100f]"></div>
+                    <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#3e2723] shadow-inner border border-[#1a100f]"></div>
+                    <div className="absolute bottom-1.5 left-1.5 w-2 h-2 rounded-full bg-[#3e2723] shadow-inner border border-[#1a100f]"></div>
+                    <div className="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full bg-[#3e2723] shadow-inner border border-[#1a100f]"></div>
+                    <span className="font-pixel text-[#5d4037] text-xl tracking-widest uppercase relative z-10 group-hover:text-[#3e2723] transition-colors">Sponsor Bounties</span>
+                    <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.03) 20px)" }}></div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap justify-center gap-4 md:gap-6 w-full">
+                  {tracks.slice(4).map((track, index) => (
+                    <div 
+                      key={track.id}
+                      onClick={() => setSelectedTrack(track)}
+                      className={`
+                        w-full md:w-[calc(33.333%-1.5rem)] max-w-[22rem]
+                        relative cursor-pointer group transform transition-all duration-300 hover:scale-105 hover:z-20
+                        ${index % 2 === 0 ? 'rotate-[1deg]' : 'rotate-[-1deg]'}
+                        hover:rotate-0
+                      `}
+                    >
+                      {/* Pin */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 w-4 h-4 rounded-full bg-blue-500 shadow-md border border-blue-700"></div>
+                      
+                      {/* Paper */}
+                      <div className={`bg-[#fdfbf7] p-5 pt-6 pb-6 shadow-md border-2 ${track.color ? track.color.replace('bg-', 'border-').replace('100', '300') : 'border-gray-200'} h-full flex flex-col items-center text-center relative overflow-hidden`}>
+                        
+                        {/* Folded corner effect */}
+                        <div className="absolute top-0 right-0 border-t-[20px] border-r-[20px] border-t-[#fdfbf7] border-r-[#e0e0e0] shadow-sm transform rotate-90"></div>
+
+                        {/* Icon */}
+                        <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                          {track.icon}
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="font-pixel text-lg md:text-xl text-valley-brown mb-3 leading-tight uppercase">
+                          {track.title}
+                        </h3>
+                        
+                        {/* Divider */}
+                        <div className="w-full h-px bg-valley-brown/20 mb-3"></div>
+                        
+                        {/* Description */}
+                        <p className="font-serif text-valley-brown/80 text-sm leading-relaxed mb-4 flex-grow">
+                          {track.shortDescription}
+                        </p>
+                        
+                        {/* "Read Quest" */}
+                        <div className="w-full mt-auto">
+                          <span className="inline-block px-3 py-1 bg-valley-orange/10 text-valley-orange font-pixel text-[10px] rounded hover:bg-valley-orange/20 transition-colors uppercase tracking-wider">
+                            Read Bounty
+                          </span>
+                        </div>
+
+                        {/* Texture */}
+                        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
 
           </div>
 

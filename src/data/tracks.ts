@@ -83,4 +83,16 @@ export const tracks: Track[] = [
     prizes: ["Steam Gift Cards", "Game Assets Pack", "$500 Cash Prize"],
     pdfUrl: "/assets/tracks/game-dev-track.pdf",
   },
+  {
+    id: "elevenlabs",
+    title: "Best Project Build with ElevenLabs",
+    shortDescription: "The best implementation of ElevenLabs API in a project.",
+    fullDescription: `
+      Build a project that utilizes ElevenLabs voice AI technology. Whether it's adding dynamic NPC voices to a game, creating an accessibility tool that reads chat aloud, or something completely innovative, we're looking for the best integration of ElevenLabs.
+    `,
+    icon: "🎙️",
+    difficulty: "Sponsor Quest",
+    color: "bg-indigo-100",
+    prizes: ["ElevenLabs Credits", "$250 Cash Prize"],
+  },
 ];
