@@ -22,7 +22,7 @@ export const tracks: Track[] = [
     icon: "🏆",
     difficulty: "Rank S+ Quest",
     color: "bg-yellow-100",
-    prizes: ["Grand Prize Trophy", "$1000 Cash Prize", "Exclusive Swag"],
+    prizes: ["To Be Announced (TBA)"],
   },
   {
     id: "software",
@@ -41,7 +41,7 @@ export const tracks: Track[] = [
     icon: "💻",
     difficulty: "Rank A Quest",
     color: "bg-blue-100",
-    prizes: ["Mechanical Keyboards", "Software Licenses", "$500 Cash Prize"],
+    prizes: ["To Be Announced (TBA)"],
     pdfUrl: "/assets/tracks/software-track.pdf",
   },
   {
@@ -61,7 +61,7 @@ export const tracks: Track[] = [
     icon: "🤖",
     difficulty: "Rank A Quest",
     color: "bg-red-100",
-    prizes: ["Arduino Kits", "3D Printing Credit", "$500 Cash Prize"],
+    prizes: ["To Be Announced (TBA)"],
     pdfUrl: "/assets/tracks/hardware-track.pdf",
   },
   {
@@ -80,7 +80,7 @@ export const tracks: Track[] = [
     icon: "🎮",
     difficulty: "Rank A Quest",
     color: "bg-purple-100",
-    prizes: ["Steam Gift Cards", "Game Assets Pack", "$500 Cash Prize"],
+    prizes: ["To Be Announced (TBA)"],
     pdfUrl: "/assets/tracks/game-dev-track.pdf",
   },
   {
@@ -93,6 +93,6 @@ export const tracks: Track[] = [
     icon: "🎙️",
     difficulty: "Sponsor Quest",
     color: "bg-indigo-100",
-    prizes: ["ElevenLabs Credits", "$250 Cash Prize"],
+    prizes: ["ElevenLabs Scale Tier Subscription (6 Months)($1980 value/team member)"],
   },
 ];

@@ -79,9 +79,15 @@ export default function TrackModal({ track, isOpen, onClose }: TrackModalProps) 
             <h3 className="font-pixel text-xl text-valley-brown mb-4 flex items-center gap-2">
               <span>🎁</span> Quest Rewards
             </h3>
-            <div className="text-valley-brown/80 font-serif text-lg italic">
-              To Be Announced (TBA)
-            </div>
+            <ul className="text-valley-brown/80 font-serif text-lg list-disc list-inside">
+              {track.prizes && track.prizes.length > 0 ? (
+                track.prizes.map((prize, idx) => (
+                  <li key={idx} className={`${prize.includes('To Be Announced') ? 'italic' : ''}`}>{prize}</li>
+                ))
+              ) : (
+                <li className="italic">To Be Announced (TBA)</li>
+              )}
+            </ul>
             {/* Stamp decoration */}
             <div className="absolute -bottom-2 -right-2 text-4xl opacity-20 transform rotate-12">
               🏆
