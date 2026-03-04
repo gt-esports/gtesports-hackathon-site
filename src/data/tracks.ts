@@ -18,10 +18,6 @@ export const tracks: Track[] = [
     fullDescription: `
       This is the grand prize for the team that creates the most impressive overall contribution to the gaming ecosystem. Whether it's a revolutionary new game, a tool that helps players improve, or a piece of hardware that redefines control, we're looking for the best total package.
 
-      **Criteria:**
-      - Relevance: clearly solves a problem or enhances the gaming experience.
-      - Execution: High polish and functionality.
-      - Innovation: Brings something new to the table.
     `,
     icon: "🏆",
     difficulty: "Rank S+ Quest",
@@ -41,9 +37,6 @@ export const tracks: Track[] = [
       - Team finding / matchmaking apps
       - Modding tools or productivity suites for game devs
 
-      **Criteria:**
-      - Utility: Does it solve a genuine pain point?
-      - UX/UI: Is it intuitive for gamers to use?
     `,
     icon: "💻",
     difficulty: "Rank A Quest",
@@ -64,9 +57,6 @@ export const tracks: Track[] = [
       - Unique arcade cabinets or rhythm game controllers
       - Smart gaming furniture or setup enhancements
 
-      **Criteria:**
-      - Engineering: Solid build quality and circuit design.
-      - Interactivity: How well does it interface with a game?
     `,
     icon: "🤖",
     difficulty: "Rank A Quest",
@@ -86,9 +76,6 @@ export const tracks: Track[] = [
       - Creative mechanics or storytelling
       - Polished visual and audio experience
 
-      **Criteria:**
-      - Fun Factor: Is it enjoyable to play?
-      - Originality: Does it stand out from clones?
     `,
     icon: "🎮",
     difficulty: "Rank A Quest",
