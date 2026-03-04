@@ -77,7 +77,7 @@ const SponsorsTeaser: FC = () => {
           </p>
 
           {/* Sponsors Grid */}
-          <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto w-full px-2 md:px-4">
+          <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto w-full px-2 md:px-4">
             {sponsors.map((sponsor, index) => {
               const CardWrapper = sponsor.url ? 'a' : 'div';
               const linkProps = sponsor.url ? { href: sponsor.url, target: "_blank", rel: "noopener noreferrer" } : {};
