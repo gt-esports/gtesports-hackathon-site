@@ -6,6 +6,7 @@ create table if not exists public.profiles (
   last_name text,
   full_name text,
   college text,
+  is_admin boolean not null default false,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
 
@@ -30,9 +31,17 @@ alter table public.applications enable row level security;
 
 -- Create policies for profiles
 drop policy if exists "Public profiles are viewable by everyone." on public.profiles;
-create policy "Public profiles are viewable by everyone."
+drop policy if exists "Users can view own profile or admins can view all." on public.profiles;
+create policy "Users can view own profile or admins can view all."
   on public.profiles for select
-  using ( true );
+  using (
+    auth.uid() = id
+    or exists (
+      select 1 from public.profiles as p
+      where p.id = auth.uid()
+      and p.is_admin = true
+    )
+  );
 
 drop policy if exists "Users can insert their own profile." on public.profiles;
 create policy "Users can insert their own profile."
@@ -58,7 +67,11 @@ create policy "Users can insert their own application."
 drop policy if exists "Users can update their own application." on public.applications;
 create policy "Users can update their own application."
   on public.applications for update
-  using ( auth.uid() = user_id );
+  using ( auth.uid() = user_id )
+  with check (
+    auth.uid() = user_id
+    and status = (select status from public.applications where id = applications.id)
+  );
 
 -- Function to handle new user signup
 create or replace function public.handle_new_user()

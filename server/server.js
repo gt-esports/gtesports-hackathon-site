@@ -7,7 +7,13 @@ dotenv.config()
 const app = express()
 const PORT = 3000
 
-app.use(cors())
+app.use(cors({
+  origin: [
+    'https://techhack.gatechesports.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ],
+}))
 app.use(express.json())
 
 app.listen(PORT, () => {
