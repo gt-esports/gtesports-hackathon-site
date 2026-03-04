@@ -78,9 +78,13 @@ const SponsorsTeaser: FC = () => {
 
           {/* Sponsors Grid */}
           <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto w-full px-2 md:px-4">
-            {sponsors.map((sponsor, index) => (
-              <div
+            {sponsors.map((sponsor, index) => {
+              const CardWrapper = sponsor.url ? 'a' : 'div';
+              const linkProps = sponsor.url ? { href: sponsor.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+              <CardWrapper
                 key={sponsor.name}
+                {...linkProps}
                 className={`group relative flex w-full flex-col items-center border-[3px] border-[#8b4513] bg-[linear-gradient(145deg,#fffbf0,#f0e6d2)] p-2 pt-4 md:p-4 md:pt-6 shadow-[3px_3px_0_rgba(93,64,55,0.3)] transition-all duration-300 ease-out hover:z-[5] hover:-translate-y-2 hover:scale-[1.05] hover:rotate-0 hover:shadow-[8px_12px_0_rgba(93,64,55,0.3)] rounded-sm ${getCardRotationClass(
                   index,
                 )} before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(#5d4037_1px,transparent_1px)] before:bg-[length:16px_16px] before:opacity-[0.02] before:content-['']`}
@@ -125,8 +129,9 @@ const SponsorsTeaser: FC = () => {
                     {sponsor.name}
                   </span>
                 </div>
-              </div>
-            ))}
+              </CardWrapper>
+              );
+            })}
           </div>
 
           {/* Bottom decorative divider */}
