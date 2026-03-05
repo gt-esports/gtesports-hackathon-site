@@ -93,10 +93,10 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <a
             href="/signup"
-            className="btn-pixel text-sm md:text-base animate-pulse-glow flex items-center justify-center gap-2 group"
+            className="btn-pixel text-sm md:text-base flex items-center justify-center gap-2 group"
           >
             <span>📜</span>
-            <span>Apply Now</span>
+            <span>Sign Up</span>
           </a>
           <a
             href="https://discord.gg/CbaXUEfpgW"

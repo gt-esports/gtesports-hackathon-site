@@ -107,12 +107,15 @@ export default function DashboardHero({ user: initialUser, applications }: Dashb
             </p>
             {/* Apply Now Button */}
             <div className="mb-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 md:gap-6">
-              <button
-                onClick={() => navigate('/application')}
-                className="btn-pixel bg-valley-green hover:bg-valley-blue px-6 py-4 text-base md:text-lg transition-transform duration-200 hover:scale-105"
-              >
-                Apply Now
-              </button>
+              <div className="flex flex-col items-center gap-1">
+                <button
+                  disabled
+                  className="btn-pixel px-6 py-4 text-base md:text-lg opacity-60 cursor-not-allowed"
+                >
+                  🔒 Apply Now
+                </button>
+                <span className="font-pixel text-white/50 text-[0.6rem] uppercase tracking-wider">Applications closed</span>
+              </div>
 
               <a
                 href="https://discord.gg/CbaXUEfpgW"
