@@ -28,6 +28,12 @@ export const PixelCalendar = ({ className, size = 20 }: IconProps) => (
   </svg>
 );
 
+export const PixelTrophy = ({ className, size = 20 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
+    <path d="M4 2h8v2h2v3h-2v1c0 2.2-1.3 4-3 4.7V14h3v2H4v-2h3v-1.3C5.3 12 4 10.2 4 8V7H2V4h2V2zm-1 3v1h1V5H3zm9 0v1h1V5h-1z" />
+  </svg>
+);
+
 export const PixelMoneyBag = ({ className, size = 20 }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges">
     {/* Bag Shape */}

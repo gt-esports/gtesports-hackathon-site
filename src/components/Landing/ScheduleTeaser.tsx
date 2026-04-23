@@ -1,5 +1,6 @@
 import CountdownCarousel from '../CountdownCarousel';
 
+// Preserved for reuse in a future event cycle; intentionally hidden on the post-event landing page.
 export default function ScheduleTeaser() {
   return (
     <section id="schedule" className="relative flex flex-col items-center justify-center pt-16 pb-32 overflow-hidden gradient-valley-sky">
@@ -27,20 +28,20 @@ export default function ScheduleTeaser() {
             {/* Seasonal Header Image/Text */}
             <div className="w-full border-b-4 border-valley-brown/20 pb-4 mb-8 flex justify-between items-end relative z-10">
               <div className="flex flex-col">
-                <span className="text-valley-green font-pixel text-xs mb-1">Current Season</span>
+                <span className="text-valley-green font-pixel text-xs mb-1">Status</span>
                 <div className="text-valley-orange font-pixel text-lg md:text-xl tracking-widest flex items-center gap-2">
-                  <span>🌸</span> SPRING
+                  <span>⭐</span> COMPLETE
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <span className="text-valley-green font-pixel text-xs mb-1">Year</span>
-                <div className="text-valley-brown font-pixel text-lg md:text-xl">1</div>
+                <span className="text-valley-green font-pixel text-xs mb-1">Next Up</span>
+                <div className="text-valley-brown font-pixel text-lg md:text-xl">2027</div>
               </div>
             </div>
 
             {/* Main Title */}
             <h2 className="text-3xl md:text-5xl font-pixel text-valley-brown mb-10 text-center uppercase tracking-wide drop-shadow-sm">
-              Schedule
+              Season Recap
             </h2>
 
             {/* Grid Placeholder for "Coming Soon" */}
@@ -63,11 +64,14 @@ export default function ScheduleTeaser() {
                 </div>
               ))}
 
-              {/* "Coming Soon" Stamp Overlay */}
+              {/* "Season Recap" Stamp Overlay */}
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="bg-valley-cream border-4 border-valley-orange transform -rotate-12 shadow-xl p-6 md:p-8 animate-pulse-glow">
-                  <p className="font-pixel text-lg md:text-2xl text-valley-orange text-center whitespace-nowrap uppercase tracking-widest leading-relaxed">
-                    Event Details<br />Coming Soon!
+                <div className="bg-valley-cream border-4 border-valley-orange transform -rotate-12 shadow-xl p-6 md:p-8 max-w-[90%] animate-pulse-glow">
+                  <p className="font-pixel text-lg md:text-2xl text-valley-orange text-center uppercase tracking-widest leading-relaxed">
+                    Thanks For Joining<br />TechHack 2026!
+                  </p>
+                  <p className="font-pixel text-[0.6rem] md:text-xs text-valley-brown text-center mt-4 leading-relaxed">
+                    We hope to see you next year.
                   </p>
                 </div>
               </div>

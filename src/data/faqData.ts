@@ -3,39 +3,38 @@ const faqData = {
     general: {
         townie: "Kinglet",
         portrait: "/faq/kinglet.png",
-        greeting: `Welcome to my shop! 
+        greeting: `Welcome back! 
 
-...Er, the hackathon! 
+TechHack 2026 is in the books. 
 
 How can I help?`,
         questions: [
-
-            { q: "When is TechHack 2026?", a: "March 6-8, 2026." },
+            { q: "Was TechHack 2026 the first TechHack?", a: "Yes. TechHack 2026 was our inaugural hackathon." },
             {
-                q: "Who can Apply?", a: `Any US student can apply.
+                q: "Will TechHack return next year?", a: `That's the plan.
                 
-We prioritize Georgia Tech students.`},
-            { q: "What is the cost?", a: "It's free to attend." },
-            { q: "When is the registration deadline?", a: "February 22, 2026." },
-            { q: "What are the tracks?", a: "One main track + sponsor tracks. Details coming soon!" }
+Follow our Discord and GT Esports channels for announcements about the next event.`},
+            { q: "What was the cost?", a: "TechHack 2026 was free to attend." },
+            { q: "How can I stay updated?", a: "Join the Discord and follow Georgia Tech Esports on social media for future updates." },
+            { q: "What were the tracks?", a: "TechHack featured one main track plus sponsor tracks across software, hardware, and game development." }
         ]
     },
     food: {
         townie: "Wren",
         portrait: "/faq/wren.png",
-        greeting: `Welcome, friend! 
+        greeting: `Welcome back, friend! 
 
-The Saloon is ready to serve. 
+The Saloon survived the weekend. 
 
 Hungry? Thirsty?`,
         questions: [
             {
-                q: "Will meals be provided?", a: `Yes! A meal will be provided on:
+                q: "Was food provided?", a: `Yes. Meals were provided during the event, including:
                 
 • Friday Night
 • Saturday Night`
             },
-            { q: "Will there be snacks and drinks?", a: "Yes, we will be providing snacks and drinks. Details will be posted on Discord." },
+            { q: "Will future events have snacks and drinks?", a: "That's the goal. We will share food details with next year's attendees once plans are finalized." },
         ]
     },
     venue: {
@@ -43,15 +42,15 @@ Hungry? Thirsty?`,
         portrait: "/faq/gallinule.png",
         greeting: `Greetings, citizen! 
 
-I hold the official proclamations. 
+I keep the records of the realm. 
 
 What do you need?`,
         questions: [
             {
-                q: "Where is the hackathon located?", a: `Howey Physics @ Georgia Tech Campus.
+                q: "Where was the hackathon located?", a: `Howey Physics @ Georgia Tech Campus.
                 
 Exact room details on Discord.` },
-            { q: "Is there parking available?", a: "Yes, paid guest parking is available on campus." }
+            { q: "Was parking available?", a: "Yes, paid guest parking was available on campus." }
         ]
     },
     items: {
@@ -61,8 +60,8 @@ Exact room details on Discord.` },
 
 Just... please don't bring any stray animals, alright?`,
         questions: [
-            { q: "What should I bring?", a: "Laptop, charger, and hardware. We don't provide monitors or peripherals." },
-            { q: "Can I bring sleeping equipment?", a: "We don't offer an overnight venue, so on-campus participants can go home and other participants can try and see if other arrangements can be made." },
+            { q: "What did attendees need to bring?", a: "Laptop, charger, and any personal hardware. We did not provide monitors or peripherals." },
+            { q: "Was overnight space provided?", a: "We did not offer an overnight venue, so attendees needed to make their own arrangements between event hours." },
         ]
     },
 
@@ -73,17 +72,17 @@ Just... please don't bring any stray animals, alright?`,
         
 Speak, and I shall reveal the answers.`,
         questions: [
-            { q: "How many members can be in a group?", a: "Up to 4 members." },
+            { q: "How many members could be in a group?", a: "Up to 4 members." },
             {
-                q: "Will there be prizing?", a: `Yes! There will be a prize for each member on the following winning teams:
+                q: "Was there prizing?", a: `Yes. There was a prize for each member on the following winning teams:
                 
 • Top Overall Team
 • Software Track
 • Hardware Track
 • Game Dev Track`
             },
-            { q: "Who are the judges?", a: "Industry experts, faculty, and GT students." },
-            { q: "How do I submit my project?", a: "Devpost! Details will be announced on Discord and at the event." },
+            { q: "Who were the judges?", a: "Industry experts, faculty, and GT students." },
+            { q: "How were projects submitted?", a: "Projects were submitted through Devpost during the event." },
             { q: "Is there travel reimbursement?", a: "No, not at this time." }
         ]
     }

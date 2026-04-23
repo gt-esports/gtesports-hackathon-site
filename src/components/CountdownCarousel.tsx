@@ -41,7 +41,13 @@ export default function CountdownCarousel({ className = "", position = 'fixed' }
     <>
       <span className="text-2xl">⏰</span>
       {isHackathonStarted ? (
-        <span className="text-valley-gold text-xl">🎉 TECHHACK VALLEY IS LIVE! 🎉</span>
+        <>
+          <span className="text-valley-gold text-xl text-center">THANK YOU FOR SUPPORTING OUR INAUGURAL TECHHACK</span>
+          <span className="text-valley-gold">✦</span>
+          <span className="text-white/90 text-center">WE HOPE TO SEE YOU NEXT YEAR</span>
+          <span className="text-valley-gold">✦</span>
+          <span className="text-white/90">{siteConfig.event.date}</span>
+        </>
       ) : (
         <>
           <span className="text-white/90">{siteConfig.event.name} STARTS IN:</span>

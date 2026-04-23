@@ -47,7 +47,7 @@ const SponsorsTeaser: FC = () => {
           <div className="absolute top-2 right-2 w-3 h-3 rounded-full bg-valley-brown shadow-inner" />
 
           <h2 className="text-3xl md:text-4xl font-pixel text-valley-brown tracking-wider uppercase drop-shadow-sm text-center">
-            Our Sponsors
+            Thanks to Our 2026 Sponsors
           </h2>
         </div>
 
@@ -73,7 +73,7 @@ const SponsorsTeaser: FC = () => {
 
           {/* Flavor text */}
           <p className="text-center font-pixel text-xs text-valley-brown/70 mb-8 relative z-10 tracking-wide">
-            These generous allies help make our quest possible!
+            These generous allies helped make our inaugural TechHack possible.
           </p>
 
           {/* Sponsors Grid */}

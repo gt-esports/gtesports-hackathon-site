@@ -1,9 +1,7 @@
 import Hero from "../components/Landing/Hero"
 import About from "../components/Landing/About"
 import TracksTeaser from "../components/Landing/TracksTeaser"
-import ScheduleTeaser from "../components/Landing/ScheduleTeaser"
 import SponsorsTeaser from "../components/Landing/SponsorsTeaser"
-import FAQ from "../components/FAQ/FAQ"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
@@ -14,9 +12,11 @@ export default function Landing() {
       <Hero />
       <About />
       <TracksTeaser />
-      <ScheduleTeaser />
+      {/* Post-event landing page: keep the old Season Recap section code in the repo for future reuse. */}
+      {/* <ScheduleTeaser /> */}
       <SponsorsTeaser />
-      <FAQ />
+      {/* Post-event landing page: keep the old Town Square section code in the repo for future reuse. */}
+      {/* <FAQ /> */}
       <Footer />
     </div>
   )

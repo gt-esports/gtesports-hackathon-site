@@ -4,6 +4,7 @@ import DialogueOverlay from './DialogueOverlay';
 
 type FAQCategory = keyof typeof faqData;
 
+// Preserved for reuse in a future event cycle; intentionally hidden on the post-event landing page.
 export default function FAQ() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogCategory, setDialogCategory] = useState<FAQCategory | null>(null);

@@ -1,5 +1,5 @@
 import { siteConfig } from '../data/site';
-import { PixelHome, PixelCalendar, PixelHeart, PixelUsers } from './PixelIcons';
+import { PixelHome, PixelTrophy, PixelHeart, PixelUsers } from './PixelIcons';
 
 export default function NavbarDropdownMenu() {
   return (
@@ -12,10 +12,10 @@ export default function NavbarDropdownMenu() {
           <PixelHome className="mr-2 mb-1" /> Home
         </a>
         <a
-          href="/#schedule"
+          href="/#winners"
           className="block px-4 py-3 text-valley-brown hover:bg-valley-gold/20 transition-colors font-pixel text-xs uppercase tracking-wide border-b border-valley-brown/10 last:border-0 flex items-center"
         >
-          <PixelCalendar className="mr-2 mb-0.5" /> Schedule
+          <PixelTrophy className="mr-2 mb-0.5" /> Winners
         </a>
         <a
           href="/#sponsors"

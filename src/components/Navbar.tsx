@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { siteConfig } from '../data/site';
 import NavbarDropdownMenu from './NavbarDropdownMenu';
-import { PixelHome, PixelCalendar, PixelHeart, PixelUsers, PixelMenu, PixelSignIn } from './PixelIcons';
+import { PixelHome, PixelTrophy, PixelHeart, PixelUsers, PixelMenu, PixelSignIn } from './PixelIcons';
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -57,10 +57,10 @@ export default function Navbar() {
               <PixelHome className="mb-1" /> Home
             </a>
             <a
-              href="/#schedule"
+              href="/#winners"
               className="px-3 py-2 text-valley-brown hover:bg-valley-gold/20 rounded-md transition-colors font-pixel text-xs uppercase tracking-wide flex items-center gap-2"
             >
-              <PixelCalendar className="mb-0.5" /> Schedule
+              <PixelTrophy className="mb-0.5" /> Winners
             </a>
             <a
               href="/#sponsors"

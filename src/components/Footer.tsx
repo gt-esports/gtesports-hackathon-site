@@ -1,7 +1,7 @@
 import {
   Instagram,
   Linkedin,
-  Calendar,
+  Trophy,
   Building,
   Users,
   Mail,
@@ -50,7 +50,7 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { name: "Schedule", url: "/#schedule", icon: <Calendar className="w-4 h-4" /> },
+    { name: "Winning Projects", url: "/#winners", icon: <Trophy className="w-4 h-4" /> },
     { name: "Sponsors", url: "/#sponsors", icon: <Building className="w-4 h-4" /> },
     { name: "Teams", url: "/teams", icon: <Users className="w-4 h-4" /> },
     { name: "Meet the Team", url: siteConfig.links.ourTeam, icon: <Users className="w-4 h-4" /> },
@@ -70,7 +70,7 @@ export default function Footer() {
                 {siteConfig.event.name}
               </h3>
               <p className="text-valley-cream/80 text-sm leading-relaxed font-pixel max-w-md">
-                {siteConfig.about.intro}
+                Thank you to everyone who came out for our inaugural TechHack. Your support made the first season special, and we hope to see you back next year.
               </p>
             </div>
 

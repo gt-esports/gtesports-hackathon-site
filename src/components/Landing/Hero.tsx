@@ -47,13 +47,13 @@ export default function Hero() {
               className="w-80 md:w-[32rem] mb-2 object-contain drop-shadow-md"
             />
             <p className="font-pixel text-xs md:text-sm text-valley-cream uppercase tracking-widest bg-valley-brown/60 inline-block px-4 py-2 rounded">
-              Spring 2026 Season
+              Inaugural Season Complete
             </p>
 
             <div className="mt-8 wood-panel px-8 py-6 transform -rotate-2 animate-float mx-auto inline-block max-w-full" style={{ animationDelay: '1s' }}>
               <div className="flex flex-col items-center justify-center">
                 <span className="font-pixel text-[0.6rem] md:text-xs text-[#5d4037] mb-2 uppercase tracking-widest opacity-90">
-                  Mark your calendars
+                  Thank you for coming
                 </span>
                 <p className="font-pixel text-base sm:text-lg md:text-2xl text-[#5d4037] font-bold tracking-wider leading-relaxed text-center">
                   {siteConfig.event.date}
@@ -75,9 +75,9 @@ export default function Hero() {
 
               <div className="w-full">
                 <p className="font-pixel text-valley-brown text-sm md:text-base mb-4 leading-loose">
-                  Welcome, farmer! 👩‍🌾 <br />
-                  <span className="text-valley-blue">Georgia Tech's</span> coziest hackathon is open for business.
-                  Ideas grow like crops here! Join us for 36 hours of coding, collaboration, and relaxation.
+                  Thank you, farmers! 👩‍🌾 <br />
+                  Thanks to everyone who came out and supported our inaugural hackathon, <span className="text-valley-blue">TechHack</span>.
+                  We loved building with you at Georgia Tech, and we hope to see you again next year.
                 </p>
 
                 {/* Typing cursor effect placeholder or simple animated arrow could go here */}
@@ -92,14 +92,16 @@ export default function Hero() {
         {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <a
-            href="/signup"
+            href={siteConfig.links.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-pixel text-sm md:text-base flex items-center justify-center gap-2 group"
           >
-            <span>📜</span>
-            <span>Sign Up</span>
+            <span>📸</span>
+            <span>Follow Updates</span>
           </a>
           <a
-            href="https://discord.gg/CbaXUEfpgW"
+            href={siteConfig.links.discord}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-pixel btn-pixel-discord text-sm md:text-base flex items-center justify-center gap-2"
